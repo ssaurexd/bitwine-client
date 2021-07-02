@@ -1,0 +1,11 @@
+//vars
+@import './vars';
+
+//global
+.trasparent{
+	background-color: $bg-color-transparent;	
+}
+
+
+//components
+@import './components/header-main.scss';

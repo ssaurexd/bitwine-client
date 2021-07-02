@@ -1,8 +1,11 @@
+import { FC } from 'react'
+
 import Auth from '../components/init/Auth'
 import Home from '../components/screens/Home'
+import HeaderMain from '../components/HeaderMain'
 
 
-const App = () => {
+const App: FC = () => {
 
 	return (
 		<Auth
@@ -10,10 +13,10 @@ const App = () => {
 			redirectTo={ '/login' }
 			needToRedirect={ false }
 		>
-			<div>
+			<main>
+				<HeaderMain />
 				<Home />
-				Ejemplo que si se puede jsjsj
-			</div>
+			</main>
 		</Auth>
 	)
 }

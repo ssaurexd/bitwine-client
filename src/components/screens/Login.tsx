@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Button } from '@material-ui/core'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
 
-const Login = () => {
+const Login: FC = () => {
 
 	const location = useRouter()
 	/* redux state */

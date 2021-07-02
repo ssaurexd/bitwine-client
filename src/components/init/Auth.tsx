@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
@@ -11,7 +11,7 @@ interface Props {
 	redirectTo: string 
 }
 
-const Auth = ( props: Props ) => {
+const Auth: FC<Props> = ( props ) => {
 
 	/* props */
 	const {

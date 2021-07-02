@@ -18,7 +18,7 @@ const initialState: UserState = {
 	email: '',
 	name: '',
 	lastName: '',
-	role: '',
+	role: 'user',
 	online: false
 }
 
