@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core'
 
-import CustomButtonLink from './CustomButtonLink'
+import CustomButtonLink from '../CustomButtonLink'
 
 
 const HeaderMain: FC = () => {
