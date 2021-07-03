@@ -2,4 +2,11 @@ $bg-color-transparent: transparent;
 
 $nav-main-heigth: 80px;
 
-$banner-h1-color: #fdfdfd
+$banner-h1-color: #fdfdfd;
+
+
+/* media queries */
+$xs: '( max-width: 578px )';/* 
+$xs: '( min-width: 579px ) and ( max-width: 578px )';
+$xs: '( min-width: 320px ) and ( max-width: 578px )';
+$xs: '( min-width: 320px ) and ( max-width: 578px )'; */
