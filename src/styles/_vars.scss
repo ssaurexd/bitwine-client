@@ -6,7 +6,8 @@ $banner-h1-color: #fdfdfd;
 
 
 /* media queries */
-$xs: '( max-width: 578px )';/* 
-$xs: '( min-width: 579px ) and ( max-width: 578px )';
+$xs: '( min-width: 0px )'; 
+$lg: '( min-width: 1280px )';
+/*
 $xs: '( min-width: 320px ) and ( max-width: 578px )';
 $xs: '( min-width: 320px ) and ( max-width: 578px )'; */

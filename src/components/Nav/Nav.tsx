@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { 
 	AppBar,
 	Toolbar,
@@ -8,7 +9,9 @@ import {
 	Container,
 	Typography,
 	Hidden,
-	Grid
+	Grid,
+	List,
+	ListItem,
 } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
 
@@ -17,18 +20,22 @@ import useStyle from './styles'
 import logoImage from '../../../public/assets/images/logo-sm.webp'
 
 import NavMobile from './NavMobile'
+import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
 }
 
-const Nav: FC<Props> = ( props ) => {
+
+const Nav: FC<Props> = (  ) => {
 
 	/* hooks */
 	const classes = useStyle()
+	const location = useRouter()
 	const user = useAppSelector( state => state.user )
 	
 	/* state */
+	const pathName = location.pathname
 	const [ transparent, setTransparent ] = useState<boolean>( true )
 	const [ openDrawer, setOpenDrawer ] = useState<boolean>( false )
 	
@@ -63,10 +70,10 @@ const Nav: FC<Props> = ( props ) => {
 				<Toolbar className={classes.toolBar } >
 					<Container >
 						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
-							<Grid item>
+							<Grid item xs={ 8 } md={ 2 } >
 								<Link href='/' >
 									<a className={`${ classes.logo } ${ transparent && classes.colorWhite }`} >
-										<Grid container alignItems='center' wrap='nowrap' >
+										<Grid container alignItems='center'  wrap='nowrap' >
 											<Grid item >
 												<Image 
 													src={ logoImage }
@@ -81,15 +88,103 @@ const Nav: FC<Props> = ( props ) => {
 									</a>
 								</Link>
 							</Grid>
-							<Hidden only={['lg', 'xl', 'md']} >
-								<Grid item >
-									<IconButton 
-										onClick={ () => setOpenDrawer( true ) }
-									>
-										<Menu className={`${ classes.menu } ${ transparent && classes.colorWhite }`} />
-									</IconButton>
-								</Grid>
-							</Hidden>
+
+							<Grid container item xs={ 4 } md={ 10 } justify='flex-end' >
+								<List className={ `${ transparent && classes.colorWhite }` } >
+									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
+										<Grid item >
+											<Hidden only={['xs',]} >
+												<Grid item >
+													<ListItem>
+														<Link href='/documentation' >
+															<a className={`${ classes.navMain__link } ${ pathName === '/documentation' && classes.active2 }`} >Documentación</a>
+														</Link>
+													</ListItem>
+												</Grid>	
+											</Hidden>
+										</Grid>
+
+										<Grid item >
+											<Hidden only={['xs']} >
+												<Grid item >
+													<ListItem>
+														<Link href='/pricing' >
+															<a className={`${ classes.navMain__link } ${ pathName === '/pricing' && classes.active2 }`}>Precios</a>
+														</Link>
+													</ListItem>
+												</Grid>	
+											</Hidden>
+										</Grid>
+										<Grid item >
+											<Hidden only={['sm', 'xs']} >
+												<Grid item >
+													<ListItem>
+														<Link href='/about' >
+															<a className={`${ classes.navMain__link } ${ pathName === '/about' && classes.active2 }`}>Acerca de nosotros</a>
+														</Link>
+													</ListItem>
+												</Grid>	
+											</Hidden>
+										</Grid>
+
+										{ user.online 
+											? (
+												<div></div>
+											)
+											: (
+												<>
+													<Grid item >
+														<Hidden only={['sm', 'xs']} >
+															<Grid item >
+																<ListItem autoFocus >
+																	<Link href='/login' >
+																		<a className={`${ classes.navMain__link } ${ pathName === '/login' && classes.active2 }`}>Iniciar sesión</a>
+																	</Link>
+																</ListItem>
+															</Grid>	
+														</Hidden>
+													</Grid>
+													<Grid item >
+														<Hidden only={['sm', 'xs']} >
+															<Grid item >
+																<ListItem>
+																	<Link href='/signup' >
+																		<a className={`${ classes.navMain__link } ${ pathName === '/signup' && classes.active2 }`}>Registrarse</a>
+																	</Link>
+																</ListItem>
+															</Grid>	
+														</Hidden>
+													</Grid>
+												</>
+											)
+										}
+
+										<Grid item >
+											<Hidden only={['sm', 'xs']} >
+												<CustomButtonLink
+													size='small'
+													variant='contained'
+													color='secondary'
+													hreflink='/plan'
+													text='Start Free'
+												/>
+											</Hidden>
+										</Grid>
+
+										<Grid item >
+											<Hidden only={['lg', 'xl', 'md']} >
+												<Grid item >
+													<IconButton 
+														onClick={ () => setOpenDrawer( true ) }
+													>
+														<Menu className={`${ classes.menu } ${ transparent && classes.colorWhite }`} />
+													</IconButton>
+												</Grid>
+											</Hidden>
+										</Grid>
+									</Grid>
+								</List>
+							</Grid>
 						</Grid>
 					</Container>
 				</Toolbar>
