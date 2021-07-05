@@ -6,7 +6,7 @@ let theme =  createMuiTheme({
 		MuiCssBaseline: {
 			"@global": {
 				body: {
-					color: '#333'
+					color: '#525252'
 				},
 				a: {
 					textDecoration: 'none',

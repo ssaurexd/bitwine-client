@@ -5,13 +5,23 @@ import { Typography } from '@material-ui/core'
 import CustomButtonLink from '../CustomButtonLink'
 
 
-const HeaderMain: FC = () => {
+interface Props {
+	title: string,
+	subTitle?: string,
+	showBtn?: boolean,
+	bannerImage?: string 
+}
+
+const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }) => {
+
+	/* state */
+	const deafultImage = 'http://www.fisheroffshore.com/files/3715/0220/0754/Global-locations-banner-1920-x-400.jpg'
 
 	return (
 		<header className='header-main'>
 			<div className="header-main__banner">
 				<Image 
-					src='http://www.fisheroffshore.com/files/3715/0220/0754/Global-locations-banner-1920-x-400.jpg'
+					src={ bannerImage ? bannerImage : deafultImage }
 					alt='Banner'
 					layout='fill'
 					objectFit='cover'
@@ -24,19 +34,21 @@ const HeaderMain: FC = () => {
 						variant='h1'
 						className='title-container__h1'
 					>
-						BitBlog - Best API for getting a blog
+						{ title }
 					</Typography>
 
-					<p>Make an API faster</p>
+					<p>{ subTitle }</p>
 				</div>
 
-				<CustomButtonLink 
-					variant='outlined'
-					color='secondary'
-					size='large'
-					hreflink='/login'
-					text='Get started for FREE'
-				/>
+				{ showBtn &&
+					<CustomButtonLink 
+						variant='outlined'
+						color='secondary'
+						size='large'
+						hreflink='/pricing'
+						text='Get started for FREE'
+					/>
+				}
 			</div>
 		</header>
 	)

@@ -46,6 +46,11 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 	const [ openProfileMenu, setOpenProfileMenu ] = useState<boolean>( false )
 
 	/* funtions */
+	const handleOnGoTo = ( path: string ) => {
+		
+		onClose()
+		location.push( path )
+	}
 
 	return (
 		<Drawer
@@ -93,47 +98,37 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 							}
 
 							<Hidden only={['sm']} >
-								<ListItem button >
-									<Link href='/documentation' >
-										<a className={ pathName === '/documentation' ? classes.active : '' }>Documentación</a>
-									</Link>
+								<ListItem button onClick={ () =>  handleOnGoTo( '/documentation' ) } >
+									<ListItemText primary='Documentación' className={ pathName === '/documentation' ? classes.active : '' } />
 								</ListItem>
 							</Hidden>
 
 							<Divider variant='middle' />
 
 							<Hidden only={['sm']} >
-								<ListItem button >
-									<Link href='/pricing' >
-										<a className={ pathName === '/pricing' ? classes.active : '' }>Precios</a>
-									</Link>
+								<ListItem button onClick={ () =>  handleOnGoTo( '/pricing' ) } >
+									<ListItemText primary='Precios' className={ pathName === '/pricing' ? classes.active : '' } />
 								</ListItem>
 							</Hidden>
 
 							<Divider variant='middle' />
 
-							<ListItem button >
-								<Link href='/about' >
-									<a className={ pathName === '/about' ? classes.active : '' }>Acerca de nosotros</a>
-								</Link>
+							<ListItem button onClick={ () =>  handleOnGoTo( '/about' ) } >
+								<ListItemText primary='Acerca de nosotros' className={ pathName === '/about' ? classes.active : '' } />
 							</ListItem>
 
 							<Divider variant='middle' />
 
 							{ !user.online &&
 								<>
-									<ListItem button >
-										<Link href='/login' >
-											<a className={ pathName === '/login' ? classes.active : '' }>Iniciar sesión</a>
-										</Link>
+									<ListItem button onClick={ () =>  handleOnGoTo( '/login' ) } >
+										<ListItemText primary='Iniciar sesión' className={ pathName === '/login' ? classes.active : '' } />
 									</ListItem>
 
 									<Divider variant='middle' />
 
-									<ListItem button >
-										<Link href='/signup' >
-											<a className={ pathName === '/signup' ? classes.active : '' }>Registrarse</a>
-										</Link>
+									<ListItem button onClick={ () =>  handleOnGoTo( '/signup' ) } >
+										<ListItemText primary='Registrarte' className={ pathName === '/signup' ? classes.active : '' } />
 									</ListItem>
 								</>
 							}

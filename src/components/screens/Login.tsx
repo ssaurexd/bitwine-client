@@ -1,28 +1,33 @@
 import { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Button } from '@material-ui/core'
+import {
+	Container
+} from '@material-ui/core'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
 
+import LoginForm from '../LoginForm'
+
+
 const Login: FC = () => {
 
+	/* hooks */
 	const location = useRouter()
+
 	/* redux state */
 	const { online } = useAppSelector( state => state.user )
 
 	useEffect( () => {
+
 		if( online ) {
 			location.push('/')
 		}
 	}, [])
 
 	return (
-		<div>
-			<Button
-				variant='contained'
-			>Registrarse
-			</Button>
-		</div>
+		<Container>
+			<LoginForm />
+		</Container>
 	)
 }
 
