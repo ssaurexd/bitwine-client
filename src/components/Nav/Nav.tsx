@@ -127,7 +127,7 @@ const Nav: FC<Props> = (  ) => {
 											</Hidden>
 										</Grid>
 
-										{ user.online 
+										{ user.isLoggedIn 
 											? (
 												<div></div>
 											)

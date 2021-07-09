@@ -10,7 +10,7 @@ const login = ( ) => {
 		<Auth
 			admitedRoles={ ['none'] }
 			needToRedirect={ false }
-			redirectTo={ '' }
+			redirectTo={ '/' }
 		>
 			<>
 				<main>

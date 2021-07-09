@@ -11,6 +11,8 @@ interface Props {
 	redirectTo: string 
 }
 
+const pathsAuth: Array<string> = ['/login', '/signup']
+
 const Auth: FC<Props> = ( props ) => {
 
 	/* props */
@@ -20,17 +22,23 @@ const Auth: FC<Props> = ( props ) => {
 		redirectTo,
 		needToRedirect
 	} = props
+
 	/* redux state */
-	const { role, online } = useAppSelector( state => state.user )
+	const { role, isLoggedIn } = useAppSelector( state => state.user )
+
 	/* state */
 	const location = useRouter()
 
 	/* funtions */
-	const checkUserStatus = (  ) => {
+	const checkUserStatus = (): void => {
 
-		const userCanAccess: boolean = online && admitedRoles.includes( role )
+		const userCanAccess: boolean = isLoggedIn && admitedRoles.includes( role )
 
 		if( !userCanAccess && needToRedirect ) {
+			location.push( redirectTo )
+		}
+
+		if( isLoggedIn && pathsAuth.includes( location.pathname ) ) {
 			location.push( redirectTo )
 		}
 	}
@@ -38,7 +46,7 @@ const Auth: FC<Props> = ( props ) => {
 	useEffect( () => {
 		
 		checkUserStatus()
-	}, [ online ])
+	}, [ isLoggedIn ])
 
 	return children 
 }

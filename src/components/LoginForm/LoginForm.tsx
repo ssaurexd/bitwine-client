@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Link from 'next/link'
 import {
 	TextField,
@@ -8,9 +8,13 @@ import {
 	Grid,
 	Container
 } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { Formik } from 'formik'
 
 import useStyle from './styles'
+import { userAuthLogin } from '../../helpers/userApi'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { logIn, logInStart, logInFail } from '../../redux/slices/userSlice'
 
 import CustomDivider from '../CustomDivider'
 import SocialButtons from './SocilaButtons'
@@ -26,17 +30,32 @@ const LoginForm: FC = () => {
 
 	/* hooks */
 	const classes = useStyle()
+	const dispath = useAppDispatch()
+	const user = useAppSelector( state => state.user )
 
 	/* state */
 	const initialValues: FormValues = {
-		email: '',
+		email: 'ssaurexd@gmail.com',
 		password: '',
 		rememberMe: false
 	}
+	const [ msgError, setMsgError ] = useState<string | undefined>( '' )
 
 	/* funtions */
-	const _Submit = ( values: FormValues ) => {
-		console.log(`values`, values)
+	const _Submit = async ( values: FormValues ) => {
+
+		const { ok, user, msg } = await userAuthLogin( values )
+		
+		dispath( logInStart() )
+
+		if( ok ) { 
+
+			dispath( logIn({ ...user, isLoggedIn: true }) )
+		} else {
+
+			dispath( logInFail() )
+			setMsgError( msg )
+		}
 	}
 
 	return (
@@ -54,6 +73,9 @@ const LoginForm: FC = () => {
 						handleSubmit
 					}) => (
 						<form className={ classes.form } onSubmit={ handleSubmit } >
+							{ msgError &&
+								<Alert variant='outlined' severity='error'>{ msgError }</Alert>
+							}
 							<TextField
 								variant="outlined"
 								color='secondary'
@@ -99,6 +121,7 @@ const LoginForm: FC = () => {
 
 							<Button
 								type="submit"
+								disabled={ user.loading }
 								fullWidth
 								variant="contained"
 								color="secondary"
