@@ -70,7 +70,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 				<Grid container item direction='column' justify='space-between' >
 					<Grid item >
 						<List>
-							{ user.online && 
+							{ user.isLoggedIn && 
 								<>
 									<ListItem button onClick={ () => setOpenProfileMenu( !openProfileMenu ) } >
 										<ListItemAvatar>
@@ -119,36 +119,35 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 
 							<Divider variant='middle' />
 
-							{ !user.online &&
+							{ !user.isLoggedIn &&
 								<>
 									<ListItem button onClick={ () =>  handleOnGoTo( '/login' ) } >
 										<ListItemText primary='Iniciar sesión' className={ pathName === '/login' ? classes.active : '' } />
 									</ListItem>
 
 									<Divider variant='middle' />
-
-									<ListItem button onClick={ () =>  handleOnGoTo( '/signup' ) } >
-										<ListItemText primary='Registrarte' className={ pathName === '/signup' ? classes.active : '' } />
-									</ListItem>
 								</>
 							}
 
 						</List>
 					</Grid>
-
-					<Grid container item justify='center' >
-						<Container>
-							<Grid item >
-								<CustomButtonLink 
-									variant='contained'
-									color='secondary'
-									hreflink='/plan'
-									text='Get started for FREE'
-									fullWidth
-								/>
-							</Grid>
-						</Container>
-					</Grid>
+					
+					{ !user.isLoggedIn && 
+						<Grid container item justify='center' >
+							<Container>
+								<Grid item >
+									<CustomButtonLink 
+										variant='contained'
+										color='secondary'
+										hreflink='/signup'
+										text='
+										Registrarse'
+										fullWidth
+									/>
+								</Grid>
+							</Container>
+						</Grid>
+					}
 				</Grid>
 			</Grid>
 		</Drawer>

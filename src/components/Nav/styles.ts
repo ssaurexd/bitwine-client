@@ -39,6 +39,7 @@ const useStyle = makeStyles( ( theme ) => ({
 		textTransform: 'uppercase',
 		overflow: 'hidden',
 		display: 'inline-block',
+		paddingBottom: '2px',
 		
 		'&::after': {
 			content: '""',

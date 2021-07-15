@@ -146,30 +146,18 @@ const Nav: FC<Props> = (  ) => {
 													</Grid>
 													<Grid item >
 														<Hidden only={['sm', 'xs']} >
-															<Grid item >
-																<ListItem>
-																	<Link href='/signup' >
-																		<a className={`${ classes.navMain__link } ${ pathName === '/signup' && classes.active2 }`}>Registrarse</a>
-																	</Link>
-																</ListItem>
-															</Grid>	
+															<CustomButtonLink
+																size='small'
+																variant='contained'
+																color='secondary'
+																hreflink='/signup'
+																text='Registrarse'
+															/>
 														</Hidden>
 													</Grid>
 												</>
 											)
 										}
-
-										<Grid item >
-											<Hidden only={['sm', 'xs']} >
-												<CustomButtonLink
-													size='small'
-													variant='contained'
-													color='secondary'
-													hreflink='/plan'
-													text='Start Free'
-												/>
-											</Hidden>
-										</Grid>
 
 										<Grid item >
 											<Hidden only={['lg', 'xl', 'md']} >

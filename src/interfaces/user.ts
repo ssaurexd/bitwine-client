@@ -1,16 +1,24 @@
 import { Roles } from '../redux/slices/userSlice'
 
-
-export interface TopLevel {
+// /login
+export interface IAPILoginTopLevel {
 	ok:    boolean;
-	user:  User,
+	user:  IAPIUser,
 	msg?: string
 }
-
-export interface User {
+export interface IAPIUser {
 	role:      Roles;
 	_id:       string;
 	email:     string;
 	name:      string;
 	lastName:  string;
+}
+
+// /refresh-token
+
+export interface IAPIRefreshTokenTopLevel {
+	ok: boolean,
+	user: IAPIUser,
+	msg?: string,
+	expired?: boolean
 }

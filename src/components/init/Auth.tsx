@@ -1,7 +1,11 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { useAppSelector } from '../../hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { userAuthRefreshToken } from '../../helpers/userApi'
+import { logIn } from '../../redux/slices/userSlice'
+
+import GlobalLoading from '../GlobalLoading'
 
 
 interface Props {
@@ -11,6 +15,7 @@ interface Props {
 	redirectTo: string 
 }
 
+/* rutas en la que no se puede acceder si esta logeado */
 const pathsAuth: Array<string> = ['/login', '/signup']
 
 const Auth: FC<Props> = ( props ) => {
@@ -23,13 +28,33 @@ const Auth: FC<Props> = ( props ) => {
 		needToRedirect
 	} = props
 
-	/* redux state */
+	/* hooks */
 	const { role, isLoggedIn } = useAppSelector( state => state.user )
-
-	/* state */
+	const dispatch = useAppDispatch()
 	const location = useRouter()
 
+	/* state */
+	const [ globalLoading, setGlobalLoading ] = useState( false )
+	
+
 	/* funtions */
+	const fetchUser = async ( ) => {
+		
+		setGlobalLoading( true )
+
+		const { ok, user, expired, msg } = await userAuthRefreshToken()
+
+		if( ok ) {
+
+			dispatch( logIn({ ...user, isLoggedIn: true }) )
+		} else if( expired ) {
+
+			/* TODO: Hacer un logout */
+		}
+
+		setGlobalLoading( false )
+	}
+	
 	const checkUserStatus = (): void => {
 
 		const userCanAccess: boolean = isLoggedIn && admitedRoles.includes( role )
@@ -44,11 +69,17 @@ const Auth: FC<Props> = ( props ) => {
 	}
 
 	useEffect( () => {
+		fetchUser()
+	}, [])
+
+	useEffect( () => {
 		
 		checkUserStatus()
 	}, [ isLoggedIn ])
 
-	return children 
+	if( globalLoading ) return <GlobalLoading show={ globalLoading } />
+
+	return  children 
 }
 
 export default Auth
