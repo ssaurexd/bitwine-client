@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { userAuthRefreshToken } from '../../helpers/userApi'
-import { logIn } from '../../redux/slices/userSlice'
+import { userAuthRefreshToken, userAuthLogOut } from '../../helpers/userApi'
+import { logIn, logOut } from '../../redux/slices/userSlice'
 
 import GlobalLoading from '../GlobalLoading'
 
@@ -35,6 +35,7 @@ const Auth: FC<Props> = ( props ) => {
 
 	/* state */
 	const [ globalLoading, setGlobalLoading ] = useState( false )
+	const [ needToCheck, setNeedToCheck ] = useState<string | null>( null )
 	
 
 	/* funtions */
@@ -42,14 +43,16 @@ const Auth: FC<Props> = ( props ) => {
 		
 		setGlobalLoading( true )
 
-		const { ok, user, expired, msg } = await userAuthRefreshToken()
+		const { ok, user, expired } = await userAuthRefreshToken()
 
 		if( ok ) {
 
 			dispatch( logIn({ ...user, isLoggedIn: true }) )
 		} else if( expired ) {
 
-			/* TODO: Hacer un logout */
+			const { ok } = await userAuthLogOut()
+
+			if( ok ) dispatch( logOut() )
 		}
 
 		setGlobalLoading( false )
@@ -69,8 +72,10 @@ const Auth: FC<Props> = ( props ) => {
 	}
 
 	useEffect( () => {
-		fetchUser()
-	}, [])
+		
+		setNeedToCheck( localStorage.getItem('isLoggedIn') )
+		if( needToCheck ) fetchUser()
+	}, [ needToCheck ])
 
 	useEffect( () => {
 		

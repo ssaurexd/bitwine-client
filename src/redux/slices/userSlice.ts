@@ -31,24 +31,35 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		logInStart: ( state ) => {
+
 			return {
 				...state,
 				loading: true
 			}
 		},
 		logInFail: ( state ) => {
+
 			return {
 				...state,
 				loading: false
 			}
 		},
 		logIn: ( state, action: PayloadAction<UserState> ) => {
+
+			localStorage.setItem( 'isLoggedIn', JSON.stringify( action.payload.isLoggedIn ) )
+
 			return { ...action.payload, loading: false }
+		},
+		logOut: ( state ) => {
+			
+			localStorage.removeItem( 'isLoggedIn' )
+			return initialState
 		}
 	}
 })
 export const {
 	logIn,
+	logOut,
 	logInStart,
 	logInFail
 } = userSlice.actions

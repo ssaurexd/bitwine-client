@@ -151,7 +151,7 @@ const Nav: FC<Props> = (  ) => {
 																variant='contained'
 																color='secondary'
 																hreflink='/signup'
-																text='Registrarse'
+																text='Crear cuenta'
 															/>
 														</Hidden>
 													</Grid>

@@ -1,6 +1,7 @@
 import { 
 	IAPILoginTopLevel,
-	IAPIRefreshTokenTopLevel 
+	IAPIRefreshTokenTopLevel,
+	IAPILogOutTopLevel
 } from '../interfaces/user'
 
 
@@ -35,6 +36,23 @@ export const userAuthRefreshToken = async ( ): Promise<IAPIRefreshTokenTopLevel>
 		body: JSON.stringify({ rememberMe })
 	})
 	const data: IAPIRefreshTokenTopLevel = await resp.json()
+
+	return data
+}
+
+export const userAuthLogOut = async ( ): Promise<IAPILogOutTopLevel> => {
+
+	const rememberMe = localStorage.getItem('rememberMe') || false
+	const resp = await fetch( `${ API_BASE_PATH }/logout`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Credentials': 'true'
+		},
+		credentials: 'include',
+		body: JSON.stringify({ rememberMe })
+	})
+	const data: IAPILogOutTopLevel = await resp.json()
 
 	return data
 }

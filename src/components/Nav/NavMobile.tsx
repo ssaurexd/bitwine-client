@@ -23,8 +23,10 @@ import {
 	Image as ImageIcon 
 } from '@material-ui/icons'
 
-import { useAppSelector } from '../../hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
+import { userAuthLogOut } from '../../helpers/userApi'
+import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'
 
@@ -39,6 +41,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 	/* hooks */
 	const location = useRouter()
 	const user = useAppSelector( state => state.user )
+	const dispatch = useAppDispatch()
 	const classes = useStyle( )
 	
 	/* state */
@@ -50,6 +53,13 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 		
 		onClose()
 		location.push( path )
+	}
+	
+	const handleLogOut = async () => {
+		
+		const { ok } = await userAuthLogOut()
+
+		if( ok ) dispatch( logOut() ) 
 	}
 
 	return (
@@ -87,10 +97,10 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 
 									<Collapse in={ openProfileMenu } >
 										<List component="div" disablePadding>
-											<ListItem button >
+											<ListItem button onClick={ handleLogOut } >
 												<ListItemIcon>
 												</ListItemIcon>
-												<ListItemText primary="Starred" />
+												<ListItemText primary="Cerrar Sesión" />
 											</ListItem>
 										</List>
 									</Collapse>
@@ -140,8 +150,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 										variant='contained'
 										color='secondary'
 										hreflink='/signup'
-										text='
-										Registrarse'
+										text='Crear cuenta'
 										fullWidth
 									/>
 								</Grid>

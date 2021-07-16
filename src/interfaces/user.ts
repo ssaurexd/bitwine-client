@@ -15,10 +15,14 @@ export interface IAPIUser {
 }
 
 // /refresh-token
-
 export interface IAPIRefreshTokenTopLevel {
 	ok: boolean,
 	user: IAPIUser,
 	msg?: string,
 	expired?: boolean
+}
+
+//logout
+export interface IAPILogOutTopLevel {
+	ok: boolean
 }
