@@ -82,7 +82,7 @@ const Nav: FC<Props> = (  ) => {
 												/> 
 											</Grid>
 											<Grid item >
-												<Typography variant='h2'>BitBlog</Typography>		
+												<Typography variant='h2'>BitWine</Typography>		
 											</Grid>
 										</Grid>
 									</a>
