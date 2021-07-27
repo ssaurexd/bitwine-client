@@ -15,19 +15,17 @@ const Login: FC = () => {
 	const location = useRouter()
 
 	/* redux state */
-	const { online } = useAppSelector( state => state.user )
+	const { isLoggedIn } = useAppSelector( state => state.user )
 
 	useEffect( () => {
 
-		if( online ) {
+		if( isLoggedIn ) {
 			location.push('/')
 		}
 	}, [])
 
 	return (
-		<Container>
-			<LoginForm />
-		</Container>
+		<LoginForm />
 	)
 }
 

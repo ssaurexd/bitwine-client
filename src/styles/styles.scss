@@ -3,6 +3,9 @@
 
 //global
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+.main-100-vh{
+	min-height: calc( 100vh - #{ $nav-main-heigth } - #{ $footer-main-heigth } );
+}
 
 //components
 @import './components/header-main.scss';
@@ -10,3 +13,4 @@
 @import './components/footer-main.scss';
 @import './components/customDivider.scss';
 @import './components/loginForm.scss';
+@import './components/home.scss';

@@ -3,6 +3,8 @@ import  Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core'
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css"
 import '../styles/styles.scss'
 
 import store from '../redux/store'

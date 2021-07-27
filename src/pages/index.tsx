@@ -15,7 +15,7 @@ const App: FC = () => {
 			needToRedirect={ false }
 		>
 			<>
-				<main>
+				<main className='main-100-vh' >
 					<HeaderMain 
 						title='BitWine - Best market place to buy wines'
 						subTitle='Wines for all wine lovers'
