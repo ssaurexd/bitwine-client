@@ -26,11 +26,8 @@ let theme =  createMuiTheme({
 	typography: {
 		fontSize: 16,
 		fontFamily: [
-			'K2D',
-			'-apple-system',
-			'Roboto',
-			'Arial',
-			'sans-serif'
+			'Maven Pro',
+			' sans serif'
 		].join(',')
 	},
 	shape: {

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Typography } from '@material-ui/core'
 
 import CustomButtonLink from '../CustomButtonLink'
-import defaultBanner from '../../../public/assets/images/defaultBanner3.jpg'
+import defaultBanner from '../../../public/assets/images/defaultBanner4.jpg'
 
 
 interface Props {

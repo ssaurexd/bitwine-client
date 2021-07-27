@@ -16,7 +16,7 @@ const login = ( ) => {
 				<main>
 					<HeaderMain 
 						title='Iniciar sesión'
-						subTitle='Unete al más grande comunidad de amantes del vino'
+						subTitle='Unete al más grande tienda en linea para los amantes del vino'
 					/>
 					
 					<Login />
