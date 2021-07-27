@@ -80,7 +80,7 @@ const LoginForm: FC = () => {
 							}
 							<TextField
 								variant="outlined"
-								color='secondary'
+								color='primary'
 								margin="normal"
 								fullWidth
 								label="Email"
@@ -96,7 +96,7 @@ const LoginForm: FC = () => {
 
 							<TextField
 								variant="outlined"
-								color='secondary'
+								color='primary'
 								margin="normal"
 								fullWidth
 								name="password"
@@ -112,7 +112,7 @@ const LoginForm: FC = () => {
 							<FormControlLabel
 								control={( 
 									<Checkbox 
-										color="secondary"
+										color="primary"
 										name='remenberMe' 
 										value={ values.rememberMe }
 										onChange={ handleChange }
@@ -126,7 +126,7 @@ const LoginForm: FC = () => {
 								disabled={ user.loading }
 								fullWidth
 								variant="contained"
-								color="secondary"
+								color="primary"
 								className={ classes.submit }
 							>
 								Iniciar Sesión

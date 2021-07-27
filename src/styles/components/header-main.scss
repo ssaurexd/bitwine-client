@@ -15,10 +15,10 @@
 			width: 100%;
 			height: 100%;
 			z-index: 99;
-			background-color: rgba(0, 0, 0, 0.5);
+			background-color: rgba(0, 0, 0, 0.2);
 			position: absolute;
 			top: 0;
-			padding-top: $nav-main-heigth;
+			padding: $nav-main-heigth 1rem 0 1rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-evenly;
@@ -30,6 +30,9 @@
 
 				&__h1 {
 					margin-bottom: 10px;
+				}
+				&__subTitle {
+					font-size: 1.2rem;
 				}
 			}
 		}

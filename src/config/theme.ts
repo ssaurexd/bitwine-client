@@ -2,6 +2,14 @@ import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-u
 
 
 let theme =  createMuiTheme({
+	palette: {
+		primary: {
+			main: '#800000',
+			light: '#993333',
+			dark: '#590000',
+			contrastText: '#fff',
+		}
+	},
 	overrides: {
 		MuiCssBaseline: {
 			"@global": {
@@ -24,6 +32,9 @@ let theme =  createMuiTheme({
 			'Arial',
 			'sans-serif'
 		].join(',')
+	},
+	shape: {
+		borderRadius: 25
 	}
 })
 

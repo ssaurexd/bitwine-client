@@ -17,8 +17,8 @@ const App: FC = () => {
 			<>
 				<main>
 					<HeaderMain 
-						title='BitBlog - Best API for getting a blog'
-						subTitle='Make an API faster'
+						title='BitWine - Best market place to buy wines'
+						subTitle='Wines for all wine lovers'
 						showBtn={ true }
 					/>
 

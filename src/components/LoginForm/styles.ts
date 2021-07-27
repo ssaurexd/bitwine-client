@@ -24,7 +24,7 @@ const useStyle = makeStyles( theme => ({
 		fontSize: '1rem',
 		transition: ' all ease .3s ',
 		'&:hover': {
-			color: theme.palette.secondary.main
+			color: theme.palette.primary.main
 		}
 	}
 }))

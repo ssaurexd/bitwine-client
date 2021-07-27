@@ -26,7 +26,7 @@ const useStyle = makeStyles( ( theme ) => ({
 		fontSize: '2rem'
 	},
 	active: {
-		color: theme.palette.secondary.main
+		color: theme.palette.primary.main
 	},
 	active2: {
 		'&::after': {
@@ -48,7 +48,7 @@ const useStyle = makeStyles( ( theme ) => ({
 			left: '-100%',
 			width: '100%',
 			height: '2px',
-			background: '#f50057',
+			background: theme.palette.primary.main,
 			transition: 'left .8s'
 		},
 		'&:hover': {

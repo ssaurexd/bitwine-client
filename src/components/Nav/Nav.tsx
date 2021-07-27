@@ -12,8 +12,9 @@ import {
 	Grid,
 	List,
 	ListItem,
+	Badge
 } from '@material-ui/core'
-import { Menu } from '@material-ui/icons'
+import { Menu, ShoppingCart } from '@material-ui/icons'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
@@ -115,6 +116,7 @@ const Nav: FC<Props> = (  ) => {
 												</Grid>	
 											</Hidden>
 										</Grid>
+
 										<Grid item >
 											<Hidden only={['sm', 'xs']} >
 												<Grid item >
@@ -144,20 +146,32 @@ const Nav: FC<Props> = (  ) => {
 															</Grid>	
 														</Hidden>
 													</Grid>
+
 													<Grid item >
 														<Hidden only={['sm', 'xs']} >
 															<CustomButtonLink
 																size='small'
 																variant='contained'
-																color='secondary'
+																color='primary'
 																hreflink='/signup'
 																text='Crear cuenta'
+																disableElevation
 															/>
 														</Hidden>
 													</Grid>
 												</>
 											)
 										}
+
+										<Grid item >
+											<Grid item >
+												<ListItem>
+													<Badge badgeContent={ 3 } color='primary' >
+														<ShoppingCart />
+													</Badge>
+												</ListItem>
+											</Grid>
+										</Grid>
 
 										<Grid item >
 											<Hidden only={['lg', 'xl', 'md']} >

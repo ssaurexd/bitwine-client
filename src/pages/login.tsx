@@ -16,8 +16,7 @@ const login = ( ) => {
 				<main>
 					<HeaderMain 
 						title='Iniciar sesión'
-						subTitle='Configura tus requerimiento y empieza a disfrutar de tu blog'
-						bannerImage='https://foxhillsgolfclub.com.au/content/uploads/2017/07/members-login-banner.jpg'
+						subTitle='Unete al más grande comunidad de amantes del vino'
 					/>
 					
 					<Login />

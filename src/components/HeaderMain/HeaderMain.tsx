@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Typography } from '@material-ui/core'
 
 import CustomButtonLink from '../CustomButtonLink'
+import defaultBanner from '../../../public/assets/images/defaultBanner3.jpg'
 
 
 interface Props {
@@ -15,16 +16,15 @@ interface Props {
 const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }) => {
 
 	/* state */
-	const deafultImage = 'http://www.fisheroffshore.com/files/3715/0220/0754/Global-locations-banner-1920-x-400.jpg'
 
 	return (
 		<header className='header-main'>
 			<div className="header-main__banner">
 				<Image 
-					src={ bannerImage ? bannerImage : deafultImage }
+					src={ bannerImage ? bannerImage : defaultBanner.src }
 					alt='Banner'
 					layout='fill'
-					objectFit='cover'
+					objectFit='fill'
 				/>
 			</div>
 			
@@ -37,16 +37,17 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }
 						{ title }
 					</Typography>
 
-					<p>{ subTitle }</p>
+					{ subTitle && <p className='title-container__subTitle' >{ subTitle }</p> }
 				</div>
 
 				{ showBtn &&
 					<CustomButtonLink 
-						variant='outlined'
-						color='secondary'
+						variant='contained'
+						color='primary'
 						size='large'
 						hreflink='/pricing'
-						text='Get started for FREE'
+						text='Go Shopping'
+						disableElevation
 					/>
 				}
 			</div>

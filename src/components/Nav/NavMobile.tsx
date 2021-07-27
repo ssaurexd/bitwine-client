@@ -148,10 +148,11 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 								<Grid item >
 									<CustomButtonLink 
 										variant='contained'
-										color='secondary'
+										color='primary'
 										hreflink='/signup'
 										text='Crear cuenta'
 										fullWidth
+										disableElevation
 									/>
 								</Grid>
 							</Container>

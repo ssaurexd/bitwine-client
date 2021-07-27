@@ -1,7 +1,6 @@
 .btn-google, .btn-fb {
 	width: 100%;
 	display: inline-block;
-	border-radius: 1px;
 	text-decoration: none;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
 	transition: background-color .218s, border-color .218s ,box-shadow .218s;
@@ -33,6 +32,7 @@
 .btn-google{
 	background: #FFF;
 	margin-bottom: 20px;
+	border-radius: 25px;
 	&:hover{
 		background-color: darken($color: #fff, $amount: 5);
 		cursor: pointer;
@@ -47,6 +47,7 @@
 	
 .btn-fb{
 	padding-top: 1.5px;
+	border-radius: 25px;
 	background: #4267b2;
 	&:hover{
 		background-color: darken($color: #4267b2, $amount: 5);
