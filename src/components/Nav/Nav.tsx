@@ -18,7 +18,7 @@ import { Menu, ShoppingCart } from '@material-ui/icons'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
-import logoImage from '../../../public/assets/images/logo-sm.webp'
+import logoImage from '../../../public/assets/images/logo.png'
 
 import NavMobile from './NavMobile'
 import CustomButtonLink from '../CustomButtonLink'
@@ -65,13 +65,13 @@ const Nav: FC<Props> = (  ) => {
 			<AppBar 
 				position='fixed'
 				color={ transparent ? 'transparent' : 'default' } 
-				elevation={ transparent ? 0 : 2 }
+				elevation={ transparent ? 0 : 3 }
 				className={ classes.appBar }
 			>
 				<Toolbar className={classes.toolBar } >
 					<Container >
 						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
-							<Grid item xs={ 8 } md={ 2 } >
+							<Grid item xs={ 8 } md={ 4 } >
 								<Link href='/' >
 									<a className={`${ classes.logo } ${ transparent && classes.colorWhite }`} >
 										<Grid container alignItems='center'  wrap='nowrap' >
@@ -90,7 +90,7 @@ const Nav: FC<Props> = (  ) => {
 								</Link>
 							</Grid>
 
-							<Grid container item xs={ 4 } md={ 10 } justify='flex-end' >
+							<Grid container item xs={ 4 } md={ 8 } justify='flex-end' >
 								<List className={ `${ transparent && classes.colorWhite }` } >
 									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
 										<Grid item >

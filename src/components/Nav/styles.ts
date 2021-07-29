@@ -13,7 +13,8 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	logo: {
 		textDecoration: 'none',
-		color: '#525252'
+		color: '#525252',
+		with: 'auto'
 	},
 	menu: {
 		color: '#525252'

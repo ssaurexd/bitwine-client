@@ -20,6 +20,7 @@ const App: FC = () => {
 						title='BitWine - Best market place to buy wines'
 						subTitle='Wines for all wine lovers'
 						showBtn={ true }
+						bottomShadow={ true }
 					/>
 
 					<Home />

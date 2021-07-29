@@ -3,22 +3,23 @@ import Image from 'next/image'
 import { Typography } from '@material-ui/core'
 
 import CustomButtonLink from '../CustomButtonLink'
-import defaultBanner from '../../../public/assets/images/defaultBanner4.jpg'
+import defaultBanner from '../../../public/assets/images/defaultBanner.jpg'
 
 
 interface Props {
 	title: string,
 	subTitle?: string,
 	showBtn?: boolean,
-	bannerImage?: string
+	bannerImage?: string,
+	bottomShadow?: boolean
 }
 
-const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }) => {
+const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, bottomShadow = false }) => {
 
 	/* state */
 
 	return (
-		<header className='header-main'> 
+		<header className={`header-main ${ bottomShadow && 'shadow' }`}> 
 			<div className="header-main__banner">
 				<Image 
 					src={ bannerImage ? bannerImage : defaultBanner.src }

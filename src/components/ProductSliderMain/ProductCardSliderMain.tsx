@@ -28,7 +28,7 @@ const ProductCardSliderMain: FC = () => {
 				<Image 
 					src={ defaultProduct.src } 
 					alt='Default' 
-					width={ 310 } 
+					width={ 320 } 
 					height={ 100 } 
 					layout='intrinsic' 
 				/>
