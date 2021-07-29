@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { globalStyles } from '../../config/theme'
 
 
 const useStyle = makeStyles( theme => ({
@@ -7,6 +8,9 @@ const useStyle = makeStyles( theme => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
+		boxShadow: theme.shadows[2],
+		padding: theme.spacing(5),
+		borderRadius: globalStyles.shape.borderRadius
 	},
 	avatar: {
 		margin: theme.spacing(1),

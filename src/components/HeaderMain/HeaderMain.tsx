@@ -10,7 +10,7 @@ interface Props {
 	title: string,
 	subTitle?: string,
 	showBtn?: boolean,
-	bannerImage?: string 
+	bannerImage?: string
 }
 
 const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }) => {
@@ -18,7 +18,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false }
 	/* state */
 
 	return (
-		<header className='header-main'>
+		<header className='header-main'> 
 			<div className="header-main__banner">
 				<Image 
 					src={ bannerImage ? bannerImage : defaultBanner.src }
