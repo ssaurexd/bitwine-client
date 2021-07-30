@@ -5,10 +5,13 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core'
 import SwiperCore, {
 	Pagination,
-	Navigation
-} from 'swiper/core';
-import "swiper/swiper.min.css";
-import "swiper/components/pagination/pagination.min.css"
+	Navigation,
+	Mousewheel,
+	Keyboard
+} from 'swiper/core'
+import 'swiper/swiper.min.css'
+import 'swiper/components/navigation/navigation.min.css'
+import 'swiper/components/pagination/pagination.min.css'
 
 import '../styles/styles.scss'
 import store from '../redux/store'
@@ -17,7 +20,7 @@ import theme from '../config/theme'
 import Layout from '../components/init/Layout'
 
 
-SwiperCore.use([Pagination, Navigation]);
+SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard]);
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 

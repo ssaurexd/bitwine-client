@@ -8,6 +8,9 @@ let theme =  createMuiTheme({
 			light: '#993333',
 			dark: '#590000',
 			contrastText: '#fff',
+		},
+		secondary: {
+			main: '#CC0000',
 		}
 	},
 	overrides: {
@@ -28,7 +31,10 @@ let theme =  createMuiTheme({
 		fontFamily: [
 			'Maven Pro',
 			' sans serif'
-		].join(',')
+		].join(','),
+		body2: {
+			fontSize: '0.95rem'
+		}
 	},
 	shape: {
 		borderRadius: 25
@@ -43,7 +49,7 @@ let theme =  createMuiTheme({
 		"0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
 		"0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)",
 		"0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)",
-		"0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)",
+		"0px 5px 6px -3px rgba(204, 204, 204, 0.2),0px 9px 12px 1px rgba(204, 204, 204, 0.14),0px 3px 16px 2px rgba(0,0,0,0.12)",
 		"0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)",
 		"0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)",
 		"0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)",
@@ -134,16 +140,18 @@ theme.typography.h5 = {
 }
 theme.typography.h6 = {
 	[ theme.breakpoints.up('xs') ]: {
-		fontSize: '.8rem',
+		fontSize: '0.9rem',
+		lineHeight: '1.4rem'
 	},
 	[ theme.breakpoints.up('sm') ]: {
-		fontSize: '.9rem'
+		fontSize: '0.9rem'
 	},
 	[ theme.breakpoints.up('md') ]: {
-		fontSize: '1.2rem'
+		fontSize: '0.9rem',
+		lineHeight: '1.43rem'
 	},
 	[ theme.breakpoints.up('lg') ]: {
-		fontSize: '1.3rem',
+		fontSize: '0.9rem',
 	},
 }
 

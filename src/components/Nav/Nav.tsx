@@ -166,9 +166,13 @@ const Nav: FC<Props> = (  ) => {
 										<Grid item >
 											<Grid item >
 												<ListItem>
-													<Badge badgeContent={ 3 } color='primary' >
-														<ShoppingCart />
-													</Badge>
+													<IconButton
+														color='inherit'
+													>
+														<Badge badgeContent={ 3 } color='primary' >
+															<ShoppingCart />
+														</Badge>
+													</IconButton>
 												</ListItem>
 											</Grid>
 										</Grid>

@@ -1,16 +1,18 @@
 import { FC } from 'react'
 
 import ProductSliderMain from '../ProductSliderMain';
+import Slider from '../Slider';
 
 interface Props {
-	dataResp?: object
 }
 
-const Home: FC<Props> = ({ dataResp }) => {
+const Home: FC<Props> = ({}) => {
 	
 	return (
 		<section>
 			<ProductSliderMain />
+
+			<Slider title='Ofertas Flash'/>
 		</section>
 	)
 }

@@ -41,6 +41,7 @@ const useStyle = makeStyles( ( theme ) => ({
 		overflow: 'hidden',
 		display: 'inline-block',
 		paddingBottom: '2px',
+		color: 'inherit',
 		
 		'&::after': {
 			content: '""',
