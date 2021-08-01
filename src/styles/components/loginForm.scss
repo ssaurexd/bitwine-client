@@ -1,62 +1,64 @@
-.btn-google, .btn-fb {
-	width: 100%;
-	display: inline-block;
-	text-decoration: none;
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
-	transition: background-color .218s, border-color .218s ,box-shadow .218s;
-	border-radius: 4px;
-	border: none;
-	text-transform: uppercase;
+@media #{ $xs } { 
+	.btn-google, .btn-fb {
+		width: 100%;
+		display: inline-block;
+		text-decoration: none;
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+		transition: background-color .218s, border-color .218s ,box-shadow .218s;
+		border-radius: 4px;
+		border: none;
+		text-transform: uppercase;
 
-	.google-content, .fb-content {
-		display: flex;
-		align-items: center; 
-		.logo{
-			padding: 10px;
-			height: inherit;
+		.google-content, .fb-content {
+			display: flex;
+			align-items: center; 
+			.logo{
+				padding: 10px;
+				height: inherit;
+			}
+			svg{
+				width: 18px;
+				height: 18px;
+			}
+			p{
+				width: 100%;
+				line-height: 1;
+				letter-spacing: .21px;
+				text-align: center;
+				font-weight: 500;
+			}
 		}
-		svg{
-			width: 18px;
-			height: 18px;
+	}
+		
+	.btn-google{
+		background: #FFF;
+		margin-bottom: 20px;
+		border-radius: 25px;
+		&:hover{
+			background-color: darken($color: #fff, $amount: 5);
+			cursor: pointer;
 		}
-		p{
-			width: 100%;
-			line-height: 1;
-			letter-spacing: .21px;
-			text-align: center;
-			font-weight: 500;
+		&:active{
+			background-color: #eee;
+		}
+		.google-content p{
+			color: #757575
 		}
 	}
-}
-	
-.btn-google{
-	background: #FFF;
-	margin-bottom: 20px;
-	border-radius: 25px;
-	&:hover{
-		background-color: darken($color: #fff, $amount: 5);
-		cursor: pointer;
-	}
-	&:active{
-		background-color: #eee;
-	}
-	.google-content p{
-		color: #757575
-	}
-}
-	
-.btn-fb{
-	padding-top: 1.5px;
-	border-radius: 25px;
-	background: #4267b2;
-	&:hover{
-		background-color: darken($color: #4267b2, $amount: 5);
-		cursor: pointer;
-	}
-	&:active{
-		background-color: #3b5998;
-	}
-	.fb-content p {
-		color: rgba(white, .87)
+		
+	.btn-fb{
+		padding-top: 1.5px;
+		border-radius: 25px;
+		background: #4267b2;
+		&:hover{
+			background-color: darken($color: #4267b2, $amount: 5);
+			cursor: pointer;
+		}
+		&:active{
+			background-color: #3b5998;
+		}
+		.fb-content p {
+			color: rgba(white, .87)
+		}
 	}
 }

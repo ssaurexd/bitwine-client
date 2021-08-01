@@ -40,6 +40,7 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 					spaceBetween={ 35 }
 					pagination={ false }
 					navigation={ true }
+					lazy={ true }
 				>
 					{
 						fakeData.map(( item, index ) => (

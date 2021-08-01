@@ -7,7 +7,8 @@ import SwiperCore, {
 	Pagination,
 	Navigation,
 	Mousewheel,
-	Keyboard
+	Keyboard,
+	Autoplay
 } from 'swiper/core'
 import 'swiper/swiper.min.css'
 import 'swiper/components/navigation/navigation.min.css'
@@ -20,7 +21,7 @@ import theme from '../config/theme'
 import Layout from '../components/init/Layout'
 
 
-SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard]);
+SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard, Autoplay]);
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 

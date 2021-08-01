@@ -9,7 +9,13 @@ const ProductSliderMain: FC = () => {
 		<section className='product-slider-main' >
 			<div className="product-slider-main__slider">
 				<Swiper
-					pagination={ true }
+					pagination={{
+						clickable: true
+					}}
+					autoplay={{
+						delay: 8000,
+						disableOnInteraction: false	
+					}}
 				>
 					{ 	
 						fakeData.map(( item, index ) => (

@@ -14,7 +14,9 @@ const useStyle = makeStyles( ( theme ) => ({
 	logo: {
 		textDecoration: 'none',
 		color: '#525252',
-		with: 'auto'
+		with: 'auto',
+		minHeight: '50px',
+		minWidth: '50px'
 	},
 	menu: {
 		color: '#525252'
@@ -61,6 +63,21 @@ const useStyle = makeStyles( ( theme ) => ({
 		'&:focus': {
 			outline: 'none'
 		}	
+	},
+	search: {
+		padding: '2px 4px', 
+		display: 'flex', 
+		alignItems: 'center', 
+		width: '100%' 
+	},
+	inputSearch: {
+		marginLeft: 1,
+		flex: 1
+	},
+	dividerSearch: {
+		height: 28,
+		margin: 0.5,
+		marginRight: 10
 	}
 }))
 

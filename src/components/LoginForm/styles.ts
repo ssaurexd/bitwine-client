@@ -9,7 +9,7 @@ const useStyle = makeStyles( theme => ({
 		flexDirection: 'column',
 		alignItems: 'center',
 		boxShadow: theme.shadows[2],
-		padding: theme.spacing(5),
+		padding: theme.spacing(3),
 		borderRadius: globalStyles.shape.borderRadius
 	},
 	avatar: {

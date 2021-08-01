@@ -25,7 +25,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 					src={ bannerImage ? bannerImage : defaultBanner.src }
 					alt='Banner'
 					layout='fill'
-					objectFit='fill'
+					objectFit='cover'
 				/>
 			</div>
 			
