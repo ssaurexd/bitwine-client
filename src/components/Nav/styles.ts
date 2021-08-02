@@ -64,20 +64,8 @@ const useStyle = makeStyles( ( theme ) => ({
 			outline: 'none'
 		}	
 	},
-	search: {
-		padding: '2px 4px', 
-		display: 'flex', 
-		alignItems: 'center', 
-		width: '100%' 
-	},
-	inputSearch: {
-		marginLeft: 1,
-		flex: 1
-	},
-	dividerSearch: {
-		height: 28,
-		margin: 0.5,
-		marginRight: 10
+	avatar: {
+		borderColor: theme.palette.primary.main
 	}
 }))
 

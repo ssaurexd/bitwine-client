@@ -6,7 +6,7 @@ interface Props {
 	onClickFacebook: () => void
 }
 
-const SocilaButtons: FC<Props> = ({ onClickFacebook, onClickGoogle }) => {
+const SocialButtons: FC<Props> = ({ onClickFacebook, onClickGoogle }) => {
 
 	return (
 		<>
@@ -39,4 +39,4 @@ const SocilaButtons: FC<Props> = ({ onClickFacebook, onClickGoogle }) => {
 	)
 }
 
-export default SocilaButtons
+export default SocialButtons

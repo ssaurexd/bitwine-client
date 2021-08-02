@@ -29,6 +29,7 @@ import { userAuthLogOut } from '../../helpers/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'
+import CustomSearch from './CustomSearch'
 
 
 interface Props {
@@ -67,6 +68,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 			open={ open }
 			anchor='left'
 			onClose={ onClose }
+			className='nav-main'
 		>
 			<Grid container justify='space-between' alignItems='center' direction='column' >
 				<Grid container item justify='flex-end' direction='row' >
@@ -107,26 +109,6 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 								</>
 							}
 
-							<Hidden only={['sm']} >
-								<ListItem button onClick={ () =>  handleOnGoTo( '/documentation' ) } >
-									<ListItemText primary='Documentación' className={ pathName === '/documentation' ? classes.active : '' } />
-								</ListItem>
-							</Hidden>
-
-							<Divider variant='middle' />
-
-							<Hidden only={['sm']} >
-								<ListItem button onClick={ () =>  handleOnGoTo( '/pricing' ) } >
-									<ListItemText primary='Precios' className={ pathName === '/pricing' ? classes.active : '' } />
-								</ListItem>
-							</Hidden>
-
-							<Divider variant='middle' />
-
-							<ListItem button onClick={ () =>  handleOnGoTo( '/about' ) } >
-								<ListItemText primary='Acerca de nosotros' className={ pathName === '/about' ? classes.active : '' } />
-							</ListItem>
-
 							<Divider variant='middle' />
 
 							{ !user.isLoggedIn &&
@@ -136,28 +118,28 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 									</ListItem>
 
 									<Divider variant='middle' />
+
+									<ListItem>
+										<CustomButtonLink 
+											variant='contained'
+											color='primary'
+											hreflink='/signup'
+											text='Crear cuenta'
+											fullWidth
+											disableElevation
+											size='small'
+										/>
+									</ListItem>
 								</>
 							}
 
 						</List>
 					</Grid>
-					
-					{ !user.isLoggedIn && 
-						<Grid container item justify='center' >
-							<Container>
-								<Grid item >
-									<CustomButtonLink 
-										variant='contained'
-										color='primary'
-										hreflink='/signup'
-										text='Crear cuenta'
-										fullWidth
-										disableElevation
-									/>
-								</Grid>
-							</Container>
-						</Grid>
-					}
+					<Hidden only={['sm']} >
+						<ListItem>
+							<CustomSearch transparent={ false } onMobile />
+						</ListItem>
+					</Hidden>
 				</Grid>
 			</Grid>
 		</Drawer>

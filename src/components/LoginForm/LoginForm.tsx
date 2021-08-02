@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { logIn, logInStart, logInFail } from '../../redux/slices/userSlice'
 
 import CustomDivider from '../CustomDivider'
-import SocialButtons from './SocilaButtons'
+import SocialButtons from './SocialButtons'
 
 
 interface FormValues {

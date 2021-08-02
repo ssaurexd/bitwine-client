@@ -37,7 +37,7 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 				</div>
 				<Swiper
 					slidesPerView={'auto'}
-					spaceBetween={ 35 }
+					spaceBetween={ 40 }
 					pagination={ false }
 					navigation={ true }
 					lazy={ true }

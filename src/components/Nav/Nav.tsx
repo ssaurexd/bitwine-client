@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { 
@@ -9,21 +9,20 @@ import {
 	Hidden,
 	Grid,
 	List,
-	ListItem,
-	Badge
+	ListItem
 } from '@material-ui/core'
-import { 
-	Menu,
-	ShoppingCart
-} from '@material-ui/icons'
+import { Menu as MenuIcon } from '@material-ui/icons'
 
 import { useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
+import useNav from '../../hooks/useNav'
 
 import NavMobile from './NavMobile'
 import CustomButtonLink from '../CustomButtonLink'
 import Logo from './Logo'
 import CustomSearch from './CustomSearch'
+import Profile from './Profile'
+import ShopCart from '../ShopCart'
 
 
 interface Props {
@@ -35,38 +34,16 @@ const Nav: FC<Props> = (  ) => {
 	const classes = useStyle()
 	const location = useRouter()
 	const user = useAppSelector( state => state.user )
-	
-	/* state */
-	const pathName = location.pathname
-	const [ transparent, setTransparent ] = useState<boolean>( true )
 	const [ openDrawer, setOpenDrawer ] = useState<boolean>( false )
-	
-	/* funtions */
-	const onScroll = () => {
-		
-		const bodyScrollY = window.scrollY
-		const navElement = document.querySelector('.nav-main')
-		const navHeight = navElement?.firstElementChild?.clientHeight
-		
-		if( navHeight && bodyScrollY < navHeight ) setTransparent( true )
-		else setTransparent( false )
-	}
-
-	useEffect( () => {
-
-		window.addEventListener( 'scroll', onScroll )
-
-		return () => {
-			window.removeEventListener( 'scroll', onScroll )
-		}
-	}, [  ])
+	const { isScrolling } = useNav()
+	const pathName = location.pathname
 
 	return (
 		<nav className='nav-main'>
 			<AppBar 
 				position='fixed'
-				color={ transparent ? 'transparent' : 'default' } 
-				elevation={ transparent ? 0 : 3 }
+				color={ isScrolling ? 'transparent' : 'default' } 
+				elevation={ isScrolling ? 0 : 3 }
 				className={ classes.appBar }
 			>
 				<Toolbar className={classes.toolBar } >
@@ -74,70 +51,42 @@ const Nav: FC<Props> = (  ) => {
 						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
 							{/* logo */}
 							<Grid item xs={ 8 } md={ 2 } >
-								<Logo transparent={ transparent } />
+								<Logo transparent={ isScrolling } />
 							</Grid>
-
-							{/* search input */}
-							<Grid item md={ 2 }  >
-								<Hidden only={['xs']} >
-									<CustomSearch />
-								</Hidden>
-							</Grid>
-
+							
 							{/* nav options */}
 							<Grid container item xs={ 4 } md={ 10 } justify='flex-end' >
-								<List className={ `${ transparent && classes.colorWhite }` } >
-									<Grid 
-										container 
-										item 
-										direction='row' 
-										wrap='nowrap' 
-										alignItems='center' 
-									>
+								<List className={ `${ isScrolling && classes.colorWhite }` } >
+									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
+										{/* search input */}
+										<Hidden only={['xs']} >
+											<Grid item >
+												<CustomSearch transparent={ isScrolling } />
+											</Grid>
+										</Hidden>
+
 										<Grid item >
 											<ListItem>
-												<IconButton
-													color='inherit'
-												>
-													<Badge badgeContent={ 3 } color='primary' >
-														<ShoppingCart />
-													</Badge>
-												</IconButton>
+												<ShopCart />
 											</ListItem>
 										</Grid>
 
-										<Grid item >
-											<Hidden only={['lg', 'xl', 'md']} >
-												<Grid item >
-													<IconButton 
-														onClick={ () => setOpenDrawer( true ) }
-													>
-														<Menu className={`${ classes.menu } ${ transparent && classes.colorWhite }`} />
-													</IconButton>
-												</Grid>
-											</Hidden>
-										</Grid>
-
 										{ user.isLoggedIn 
-											? (
-												<div></div>
-											)
+											? <Profile />
 											: (
 												<>
-													<Grid item >
-														<Hidden only={['sm', 'xs']} >
-															<Grid item >
-																<ListItem autoFocus >
-																	<Link href='/login' >
-																		<a className={`${ classes.navMain__link } ${ pathName === '/login' && classes.active2 }`}>Iniciar sesión</a>
-																	</Link>
-																</ListItem>
-															</Grid>	
-														</Hidden>
-													</Grid>
+													<Hidden only={['sm', 'xs']} >
+														<Grid item >
+															<ListItem autoFocus >
+																<Link href='/login' >
+																	<a className={`${ classes.navMain__link } ${ pathName === '/login' && classes.active2 }`}>Iniciar sesión</a>
+																</Link>
+															</ListItem>
+														</Grid>
+													</Hidden>
 
-													<Grid item >
-														<Hidden only={['sm', 'xs']} >
+													<Hidden only={['sm', 'xs']} >
+														<Grid item >
 															<CustomButtonLink
 																size='small'
 																variant='contained'
@@ -146,11 +95,21 @@ const Nav: FC<Props> = (  ) => {
 																text='Crear cuenta'
 																disableElevation
 															/>
-														</Hidden>
-													</Grid>
+														</Grid>
+													</Hidden>
 												</>
 											)
 										}
+
+										<Hidden only={['lg', 'xl', 'md']} >
+											<Grid item >
+												<IconButton 
+													onClick={ () => setOpenDrawer( true ) }
+												>
+													<MenuIcon className={`${ classes.menu } ${ isScrolling && classes.colorWhite }`} />
+												</IconButton>
+											</Grid>
+										</Hidden>
 									</Grid>
 								</List>
 							</Grid>

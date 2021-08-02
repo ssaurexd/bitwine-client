@@ -13,7 +13,8 @@ interface UserState{
 	lastName: string,
 	isLoggedIn: boolean,
 	role: Roles,
-	loading?: boolean
+	loading?: boolean,
+	avatar?:string
 }
 
 const initialState: UserState = {
@@ -22,6 +23,7 @@ const initialState: UserState = {
 	name: '',
 	lastName: '',
 	role: '',
+	avatar: '',
 	isLoggedIn: false,
 	loading: false
 }
