@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from './reduxHooks'
 import {
-	addItem
+	addItem,
+	IShopCartItem
 } from '../redux/slices/shopCartSlice'
 
 
@@ -14,16 +15,34 @@ const useShopCart = () => {
 	const { items, total } = useAppSelector( state => state.shopCart )
 
 	/* funtions */
-	const addProductToCart = () => {
+	const onAddToShopCart = useCallback( () => {
 		
-	}
+		const item: IShopCartItem = {
+			count: 1,
+			id: 'wjhd937dh923h',
+			image: 'https://ksajd.com',
+			price: 55,
+			title: 'Producto de ejemplo'
+		}
+		
+		localStorage.setItem( 'shopCart', JSON.stringify([ item ]) )
+	}, [ ])
+	
+	const getItems = useCallback( () => {
+
+		const items = localStorage.getItem('shopCart') || []
+		console.log("🚀 ~ file: useShopCart.tsx ~ line 25 ~ useEffect ~ items", items)
+		setCartItems( items.length )
+	}, [ ])
 
 	useEffect( () => {
 
-	}, [])
+		getItems()
+	}, [ cartItems ])
 
 	return {
-		addProductToCart
+		onAddToShopCart,
+		cartItems
 	}
 }
 

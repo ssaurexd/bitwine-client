@@ -4,23 +4,20 @@ import {
 	Badge
 } from '@material-ui/core'
 import { ShoppingCart } from '@material-ui/icons'
+import useShopCart from '../../hooks/useShopCart'
 
 
 const ShopCart: FC = () => {
 
 	/* hooks */
-	const [ countItemCart, setCountItemCart ] = useState<number>( 0 )
 	
 	/* funtions */
-	useEffect( () => {
-
-	}, [ countItemCart ])
 
 	return (
 		<IconButton
 			color='inherit'
 		>
-			<Badge badgeContent={ countItemCart } color='primary' >
+			<Badge badgeContent={ 0 } color='primary' >
 				<ShoppingCart />
 			</Badge>
 		</IconButton>

@@ -19,6 +19,7 @@ import store from '../redux/store'
 import theme from '../config/theme'
 
 import Layout from '../components/init/Layout'
+import Toast from '../components/Toast'
 
 
 SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard, Autoplay]);
@@ -36,6 +37,8 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 				<Layout>
 					<Component { ...pageProps } />
 				</Layout>
+
+				<Toast />
 			</ThemeProvider>
 		</Provider>
 	)

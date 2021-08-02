@@ -19,8 +19,18 @@
 			margin-top: 20px;
 			display: grid;
 			width: 100%;
-			grid-template-columns: repeat( auto-fill, minmax( 260px, 1fr )) !important;
+			grid-template-columns: repeat( auto-fit, minmax( 200px, 1fr ));
 			gap: 8px;
+		}
+		&__divider {
+			background-color: #c2c4c8 !important;
+		}
+		&__rights {
+			margin-top: $m4;
+			margin-bottom: $m4;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
 		}
 	}
 }

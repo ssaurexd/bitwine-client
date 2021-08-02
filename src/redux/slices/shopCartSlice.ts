@@ -24,16 +24,7 @@ const shopCartSlice = createSlice({
 		addItem: ( state, action ) => {
 			return {
 				...state,
-				
-			}
-		},
-		getItems: ( state ) => {
-
-			const itemsFromLocal = localStorage.getItem('shopCart') || []
-
-			return {
-				...state,
-				items: state.items.push( itemsFromLocal )
+				items: [ ...state.items, action.payload ]
 			}
 		}
 	}

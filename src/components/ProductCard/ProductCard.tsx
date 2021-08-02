@@ -10,8 +10,11 @@ import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
 import defaultProduct from '../../../public/assets/images/products/default.png'
+import useShopCart from '../../hooks/useShopCart'
 
 import CustomButtonLink from '../CustomButtonLink'
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { openToast } from '../../redux/slices/appSlice'
 
 
 interface Props {
@@ -24,6 +27,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 	const classes = useStyle()
 	const [ isOnWishList, setIsOnWishList ] = useState<boolean>( false )
 	const [ haveDiscount, setHaveDiscount ] = useState<boolean>( true )
+	const dispatch = useAppDispatch()
 
 	/* funtions */
 	const checkIsInWishList = ( productId: string ) =>  {
@@ -36,6 +40,16 @@ const ProductCard: FC<Props> = ({ product }) => {
 		}
 
 		setIsOnWishList( false )
+	}
+
+	const onAddToWishList = () => {
+		
+		dispatch( openToast({
+			isOpen: true,
+			msg: 'Producto agregado a tu lista de deseos',
+			duration: 2000,
+			severity: 'success'
+		}))
 	}
 
 	useEffect( () => {
@@ -62,7 +76,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 						
 						<IconButton
 							size='small'
-							onClick={ () => console.log('Click corazon') }
+							onClick={ onAddToWishList }
 						>
 							{ isOnWishList
 								? <Favorite fontSize='default' color='secondary'/>
