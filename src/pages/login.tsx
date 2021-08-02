@@ -1,5 +1,7 @@
 import Auth from '../components/init/Auth'
 import Login from '../components/screens/Login'
+import HeaderMain from '../components/HeaderMain'
+import FooterMain from '../components/FooterMain'
 
 
 const login = ( ) => {
@@ -8,9 +10,20 @@ const login = ( ) => {
 		<Auth
 			admitedRoles={ ['none'] }
 			needToRedirect={ false }
-			redirectTo={ '' }
+			redirectTo={ '/' }
 		>
-			<Login />
+			<>
+				<main>
+					<HeaderMain 
+						title='Iniciar sesión'
+						subTitle='Unete al más grande tienda en linea para los amantes del vino'
+					/>
+					
+					<Login />
+				</main>
+
+				<FooterMain />
+			</>
 		</Auth>
 	)
 }

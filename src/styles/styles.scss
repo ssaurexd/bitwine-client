@@ -2,19 +2,19 @@
 @import './vars';
 
 //global
-@font-face {
-	font-family: 'K2D';
-	font-style: normal;
-	font-display: swap;
-	font-weight: 400;
-  	src:  url('../../public/assets/fonts/K2D/K2D-Regular.ttf') format('ttf');
-  unicode-range: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF';
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+.main-100-vh{
+	min-height: calc( 100vh - #{ $nav-main-heigth } - #{ $footer-main-heigth } );
 }
-.trasparent{
-	background-color: $bg-color-transparent;	
-}
-
 
 //components
 @import './components/header-main.scss';
 @import './components/customButtonLink.scss';
+@import './components/footer-main.scss';
+@import './components/customDivider.scss';
+@import './components/loginForm.scss';
+@import './components/home.scss';
+@import './components/productSliderMain.scss';
+@import './components/slider.scss';
+@import './components/productCard.scss';
+@import './components/nav-main.scss';

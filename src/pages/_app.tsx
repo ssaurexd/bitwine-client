@@ -1,15 +1,28 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import  Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core'
-import '../styles/styles.scss'
+import SwiperCore, {
+	Pagination,
+	Navigation,
+	Mousewheel,
+	Keyboard,
+	Autoplay
+} from 'swiper/core'
+import 'swiper/swiper.min.css'
+import 'swiper/components/navigation/navigation.min.css'
+import 'swiper/components/pagination/pagination.min.css'
 
+import '../styles/styles.scss'
 import store from '../redux/store'
 import theme from '../config/theme'
 
 import Layout from '../components/init/Layout'
+import Toast from '../components/Toast'
 
+
+SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard, Autoplay]);
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
@@ -24,6 +37,8 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 				<Layout>
 					<Component { ...pageProps } />
 				</Layout>
+
+				<Toast />
 			</ThemeProvider>
 		</Provider>
 	)

@@ -1,0 +1,17 @@
+.custom-divider{
+	display: flex;
+	margin: 20px 5px;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: 20px;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: border-box;
+	
+	hr{
+		width: 40%;
+	}
+	&__content{
+		margin: 0 10%;
+	}
+}

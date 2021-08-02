@@ -1,12 +1,29 @@
-$bg-color-transparent: transparent;
-
 $nav-main-heigth: 80px;
-
+$footer-main-heigth: 6rem;
 $banner-h1-color: #fdfdfd;
 
 
 /* media queries */
-$xs: '( max-width: 578px )';/* 
-$xs: '( min-width: 579px ) and ( max-width: 578px )';
+$xs: '( min-width: 0px )'; 
+$sm: '( min-width: 600px )'; 
+$md: '( min-width: 960px )'; 
+$lg: '( min-width: 1280px )';
+/*
 $xs: '( min-width: 320px ) and ( max-width: 578px )';
 $xs: '( min-width: 320px ) and ( max-width: 578px )'; */
+
+/* margins */
+$m1: 5px;
+$m2: 10px;
+$m3: 15px;
+$m4: 20px;
+$m5: 25px;
+$ms: 45px;
+
+/* border radius */
+$br1: 4px;
+$br2: 8px;
+$br5: 25px;
+
+/* colors */
+$primary: #800000

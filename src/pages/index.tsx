@@ -3,6 +3,7 @@ import { FC } from 'react'
 import Auth from '../components/init/Auth'
 import Home from '../components/screens/Home'
 import HeaderMain from '../components/HeaderMain'
+import FooterMain from '../components/FooterMain'
 
 
 const App: FC = () => {
@@ -13,10 +14,20 @@ const App: FC = () => {
 			redirectTo={ '/login' }
 			needToRedirect={ false }
 		>
-			<main>
-				<HeaderMain />
-				<Home />
-			</main>
+			<>
+				<main className='main-100-vh' >
+					<HeaderMain 
+						title='BitWine - Best market place to buy wines'
+						subTitle='Wines for all wine lovers'
+						showBtn={ true }
+						bottomShadow={ true }
+					/>
+
+					<Home />
+				</main>
+
+				<FooterMain />
+			</>
 		</Auth>
 	)
 }

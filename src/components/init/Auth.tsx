@@ -1,46 +1,24 @@
-import { FC, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { FC, ReactElement } from 'react'
+import useAuth from '../../hooks/useAuth'
 
-import { useAppSelector } from '../../hooks/reduxHooks'
+import GlobalLoading from '../GlobalLoading'
 
 
 interface Props {
-	children: JSX.Element,
+	children: ReactElement,
 	admitedRoles: Array<string>,
 	needToRedirect: boolean,
 	redirectTo: string 
 }
 
-const Auth: FC<Props> = ( props ) => {
+const Auth: FC<Props> = ({ admitedRoles, children, needToRedirect, redirectTo }) => {
 
-	/* props */
-	const {
-		children,
-		admitedRoles,
-		redirectTo,
-		needToRedirect
-	} = props
-	/* redux state */
-	const { role, online } = useAppSelector( state => state.user )
-	/* state */
-	const location = useRouter()
+	/* hooks */
+	const { globalLoading } = useAuth({ admitedRoles, needToRedirect, redirectTo })
 
-	/* funtions */
-	const checkUserStatus = (  ) => {
+	if( globalLoading ) return <GlobalLoading show={ globalLoading } />
 
-		const userCanAccess: boolean = online && admitedRoles.includes( role )
-
-		if( !userCanAccess && needToRedirect ) {
-			location.push( redirectTo )
-		}
-	}
-
-	useEffect( () => {
-		
-		checkUserStatus()
-	}, [ online ])
-
-	return children 
+	return  children 
 }
 
 export default Auth
