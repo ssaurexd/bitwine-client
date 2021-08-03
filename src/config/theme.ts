@@ -160,7 +160,8 @@ export const globalStyles = {
 		1: 5
 	},
 	shape: {
-		borderRadius: 8
+		borderRadius1: 4,
+		borderRadius2: 8,
 	}
 }
 

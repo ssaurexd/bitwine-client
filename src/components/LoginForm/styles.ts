@@ -10,7 +10,7 @@ const useStyle = makeStyles( theme => ({
 		alignItems: 'center',
 		boxShadow: theme.shadows[2],
 		padding: theme.spacing(3),
-		borderRadius: globalStyles.shape.borderRadius
+		borderRadius: globalStyles.shape.borderRadius2
 	},
 	avatar: {
 		margin: theme.spacing(1),

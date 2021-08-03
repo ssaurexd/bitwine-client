@@ -1,10 +1,14 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { IBannerProduct } from '../../interfaces/product'
 import ProductCardSliderMain from './ProductCardSliderMain'
 
-const fakeData: Array<any> = [ '','','','' ]
 
-const ProductSliderMain: FC = () => {
+interface Props {
+	products: IBannerProduct[]
+}
+
+const ProductSliderMain: FC<Props> = ({ products }) => {
 	return (
 		<section className='product-slider-main' >
 			<div className="product-slider-main__slider">
@@ -18,9 +22,9 @@ const ProductSliderMain: FC = () => {
 					}}
 				>
 					{ 	
-						fakeData.map(( item, index ) => (
-							<SwiperSlide key={ index } >
-								<ProductCardSliderMain />
+						products.map(( product ) => (
+							<SwiperSlide key={ product.id } >
+								<ProductCardSliderMain product={ product } />
 							</SwiperSlide>
 						))
 					}

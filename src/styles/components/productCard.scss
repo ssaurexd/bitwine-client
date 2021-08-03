@@ -56,7 +56,7 @@
 			padding: 2.5%;
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
+			overflow: hidden;
 		}
 		&__footer {
 			box-sizing: border-box;
@@ -69,13 +69,12 @@
 			align-items: center;
 			.product-card__footer__prices {
 				display: flex;
-				flex-direction: row;
+				flex-direction: column;
 				flex-wrap: nowrap;
 				width: 90px;
-				justify-content: space-between;
-				align-items: center;
-				.main-price, .second-price {
-					font-size: 1.5rem;
+				align-items: flex-start;
+				.main-price{
+					font-size: 1.3rem;
 				}
 				.main-price {
 					font-weight: 600;
@@ -83,7 +82,7 @@
 				}
 				.second-price {
 					color: #525252;
-					font-size: 1.2rem;
+					font-size: .9rem;
 					text-decoration: line-through;
 				}
 			}

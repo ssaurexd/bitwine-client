@@ -3,9 +3,14 @@ import { Button, Typography } from '@material-ui/core'
 import Image from 'next/image'
 
 import defaultProduct from '../../../public/assets/images/products/default.png'
+import { IBannerProduct } from '../../interfaces/product'
 
 
-const ProductCardSliderMain: FC = () => {
+interface Props {
+	product: IBannerProduct
+}
+
+const ProductCardSliderMain: FC<Props> = ({ product }) => {
 	return (
 		<div className='card' >
 			<div className="card__info">
@@ -26,11 +31,11 @@ const ProductCardSliderMain: FC = () => {
 			</div>
 			<div className="card__image">
 				<Image 
-					src={ defaultProduct.src } 
+					src={ product.image } 
 					alt='Default' 
 					width={ 320 } 
-					height={ 100 } 
-					layout='intrinsic' 
+					height={ 100 }
+					objectFit='contain'
 				/>
 			</div>
 		</div>

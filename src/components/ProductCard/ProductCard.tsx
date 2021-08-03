@@ -10,15 +10,15 @@ import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
 import defaultProduct from '../../../public/assets/images/products/default.png'
-import useShopCart from '../../hooks/useShopCart'
-
-import CustomButtonLink from '../CustomButtonLink'
+import { IProduct } from '../../interfaces/product'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
 
+import CustomButtonLink from '../CustomButtonLink'
+
 
 interface Props {
-	product?: any, //TODO: Agregar interface de producto,
+	product: IProduct, //TODO: Agregar interface de producto,
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
@@ -79,8 +79,8 @@ const ProductCard: FC<Props> = ({ product }) => {
 							onClick={ onAddToWishList }
 						>
 							{ isOnWishList
-								? <Favorite fontSize='default' color='secondary'/>
-								: <FavoriteBorder fontSize='default' color='secondary'/>
+								? <Favorite fontSize='default' color='primary'/>
+								: <FavoriteBorder fontSize='default' color='primary'/>
 							}
 						</IconButton>
 					</div>
@@ -88,8 +88,9 @@ const ProductCard: FC<Props> = ({ product }) => {
 
 				<div className="product-card__header__image">
 					<Image 
-						src={ defaultProduct.src }
+						src={ product.image }
 						layout='fill'
+						objectFit='contain'
 					/>
 				</div>
 			</div>
@@ -97,24 +98,24 @@ const ProductCard: FC<Props> = ({ product }) => {
 			<div className="product-card__body">
 				<Rating defaultValue={ 4 } max={ 5 } size='small' readOnly />
 				<div className="product-card__body__title">
-					<Typography variant='h6' >Titulo de Ejemplo </Typography>
+					<Typography variant='h6' >{ product.title.slice( 0, 40 ) }{ product.title.length > 40 && '...' }</Typography>
 					<Typography variant='body2' >
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quisquam... 
+						{ product.description.slice( 0, 80 ) }{ product.description.length > 80 && '...' }
 					</Typography>
 				</div>
 			</div>
 
 			<div className="product-card__footer">
 				<div className="product-card__footer__prices">
-					<span className='main-price' >$55</span>
 					<span className='second-price' >$250</span>
+					<span className='main-price' >${ product.price }</span>
 				</div>
 				
 				<CustomButtonLink
 					hreflink={`/product/`}
 					text='Comprar'
 					variant='outlined'
-					color='secondary'
+					color='primary'
 					size='small'
 				/>
 			</div>

@@ -5,15 +5,17 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
 import useStyle from './styles'
 import ProductCard from '../ProductCard'
+import { IProduct } from '../../interfaces/product'
 
 
 interface Props {
 	title: string,
-	titleIcon?: ReactElement
+	titleIcon?: ReactElement,
+	products: IProduct[]
 }
 const fakeData: Array<any> = [ '','','','','','','','','','','','' ]
 
-const Slider: FC<Props> = ({ title, titleIcon }) => {
+const Slider: FC<Props> = ({ title, titleIcon, products }) => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -22,19 +24,25 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 		<Container>
 			<section className='slider-main'>
 				<div className="slider-main__title-container">
-					<Typography variant='h4' > 
-						{ titleIcon && titleIcon }
-						{ title }
-					</Typography>
-					<Button 
-						variant='text'
-						color='primary'
-						size='small'
-						endIcon={ <ArrowRightIcon /> }
-					>
-						Ver todo
-					</Button>
+					<div className='divider'>
+						<Typography variant='h4'> 
+							{ titleIcon && titleIcon }
+							{ title }
+						</Typography>
+					</div>
+
+					<div className='see-more'>
+						<Button 
+							variant='text'
+							color='default'
+							size='small'
+							endIcon={ <ArrowRightIcon /> }
+						>
+							Ver todo
+						</Button>
+					</div>
 				</div>
+				
 				<Swiper
 					slidesPerView={'auto'}
 					spaceBetween={ 40 }
@@ -43,9 +51,9 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 					lazy={ true }
 				>
 					{
-						fakeData.map(( item, index ) => (
-							<SwiperSlide key={ index + 'P' } >
-								<ProductCard  />
+						products.map(( product ) => (
+							<SwiperSlide key={ product.id } >
+								<ProductCard product={ product } />
 							</SwiperSlide>
 						))
 					}
