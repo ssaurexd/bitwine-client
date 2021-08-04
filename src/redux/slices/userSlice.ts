@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
 export type Roles = 
-	'' |
+	'guest' |
 	'user' |
 	'admin'
 
@@ -22,7 +22,7 @@ const initialState: UserState = {
 	email: '',
 	name: '',
 	lastName: '',
-	role: '',
+	role: 'guest',
 	avatar: '',
 	isLoggedIn: false,
 	loading: false

@@ -162,7 +162,8 @@ export const globalStyles = {
 	shape: {
 		borderRadius1: 4,
 		borderRadius2: 8,
-	}
+	},
+	drawerWidth: 300
 }
 
 export default theme

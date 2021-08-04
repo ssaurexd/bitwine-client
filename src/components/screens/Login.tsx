@@ -17,13 +17,6 @@ const Login: FC = () => {
 	/* redux state */
 	const { isLoggedIn } = useAppSelector( state => state.user )
 
-	useEffect( () => {
-
-		if( isLoggedIn ) {
-			location.push('/')
-		}
-	}, [])
-
 	return (
 		<LoginForm />
 	)

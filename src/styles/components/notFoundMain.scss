@@ -1,0 +1,17 @@
+@media #{ $xs } {
+	.no-found-main {
+		background-color: #1d2d33;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.container {
+			color: #ffffff;
+			min-height: 300px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-content: space-around;
+		}
+	}
+}

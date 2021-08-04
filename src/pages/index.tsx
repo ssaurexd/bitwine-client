@@ -1,11 +1,15 @@
-import { FC } from 'react'
+import { GetServerSideProps, NextPage } from 'next'
+
+import { IBannerProduct, IProduct } from '../interfaces/product'
 
 import Auth from '../components/init/Auth'
 import Home from '../components/screens/Home'
 import HeaderMain from '../components/HeaderMain'
 import FooterMain from '../components/FooterMain'
-import { GetServerSideProps, NextPage } from 'next'
-import { IBannerProduct, IProduct } from '../interfaces/product'
+import Layout from '../components/init/Layout'
+import { useAppDispatch } from '../hooks/reduxHooks'
+import { useEffect } from 'react'
+import { initHome } from '../redux/slices/appSlice'
 
 interface Props {
 	sales: IProduct[],
@@ -15,13 +19,24 @@ interface Props {
 
 const App: NextPage<Props> = ({ sales, best, banner }) => {
 
+	const dispatch = useAppDispatch()
+
+	useEffect( () => {
+		
+		dispatch( initHome({ 
+			products: { 
+				bestSales: best,
+				flashSale: sales, 
+				sliderProducts: banner
+			} 
+		}))
+	}, [])
+
 	return (
 		<Auth
-			admitedRoles={ ['user'] }
-			redirectTo={ '/login' }
-			needToRedirect={ false }
+			admitedRoles={ ['user', 'admin', 'guest'] }
 		>
-			<>
+			<Layout>
 				<main className='main-100-vh' >
 					<HeaderMain 
 						title='El mejor mercado en linea para comprar vinos'
@@ -30,11 +45,11 @@ const App: NextPage<Props> = ({ sales, best, banner }) => {
 						bottomShadow={ true }
 					/>
 
-					<Home sales={ sales } best={ best } banner={ banner } />
+					<Home />
 				</main>
 
 				<FooterMain />
-			</>
+			</Layout>
 		</Auth>
 	)
 }

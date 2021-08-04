@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IBannerProduct, IProduct } from '../../interfaces/product'
 
 
 interface ISettings {
@@ -16,9 +17,17 @@ interface IGlobalToast {
 	duration: number,
 	severity: ServerityType
 }
+interface IHome {
+	products: {
+		sliderProducts: IBannerProduct[],
+		bestSales: IProduct[],
+		flashSale: IProduct[]
+	}
+}
 interface IApp {
 	settings?: ISettings,
-	globalToast: IGlobalToast 
+	globalToast: IGlobalToast,
+	home: IHome
 }
 
 const initialState: IApp = {
@@ -27,14 +36,23 @@ const initialState: IApp = {
 		msg: '',
 		duration: 0,
 		severity: 'success'
+	},
+	home: {
+		products: {
+			bestSales: [],
+			flashSale: [],
+			sliderProducts: []
+		}
 	}
 } 
+
 const appSlice = createSlice({
 	name: 'app',
 	initialState,
 	reducers: {
 		closeToast: ( state ) => {
 			return {
+				...state,
 				globalToast: {
 					duration: 0,
 					isOpen: false,
@@ -45,9 +63,16 @@ const appSlice = createSlice({
 		},
 		openToast: ( state, action: PayloadAction<IGlobalToast> ) => {
 			return {
+				...state,
 				globalToast: {
 					...action.payload
 				}
+			}
+		},
+		initHome: ( state, action: PayloadAction<IHome> ) => {
+			return {
+				...state,
+				home: action.payload
 			}
 		}
 	}
@@ -55,6 +80,7 @@ const appSlice = createSlice({
 
 export const {
 	closeToast,
-	openToast
+	openToast,
+	initHome
 } = appSlice.actions
 export default appSlice.reducer

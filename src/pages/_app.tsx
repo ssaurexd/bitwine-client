@@ -2,7 +2,7 @@ import { FC } from 'react'
 import  Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import SwiperCore, {
 	Pagination,
 	Navigation,
@@ -32,12 +32,10 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 				<title>BitBlog - Best API for getting a blog</title>
 			</Head>
-			
-			<ThemeProvider theme={ theme } >
-				<Layout>
-					<Component { ...pageProps } />
-				</Layout>
 
+			<ThemeProvider theme={ theme } >
+				<CssBaseline />
+				<Component { ...pageProps } />
 				<Toast />
 			</ThemeProvider>
 		</Provider>

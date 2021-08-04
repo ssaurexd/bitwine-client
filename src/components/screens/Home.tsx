@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useAppSelector } from '../../hooks/reduxHooks'
 
 import { IBannerProduct, IProduct } from '../../interfaces/product'
 
@@ -7,19 +8,18 @@ import Slider from '../Slider'
 import WhyChooseUs from '../WhyChooseUs'
 
 interface Props {
-	sales: IProduct[],
-	best: IProduct[],
-	banner: IBannerProduct[]
 }
 
-const Home: FC<Props> = ({ sales, banner, best }) => {
+const Home: FC<Props> = () => {
+
+	const { products } = useAppSelector( state => state.app.home )
 	
 	return (
 		<>
-			<ProductSliderMain products={ banner } />
+			<ProductSliderMain products={ products.sliderProducts } />
 			<WhyChooseUs />
-			<Slider products={ sales } title='Ofertas flash'/>
-			<Slider products={ best } title='Lo más vendido'/>
+			<Slider products={ products.flashSale } title='Ofertas flash'/>
+			<Slider products={ products.bestSales } title='Lo más vendido'/>
 		</>
 	)
 }

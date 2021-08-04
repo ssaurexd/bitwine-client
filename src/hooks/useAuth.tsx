@@ -3,18 +3,17 @@ import { useRouter } from 'next/router'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { userAuthRefreshToken, userAuthLogOut } from '../helpers/userApi'
-import { logIn, logOut } from '../redux/slices/userSlice'
+import { logIn, logOut, Roles } from '../redux/slices/userSlice'
 
 
 interface Props {
-	admitedRoles: Array<string>,
-	needToRedirect: boolean,
+	admitedRoles: Roles[],
 	redirectTo: string 
 }
 /* rutas en la que no se puede acceder si esta logeado */
-const pathsAuth: Array<string> = ['/login', '/signup']
+const pathsAuth: string[] = ['/login', '/signup']
 
-const useAuth = ( { admitedRoles, needToRedirect, redirectTo }: Props ) => {
+const useAuth = ( { admitedRoles, redirectTo }: Props ) => {
 
 	const { role, isLoggedIn } = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
@@ -23,11 +22,10 @@ const useAuth = ( { admitedRoles, needToRedirect, redirectTo }: Props ) => {
 	/* state */
 	const [ globalLoading, setGlobalLoading ] = useState( false )
 	const [ needToCheck, setNeedToCheck ] = useState<string | null>( null )
-	
+	const [ initialLoad, setInitialLoad ] = useState( true )
 
 	/* funtions */
 	const fetchUser = async ( ) => {
-		
 		setGlobalLoading( true )
 
 		const { ok, user, expired } = await userAuthRefreshToken()
@@ -46,15 +44,22 @@ const useAuth = ( { admitedRoles, needToRedirect, redirectTo }: Props ) => {
 	}
 	
 	const checkUserStatus = (): void => {
+		
+		const userCanAccess: boolean = admitedRoles.includes( role )
 
-		const userCanAccess: boolean = isLoggedIn && admitedRoles.includes( role )
+		if( isLoggedIn ) {
 
-		if( !userCanAccess && needToRedirect ) {
-			location.push( redirectTo )
-		}
-
-		if( isLoggedIn && pathsAuth.includes( location.pathname ) ) {
-			location.push( redirectTo )
+			if( !userCanAccess ) {
+				location.push( redirectTo )
+			}
+	
+			if( pathsAuth.includes( location.pathname ) ) {
+				location.push( redirectTo )
+			}
+		} else {
+			if( !userCanAccess ) {
+				location.push( redirectTo )
+			}
 		}
 	}
 
@@ -63,11 +68,13 @@ const useAuth = ( { admitedRoles, needToRedirect, redirectTo }: Props ) => {
 		setNeedToCheck( localStorage.getItem('isLoggedIn') )
 		
 		if( needToCheck ) fetchUser()
+		else setInitialLoad( false )
+		
 	}, [ needToCheck ])
 
 	useEffect( () => {
 		
-		checkUserStatus()
+		if( !initialLoad ) checkUserStatus()
 	}, [ isLoggedIn ])
 
 	return {

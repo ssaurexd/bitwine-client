@@ -52,7 +52,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 						variant='contained'
 						color='primary'
 						size='large'
-						hreflink='/pricing'
+						hreflink='/admin'
 						text='Go Shopping'
 						disableElevation
 					/>
