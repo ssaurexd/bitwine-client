@@ -1,9 +1,11 @@
 import axios from 'axios'
+import { getRememberMe, getToken } from '../helpers/auth'
 import { 
 	IAPILoginTopLevel,
 	IAPIRefreshTokenTopLevel,
 	IAPILogOutTopLevel
 } from '../interfaces/user'
+
 
 const userApi = axios.create({
 	baseURL: 'http://localhost:3001/api/users',
@@ -11,7 +13,7 @@ const userApi = axios.create({
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Credentials': 'true'
 	},
-	withCredentials: true
+	withCredentials: true,
 })
 
 export const userAuthLogin = async ( body: any  ): Promise<IAPILoginTopLevel> => {
@@ -21,18 +23,18 @@ export const userAuthLogin = async ( body: any  ): Promise<IAPILoginTopLevel> =>
 	return resp.data
 }
 
-export const userAuthRefreshToken = async ( ): Promise<IAPIRefreshTokenTopLevel> => {
+export const userAuthRefreshToken = async (): Promise<IAPIRefreshTokenTopLevel> => {
 
-	const rememberMe = localStorage.getItem('rememberMe') || false
-	const resp = await userApi.post<IAPIRefreshTokenTopLevel>( '/refresh-token', JSON.stringify({ rememberMe }) )
+	const rememberMe = getRememberMe()
+	const token = getToken()
+	const resp = await userApi.post<IAPIRefreshTokenTopLevel>( '/refresh-token', { rememberMe }, { headers: { 'x-token': rememberMe ? token: '' } } )
 
 	return resp.data
 }
 
 export const userAuthLogOut = async ( ): Promise<IAPILogOutTopLevel> => {
 
-	const rememberMe = localStorage.getItem('rememberMe') || false
-	const resp = await userApi.post<IAPILogOutTopLevel>( '/logout', JSON.stringify({ rememberMe }) )
+	const resp = await userApi.post<IAPILogOutTopLevel>( '/logout' )
 
 	return resp.data
 }

@@ -17,9 +17,7 @@ const Auth: FC<Props> = ({ admitedRoles, children, redirectTo = '/login' }) => {
 	/* hooks */
 	const { globalLoading } = useAuth({ admitedRoles, redirectTo })
 
-	if( globalLoading ) return <GlobalLoading show={ globalLoading } />
-
-	return  children 
+	return ( globalLoading ? <GlobalLoading show={ true } /> : children )
 }
 
 export default Auth

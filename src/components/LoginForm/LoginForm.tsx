@@ -36,7 +36,7 @@ const LoginForm: FC = () => {
 	/* state */
 	const initialValues: FormValues = {
 		email: 'ssaurexd@gmail.com',
-		password: '',
+		password: '1234',
 		rememberMe: false
 	}
 	const [ msgError, setMsgError ] = useState<string | undefined>( '' )
@@ -44,7 +44,7 @@ const LoginForm: FC = () => {
 	/* funtions */
 	const _Submit = async ( values: FormValues ) => {
 
-		const { ok, user, msg } = await userAuthLogin( values )
+		const { ok, user, msg, token } = await userAuthLogin( values )
 		
 		dispath( logInStart() )
 
@@ -52,7 +52,11 @@ const LoginForm: FC = () => {
 
 			dispath( logIn({ ...user, isLoggedIn: true }) )
 			
-			if( values.rememberMe ) localStorage.setItem('rememberMe', JSON.stringify( values.rememberMe ) )
+			if( values.rememberMe ){
+
+				localStorage.setItem( 'rememberMe', JSON.stringify( values.rememberMe ) )
+				localStorage.setItem( 'token', token )
+			}	
 		} else {
 
 			dispath( logInFail() )
@@ -113,7 +117,7 @@ const LoginForm: FC = () => {
 								control={( 
 									<Checkbox 
 										color="primary"
-										name='remenberMe' 
+										name='rememberMe' 
 										value={ values.rememberMe }
 										onChange={ handleChange }
 									/>

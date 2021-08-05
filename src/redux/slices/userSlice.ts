@@ -55,6 +55,8 @@ export const userSlice = createSlice({
 		logOut: ( state ) => {
 			
 			localStorage.removeItem( 'isLoggedIn' )
+			localStorage.removeItem( 'token' )
+			localStorage.removeItem( 'rememberMe' )
 			return initialState
 		}
 	}
