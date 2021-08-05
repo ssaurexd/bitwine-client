@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { userAuthRefreshToken, userAuthLogOut } from '../helpers/userApi'
+import { userAuthRefreshToken, userAuthLogOut } from '../api/userApi'
 import { logIn, logOut, Roles } from '../redux/slices/userSlice'
 
 
@@ -26,10 +26,11 @@ const useAuth = ( { admitedRoles, redirectTo }: Props ) => {
 
 	/* funtions */
 	const fetchUser = async ( ) => {
+		
 		setGlobalLoading( true )
-
+		
 		const { ok, user, expired } = await userAuthRefreshToken()
-
+		
 		if( ok ) {
 
 			dispatch( logIn({ ...user, isLoggedIn: true }) )
@@ -38,6 +39,9 @@ const useAuth = ( { admitedRoles, redirectTo }: Props ) => {
 			const { ok } = await userAuthLogOut()
 
 			if( ok ) dispatch( logOut() )
+		} else {
+
+			checkUserStatus()
 		}
 
 		setGlobalLoading( false )

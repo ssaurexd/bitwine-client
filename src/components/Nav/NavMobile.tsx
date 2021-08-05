@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import {
 	Drawer,
 	List,
@@ -13,8 +12,7 @@ import {
 	ListItemAvatar,
 	ListItemText,
 	Avatar,
-	Hidden,
-	Container
+	Hidden
 } from '@material-ui/core'
 import { 
 	MenuOpen,
@@ -25,7 +23,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
-import { userAuthLogOut } from '../../helpers/userApi'
+import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'

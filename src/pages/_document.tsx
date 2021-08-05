@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../config/theme';
 
-export default class MyDocument extends Document {
+export default class _document extends Document {
 
 	render() {
 		return (
@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
 	}
 }
 
-MyDocument.getInitialProps = async (ctx) => {
+_document.getInitialProps = async (ctx) => {
 
 	const sheets = new ServerStyleSheets();
 	const originalRenderPage = ctx.renderPage;

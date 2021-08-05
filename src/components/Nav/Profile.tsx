@@ -19,7 +19,7 @@ import {
 
 import useStyle from './styles'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { userAuthLogOut } from '../../helpers/userApi'
+import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 

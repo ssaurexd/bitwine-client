@@ -2,14 +2,14 @@ import { FC } from 'react'
 import {
 	Drawer,
 	IconButton,
-	Divider,
-	List
+	Divider
 } from '@material-ui/core'
 import { ChevronLeft } from '@material-ui/icons'
 
 import useStyle from './styles'
 
 import Logo from '../../Nav/Logo'
+import AdminSidebarContent from './AdminSidebarContent'
 
 
 interface Props {
@@ -43,9 +43,7 @@ const AdminSidebar:FC<Props> = ({ open, handleSidebarClose }) => {
 
 			<Divider />
 
-			<List>
-
-			</List>
+			<AdminSidebarContent />
 		</Drawer>
 	)
 }

@@ -17,7 +17,7 @@ interface Props {
 	banner: IBannerProduct[]
 }
 
-const App: NextPage<Props> = ({ sales, best, banner }) => {
+const app: NextPage<Props> = ({ sales, best, banner }) => {
 
 	const dispatch = useAppDispatch()
 
@@ -76,4 +76,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	}
 }
 
-export default App
+export default app

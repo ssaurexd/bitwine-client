@@ -12,7 +12,7 @@ import { Alert } from '@material-ui/lab'
 import { Formik } from 'formik'
 
 import useStyle from './styles'
-import { userAuthLogin } from '../../helpers/userApi'
+import { userAuthLogin } from '../../api/userApi'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { logIn, logInStart, logInFail } from '../../redux/slices/userSlice'
 

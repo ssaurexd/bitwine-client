@@ -18,7 +18,6 @@ import '../styles/styles.scss'
 import store from '../redux/store'
 import theme from '../config/theme'
 
-import Layout from '../components/init/Layout'
 import Toast from '../components/Toast'
 
 

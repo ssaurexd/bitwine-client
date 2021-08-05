@@ -1,19 +1,22 @@
 import { NextPage } from 'next'
 
+import AdminLayout from '../../components/Admin/Layout'
 import Auth from '../../components/init/Auth'
-import Admin from '../../components/screens/Admin'
+import Admin from '../../components/screens/admin/Admin'
 
 
-const index: NextPage = () => {
+const indexAdmin: NextPage = () => {
 
 	return (
 		<Auth
 			admitedRoles={['admin']}
 			redirectTo='/'
 		>
-			<Admin />
+			<AdminLayout>
+				<Admin />
+			</AdminLayout>
 		</Auth>
 	)
 }
 
-export default index
+export default indexAdmin

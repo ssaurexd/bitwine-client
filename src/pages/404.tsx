@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import CustomButtonLink from '../components/CustomButtonLink'
 
 
-const Custom404: FC = () => {
+const custom404: FC = () => {
 	return (
 		<main className='no-found-main' >
 			<div className="container">
@@ -33,4 +33,4 @@ const Custom404: FC = () => {
 	)
 }
 
-export default Custom404
+export default custom404
