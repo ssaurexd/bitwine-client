@@ -1,34 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IBannerProduct, IProduct } from '../../interfaces/product'
+import {  
+	IApp,
+	IChangeDashboardMenuItem,
+	IGlobalToast,
+	IHome
+} from '../../interfaces/appInterfaces'
 
-
-interface ISettings {
-
-}
-type ServerityType = 
-	'warning' |
-	'success' |
-	'error' |
-	'info'
-
-interface IGlobalToast {
-	msg: string,
-	isOpen: boolean,
-	duration: number,
-	severity: ServerityType
-}
-interface IHome {
-	products: {
-		sliderProducts: IBannerProduct[],
-		bestSales: IProduct[],
-		flashSale: IProduct[]
-	}
-}
-interface IApp {
-	settings?: ISettings,
-	globalToast: IGlobalToast,
-	home: IHome
-}
 
 const initialState: IApp = {
 	globalToast: {
@@ -42,6 +19,13 @@ const initialState: IApp = {
 			bestSales: [],
 			flashSale: [],
 			sliderProducts: []
+		}
+	},
+	dashboard: {
+		sidebarOpen: true,
+		menu: {
+			avatarOpen: false,
+			productOpen: false
 		}
 	}
 } 
@@ -74,6 +58,27 @@ const appSlice = createSlice({
 				...state,
 				home: action.payload
 			}
+		}, 
+		changeDashboardMenuItem: ( state, action: PayloadAction<IChangeDashboardMenuItem> ) => {
+			return {
+				...state,
+				dashboard: {
+					...state.dashboard,
+					menu: {
+						...state.dashboard.menu,
+						[action.payload.key]: action.payload.value
+					}
+				}
+			}
+		},
+		changeSidebar: ( state, action ) => {
+			return {
+				...state,
+				dashboard: {
+					...state.dashboard,
+					sidebarOpen: action.payload
+				}
+			}
 		}
 	}
 })
@@ -81,6 +86,8 @@ const appSlice = createSlice({
 export const {
 	closeToast,
 	openToast,
-	initHome
+	initHome,
+	changeDashboardMenuItem,
+	changeSidebar
 } = appSlice.actions
 export default appSlice.reducer

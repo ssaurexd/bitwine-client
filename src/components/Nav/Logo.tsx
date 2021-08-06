@@ -19,14 +19,14 @@ const Logo: FC<Props> = ({ transparent }) => {
 		<Link href='/' >
 			<a className={`${ classes.logo } ${ transparent && classes.colorWhite }`} >
 				<Grid container alignItems='center' wrap='nowrap' justify='flex-start' >
-					<Grid item xs={ 2 } >
+					<Grid item xs={ 6 } sm={ 4 } md={ 3 } lg={ 3 } >
 						<Image 
 							src={ logoImage }
-							width={ 40 }
-							height={ 40 }
+							layout='responsive'
+							objectFit='contain'
 						/> 
 					</Grid>
-					<Grid item xs={ 10 } >
+					<Grid item xs={ 6 } sm={ 8 } md={ 9 } lg={ 9 } >
 						<Typography variant='h2'>BitWine</Typography>		
 					</Grid>
 				</Grid>

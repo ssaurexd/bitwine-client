@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 
 import AdminLayout from '../../components/Admin/Layout'
 import Auth from '../../components/init/Auth'
-import Admin from '../../components/screens/admin/Admin'
+import Dashboard from '../../components/Admin/Dashboard'
 
 
 const indexAdmin: NextPage = () => {
@@ -13,7 +13,7 @@ const indexAdmin: NextPage = () => {
 			redirectTo='/'
 		>
 			<AdminLayout>
-				<Admin />
+				<Dashboard />
 			</AdminLayout>
 		</Auth>
 	)

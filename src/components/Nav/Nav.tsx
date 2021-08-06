@@ -50,12 +50,12 @@ const Nav: FC<Props> = (  ) => {
 					<Container >
 						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
 							{/* logo */}
-							<Grid item xs={ 8 } md={ 2 } >
+							<Grid item xs={ 2 } lg={ 2 } >
 								<Logo transparent={ isScrolling } />
 							</Grid>
 							
 							{/* nav options */}
-							<Grid container item xs={ 4 } md={ 10 } justify='flex-end' >
+							<Grid container item xs={ 10 } justify='flex-end' >
 								<List className={ `${ isScrolling && classes.colorWhite }` } >
 									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
 										{/* search input */}

@@ -9,7 +9,7 @@ const useStyle = makeStyles( ( theme ) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		height: 69
+		height: 68,
 	},
 	appBarShift: {
 		width: `calc(100% - ${ drawerWidth }px)`,

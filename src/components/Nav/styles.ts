@@ -16,7 +16,8 @@ const useStyle = makeStyles( ( theme ) => ({
 		color: '#525252',
 		with: 'auto',
 		minHeight: '50px',
-		minWidth: '50px'
+		minWidth: '50px',
+		position: 'relative'
 	},
 	menu: {
 		color: '#525252'

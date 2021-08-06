@@ -20,7 +20,7 @@ const useStyle = makeStyles( ( theme ) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		marginLeft: -drawerWidth,
+		marginLeft: -drawerWidth
 	},
 	contentShift: {
 		transition: theme.transitions.create('margin', {
@@ -28,7 +28,7 @@ const useStyle = makeStyles( ( theme ) => ({
 			duration: theme.transitions.duration.enteringScreen,
 		}),
 		marginLeft: 0,
-	},
+	}
 }))
 
 export default useStyle

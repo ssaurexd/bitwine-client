@@ -7,10 +7,10 @@ const useStyle = makeStyles( ( theme ) => ({
 	drawer: {
 		width: drawerWidth,
 		flexShrink: 0,
+		borderRight: '1px sodid white'
 	},
 	drawerPaper: {
 		width: drawerWidth,
-		boxShadow: theme.shadows[3]
 	},
 	drawerHeader: {
 		display: 'flex',
@@ -19,6 +19,34 @@ const useStyle = makeStyles( ( theme ) => ({
 		...theme.mixins.toolbar,
 		justifyContent: 'space-between',
 	},
+	nested: {
+		paddingLeft: theme.spacing(4)
+	},
+	sidebarProfile: {
+		height: 'auto',
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		flexDirection: 'column',
+		padding: 10,
+	},
+	sidebarProfileAvatar: {
+		background: 'gray',
+		width: 100,
+		height: 100,
+		borderRadius: '100%',
+		overflow: 'hidden'
+	},
+	sidebarProfileAvatar_img: {
+		width: '100%',
+		height: '100%',
+		objectFit: 'contain'
+	},
+	listItemActiveLink: {
+		borderRight: `3px solid ${ theme.palette.primary.main }`,
+		backgroundColor: 'rgba(128,0,0, 0.06)'
+	}
 }))
 
 export default useStyle
