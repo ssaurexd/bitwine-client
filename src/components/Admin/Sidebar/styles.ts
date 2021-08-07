@@ -44,8 +44,8 @@ const useStyle = makeStyles( ( theme ) => ({
 		objectFit: 'contain'
 	},
 	listItemActiveLink: {
-		borderRight: `3px solid ${ theme.palette.primary.main }`,
-		backgroundColor: 'rgba(128,0,0, 0.06)'
+		borderRight: `3px solid ${ theme.palette.secondary.main }`,
+		color: theme.palette.secondary.main
 	}
 }))
 

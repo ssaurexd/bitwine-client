@@ -33,15 +33,11 @@ const AdminSidebar:FC<Props> = ({ open, handleSidebarClose }) => {
 			}}
 		>
 			<div className={classes.drawerHeader}>
-				<div>
-					<Logo transparent={ false } />
-				</div>
+				<div></div>
 				<IconButton onClick={ handleSidebarClose }>
 					<ChevronLeft />
 				</IconButton>
 			</div>
-
-			<Divider />
 
 			<AdminSidebarContent />
 		</Drawer>

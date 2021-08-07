@@ -1,12 +1,12 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import clsx from 'clsx'
 
 import useStyle from './styles'
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks'
+import { changeSidebar } from '../../../redux/slices/appSlice'
 
 import AdminSidebar from '../Sidebar'
 import AdminNav from '../Nav'
-import { changeSidebar } from '../../../redux/slices/appSlice'
 
 
 const AdminLayout: FC = ({ children }) => {

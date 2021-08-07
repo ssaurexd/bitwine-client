@@ -8,7 +8,12 @@ import {
 	Badge,
 } from '@material-ui/core'
 import clsx from 'clsx'
-import { Menu, Notifications, ExitToApp } from '@material-ui/icons'
+import { 
+	Menu, 
+	Notifications, 
+	ExitToApp,
+	Home 
+} from '@material-ui/icons'
 
 import useStyle from './styles'
 import { userAuthLogOut } from '../../../api/userApi'
@@ -48,6 +53,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 					[classes.appBarShift]: open,
 				})
 			}
+			color='secondary'
 			elevation={ 3 }
 		>
 			<Toolbar>
@@ -69,7 +75,14 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 							<IconButton
 								color='inherit'
 							>
-								<Badge color='secondary' badgeContent={ 5 } >
+								<Home />
+							</IconButton>
+						</Grid>
+						<Grid item >
+							<IconButton
+								color='inherit'
+							>
+								<Badge color='primary' badgeContent={ 5 } >
 									<Notifications />
 								</Badge>
 							</IconButton>
