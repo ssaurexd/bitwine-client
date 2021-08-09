@@ -48,7 +48,7 @@
 		
 	.btn-fb{
 		padding-top: 1.5px;
-		border-radius: 25px;
+		border-radius: $br2;
 		background: #4267b2;
 		&:hover{
 			background-color: darken($color: #4267b2, $amount: 5);

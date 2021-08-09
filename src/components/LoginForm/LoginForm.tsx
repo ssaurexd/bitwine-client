@@ -83,7 +83,6 @@ const LoginForm: FC = () => {
 								<Alert variant='outlined' severity='error'>{ msgError }</Alert>
 							}
 							<TextField
-								variant="outlined"
 								color='primary'
 								margin="normal"
 								fullWidth
@@ -92,21 +91,18 @@ const LoginForm: FC = () => {
 								name="email"
 								autoComplete="email"
 								autoFocus
-								size='small'
 								error={ errors.email ? true : false }
 								value={ values.email }
 								onChange={ handleChange }
 							/>
 
 							<TextField
-								variant="outlined"
 								color='primary'
 								margin="normal"
 								fullWidth
 								name="password"
 								label="Contraseña"
 								type="password"
-								size='small'
 								autoComplete="current-password"
 								error={ errors.password ? true : false }
 								value={ values.password }

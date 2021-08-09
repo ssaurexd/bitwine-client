@@ -13,6 +13,7 @@ import SwiperCore, {
 import 'swiper/swiper.min.css'
 import 'swiper/components/navigation/navigation.min.css'
 import 'swiper/components/pagination/pagination.min.css'
+import 'suneditor/dist/css/suneditor.min.css'
 
 import '../styles/styles.scss'
 import store from '../redux/store'
