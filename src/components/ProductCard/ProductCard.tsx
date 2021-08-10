@@ -10,7 +10,7 @@ import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
 import defaultProduct from '../../../public/assets/images/products/default.png'
-import { IProduct } from '../../interfaces/product'
+import { IProduct } from '../../interfaces/productInterfaces'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
 

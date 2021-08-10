@@ -5,7 +5,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
 import useStyle from './styles'
 import ProductCard from '../ProductCard'
-import { IProduct } from '../../interfaces/product'
+import { IProduct } from '../../interfaces/productInterfaces'
 
 
 interface Props {

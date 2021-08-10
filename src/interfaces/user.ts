@@ -19,7 +19,7 @@ export interface IAPIUser {
 export interface IAPIRefreshTokenTopLevel {
 	ok: boolean,
 	user: IAPIUser,
-	msg?: string,
+	msg: string,
 	token: string
 	expired?: boolean
 }

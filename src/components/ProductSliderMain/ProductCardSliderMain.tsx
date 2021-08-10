@@ -3,7 +3,7 @@ import { Button, Typography } from '@material-ui/core'
 import Image from 'next/image'
 
 import defaultProduct from '../../../public/assets/images/products/default.png'
-import { IBannerProduct } from '../../interfaces/product'
+import { IBannerProduct } from '../../interfaces/productInterfaces'
 
 
 interface Props {

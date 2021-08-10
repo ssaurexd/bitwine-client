@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 
-import { IBannerProduct, IProduct } from '../interfaces/product'
+import { IBannerProduct, IProduct } from '../interfaces/productInterfaces'
 
 import Auth from '../components/init/Auth'
 import Home from '../components/screens/Home'

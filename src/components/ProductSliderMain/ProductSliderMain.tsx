@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { IBannerProduct } from '../../interfaces/product'
+import { IBannerProduct } from '../../interfaces/productInterfaces'
 import ProductCardSliderMain from './ProductCardSliderMain'
 
 

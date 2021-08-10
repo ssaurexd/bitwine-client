@@ -5,10 +5,11 @@ interface IProductForm {
 	iName: string,
 	iPrice: number,
 	iDiscount: number,
+	iOnStock: number,
 	iPriceWithDiscount: number,
 	iDescription: string,
 	iCategories: string[],
-	iImage: [],
+	iImage: string,
 	iImages: string[]
 }
 interface Props {
@@ -25,13 +26,15 @@ const useProductForm  = ( props: Props ) => {
 		iName,
 		iPrice,
 		iPriceWithDiscount,
-		iImages
+		iImages,
+		iOnStock
 	} = props.initialValues
 
 
 	/* hooks */
 	const [ name, setName ] = useState( iName )
 	const [ price, setPrice ] = useState<number>( iPrice )
+	const [ onStock, setOnStock ] = useState<number>( iOnStock )
 	const [ discount, setDiscount ] = useState<number>( iDiscount )
 	const [ priceWithDiscount, setPriceWithDiscount ] = useState<number>( iPriceWithDiscount )
 	const [ description, setDescription ] = useState( iDescription )
@@ -47,6 +50,7 @@ const useProductForm  = ( props: Props ) => {
 		categories: '',
 		image: '',
 		images: '',
+		onStock: ''
 	})
 
 	/* funtions */
@@ -79,6 +83,17 @@ const useProductForm  = ( props: Props ) => {
 	
 			setPriceWithDiscount( price - countToDiscount )
 			setDiscount( valueFloat )
+		}
+	}
+
+	const handleOnStock = ( value: string ) => {
+
+		const valueFloat = parseFloat( value ) 
+
+		if( !isNaN( valueFloat ) ) {
+			
+			setErrors({ ...errors, onStock: '' })
+			setOnStock( valueFloat )
 		}
 	}
 
@@ -146,6 +161,11 @@ const useProductForm  = ( props: Props ) => {
 			haveErrors = true
 			setErrors( preState => { return { ...preState,  images: 'Las imagenes son obligatorias' }})
 		} 
+		if( !onStock || onStock <= 0 ) {
+			
+			haveErrors = true
+			setErrors( preState => { return { ...preState,  onStock: 'Es stock debe ser mayor a 0' }})
+		} 
 
 		return haveErrors
 	}
@@ -165,6 +185,7 @@ const useProductForm  = ( props: Props ) => {
 			categories,
 			image,
 			images,
+			onStock
 		},
 		handleChange: {
 			handleName,
@@ -175,6 +196,7 @@ const useProductForm  = ( props: Props ) => {
 			handleCategories,
 			handleImage,
 			handleImages,
+			handleOnStock
 		},
 		errors,
 		validateFiels

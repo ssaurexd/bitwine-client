@@ -20,7 +20,12 @@ const useStyle = makeStyles( ( theme ) => ({
 		textTransform: 'uppercase'
 	},
 	select: {
-		width: '100%'
+		width: '100%',
+		height: 'auto'
+	},
+	selectSmall: {
+		width: '100%',
+		height: 42
 	},
 	description: {
 		width: '100%'
@@ -30,7 +35,7 @@ const useStyle = makeStyles( ( theme ) => ({
 		backgroundColor: 'inherit'
 	},
 	btnWrapper: {
-		position: 'relative',
+		position: 'relative'
 	},
 	btnProgress: {
 		position: 'absolute',
@@ -38,6 +43,9 @@ const useStyle = makeStyles( ( theme ) => ({
 		left: '50%',
 		marginTop: -12,
 		marginLeft: -12,
+	},
+	btnContainer: {
+		width: '100%'
 	},
 	chips: {
 		display: 'flex',

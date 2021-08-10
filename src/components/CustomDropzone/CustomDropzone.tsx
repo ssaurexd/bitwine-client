@@ -60,7 +60,7 @@ const CustomDropzone: FC<Props> = ( props ) => {
 
 					{ imagePreview && acceptedFiles.length > 0 &&
 
-						<div  >
+						<div >
 							<Swiper 
 								pagination={{
 									dynamicBullets: true

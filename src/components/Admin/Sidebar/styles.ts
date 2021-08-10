@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { globalStyles } from '../../../config/theme'
-import defaIMg from '../../../../public/assets/images/defaultBanner.jpg'
 
 const { drawerWidth } = globalStyles
 
@@ -11,6 +10,8 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	drawerPaper: {
 		width: drawerWidth,
+		border: 'none',
+		borderRight: '1px solid #f3f3f3',
 	},
 	drawerHeader: {
 		display: 'flex',

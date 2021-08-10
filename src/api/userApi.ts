@@ -1,5 +1,7 @@
 import axios from 'axios'
+
 import { getRememberMe, getToken } from '../helpers/auth'
+import apiConfig from './'
 import { 
 	IAPILoginTopLevel,
 	IAPIRefreshTokenTopLevel,
@@ -8,7 +10,7 @@ import {
 
 
 const userApi = axios.create({
-	baseURL: 'http://localhost:3001/api/users',
+	baseURL: `${ apiConfig.BASE_PATH }/api/users`,
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Credentials': 'true'

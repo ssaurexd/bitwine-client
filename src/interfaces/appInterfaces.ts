@@ -1,4 +1,4 @@
-import { IBannerProduct, IProduct } from './product'
+import { IBannerProduct, IProduct } from './productInterfaces'
 
 /* --START-- toast
 -------------------------------------------------------- */

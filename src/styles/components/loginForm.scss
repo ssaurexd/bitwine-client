@@ -33,7 +33,7 @@
 	.btn-google{
 		background: #FFF;
 		margin-bottom: 20px;
-		border-radius: 25px;
+		border-radius: $br2;
 		&:hover{
 			background-color: darken($color: #fff, $amount: 5);
 			cursor: pointer;

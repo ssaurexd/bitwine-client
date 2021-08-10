@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useAppSelector } from '../../hooks/reduxHooks'
 
-import { IBannerProduct, IProduct } from '../../interfaces/product'
+import { IBannerProduct, IProduct } from '../../interfaces/productInterfaces'
 
 import ProductSliderMain from '../ProductSliderMain'
 import Slider from '../Slider'
