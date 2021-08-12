@@ -10,14 +10,15 @@ import Layout from '../components/init/Layout'
 import { useAppDispatch } from '../hooks/reduxHooks'
 import { useEffect } from 'react'
 import { initHome } from '../redux/slices/appSlice'
+import { getFlashSales, getProductsByCategory } from '../api/productApi'
 
 interface Props {
 	sales: IProduct[],
-	best: IProduct[],
+	pinkWine: IProduct[],
 	banner: IBannerProduct[]
 }
 
-const app: NextPage<Props> = ({ sales, best, banner }) => {
+const app: NextPage<Props> = ({ sales, pinkWine, banner }) => {
 
 	const dispatch = useAppDispatch()
 
@@ -25,7 +26,7 @@ const app: NextPage<Props> = ({ sales, best, banner }) => {
 		
 		dispatch( initHome({ 
 			products: { 
-				bestSales: best,
+				pinkWine,
 				flashSale: sales, 
 				sliderProducts: banner
 			} 
@@ -56,22 +57,16 @@ const app: NextPage<Props> = ({ sales, best, banner }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
 	
-	const [ sales, best, banner ] = await Promise.all([
-		fetch( 'https://fakestoreapi.com/products?limit=12', { method: 'GET' } ),
-		fetch( 'https://fakestoreapi.com/products?limit=12', { method: 'GET' } ),
-		fetch( 'https://fakestoreapi.com/products?limit=4', { method: 'GET' } ),
-	])
-	const [ salesJson, bestJson, bannerJson ] = await Promise.all([
-		sales.json(),
-		best.json(),
-		banner.json()
+	const [ salesResp, pinkWineResp ] = await Promise.all([
+		getFlashSales(),
+		getProductsByCategory('pink-wine')
 	])
 
 	return {
 		props: {
-			sales: salesJson,
-			best: bestJson,
-			banner: bannerJson
+			sales: salesResp.ok ? salesResp.products : [],
+			pinkWine: pinkWineResp.ok ? pinkWineResp.products : [],
+			banner: []
 		}
 	}
 }

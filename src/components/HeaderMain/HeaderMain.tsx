@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Divider, Typography } from '@material-ui/core'
 
 import CustomButtonLink from '../CustomButtonLink'
-import defaultBanner from '../../../public/assets/images/defaultBanner.jpg'
+import defaultBanner from '../../../public/assets/images/defaultHeaderBG.jpg'
 
 
 interface Props {
@@ -15,8 +15,6 @@ interface Props {
 }
 
 const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, bottomShadow = false }) => {
-
-	/* state */
 
 	return (
 		<header className={`header-main ${ bottomShadow && 'shadow' }`}> 
@@ -53,7 +51,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 						color='primary'
 						size='large'
 						hreflink='/admin'
-						text='Go Shopping'
+						text='Empezar a comprar'
 						disableElevation
 					/>
 				}

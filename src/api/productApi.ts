@@ -1,12 +1,15 @@
 import axios from 'axios'
-import { toBase64 } from '../helpers/files'
-import { IApiCreateProductTopLevel, IApiUploadProductImageTopLeve, IProduct2 } from '../interfaces/productInterfaces'
+import { 
+	IApiCreateProductTopLevel, 
+	IAPICategoryProductsTopLevel, 
+	IApiUploadProductImageTopLeve,
+	IApiProductsByCategoryTopLevel
+} from '../interfaces/productInterfaces'
+import { settings } from '../config/settings'
 
-import apiConfig from './'
 
-
-const pruductApi = axios.create({
-	baseURL: `${ apiConfig.BASE_PATH }/api/products`,
+const productApi = axios.create({
+	baseURL: `${ settings.BASE_PATH }/api/products`,
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Credentials': 'true'
@@ -18,7 +21,7 @@ export const createProduct = async ( data: any ): Promise<IApiCreateProductTopLe
 
 	try {
 
-		const resp = await pruductApi.post<IApiCreateProductTopLevel>('/', data)
+		const resp = await productApi.post<IApiCreateProductTopLevel>('/', data)
 
 		return resp.data
 	} catch ( error ) {
@@ -41,7 +44,7 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 
 	try {
 
-		const resp = await pruductApi.post<IApiUploadProductImageTopLeve>( '/upload-product-images', body , {
+		const resp = await productApi.post<IApiUploadProductImageTopLeve>( '/upload-product-images', body , {
 			headers: {
 				'Content-Type': 'multipart/form-data',
 				'Access-Control-Allow-Credentials': 'true'
@@ -52,6 +55,36 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 	} catch ( error ) {
 
 		const resp: IApiUploadProductImageTopLeve = error.response.data
+
+		return resp
+	}
+}
+
+export const getFlashSales = async (): Promise<IAPICategoryProductsTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.get<IAPICategoryProductsTopLevel>( '/flash-sales' )
+
+		return resp.data
+	} catch ( error ) {
+		
+		const resp: IAPICategoryProductsTopLevel = error.response.data
+
+		return resp
+	}
+}
+
+export const getProductsByCategory = async ( category: string, limit: number = 12, page: number = 0 ): Promise<IApiProductsByCategoryTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.get<IApiProductsByCategoryTopLevel>( `/by-category/${ category }?limit=${ limit }&page=${ page }`)
+
+		return resp.data
+	} catch ( error ) {
+		
+		const resp: IApiProductsByCategoryTopLevel = error.response.data
 
 		return resp
 	}

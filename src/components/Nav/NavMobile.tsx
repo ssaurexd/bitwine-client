@@ -41,7 +41,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 	const location = useRouter()
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
-	const classes = useStyle( )
+	const classes = useStyle()
 	
 	/* state */
 	const pathName = location.pathname
@@ -58,7 +58,11 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 		
 		const { ok } = await userAuthLogOut()
 
-		if( ok ) dispatch( logOut() ) 
+		if( ok ) {
+
+			dispatch( logOut() ) 
+			location.push( '/' )
+		} 
 	}
 
 	return (
@@ -66,7 +70,10 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 			open={ open }
 			anchor='left'
 			onClose={ onClose }
-			className='nav-main'
+			className='nav-mobile-main'
+			classes={{
+				paper: classes.drawerPaper
+			}}
 		>
 			<Grid container justify='space-between' alignItems='center' direction='column' >
 				<Grid container item justify='flex-end' direction='row' >

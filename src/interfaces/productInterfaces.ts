@@ -1,21 +1,23 @@
+import {
+	ICategory
+} from './categoryInterfaces'
+
 
 export interface IProduct {
-	id:          number;
-	title:       string;
-	price:       number;
-	description: string;
-	category:    string;
-	image:       string;
-}
-export interface IProduct2 {
-	name: string,
-	price: number,
+	_id: string,
 	discount: number,
+	categories: ICategory[],
+	images: string[],
+	onStock: number,
+	name: string,
+	price:number,
 	priceWithDiscount: number,
 	description: string,
-	categories: string[],
-	image: [],
-	images: []
+	image: string,
+	rate: any[],
+	createdAt: string,
+	updatedAt: string,
+	slug: string,
 }
 
 export interface IBannerProduct {
@@ -49,3 +51,19 @@ export interface IApiUploadProductImageTopLeve {
 }
 /* --END-- upload image product
 -------------------------------------------------------- */
+
+export interface IAPICategoryProductsTopLevel {
+	ok:       boolean,
+	products: IProduct[],
+	msg: string
+}
+export interface IApiProductsByCategoryTopLevel {
+	ok:       boolean,
+	total: number,
+	page: number,
+	nextPage: number,
+	next: boolean,
+	previousPage: number,
+	previous: boolean,
+	products: IProduct[],
+}

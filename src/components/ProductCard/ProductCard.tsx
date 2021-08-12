@@ -9,24 +9,26 @@ import { IconButton, Typography } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
-import defaultProduct from '../../../public/assets/images/products/default.png'
 import { IProduct } from '../../interfaces/productInterfaces'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
+import { settings } from '../../config/settings'
 
 import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
-	product: IProduct, //TODO: Agregar interface de producto,
+	product: IProduct,
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
 
+	const { BASE_PATH } = settings
+	const haveDiscount = product.discount > 0 ? true : false 
+
 	/* hooks */
-	const classes = useStyle()
 	const [ isOnWishList, setIsOnWishList ] = useState<boolean>( false )
-	const [ haveDiscount, setHaveDiscount ] = useState<boolean>( true )
+	const classes = useStyle()
 	const dispatch = useAppDispatch()
 
 	/* funtions */
@@ -63,7 +65,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 				<div className="product-card__header__extra-info">
 					{ haveDiscount ?
 						<div className="product-card__header__extra-info__discount">
-							<span>-100% off</span>
+							<span>-{ product.discount }% off</span>
 						</div> : <span></span>
 					}
 
@@ -88,9 +90,10 @@ const ProductCard: FC<Props> = ({ product }) => {
 
 				<div className="product-card__header__image">
 					<Image 
-						src={ product.image }
+						src={`${ BASE_PATH }/${ product.image }` }
 						layout='fill'
 						objectFit='contain'
+						className='product-card__header__image-img'
 					/>
 				</div>
 			</div>
@@ -98,21 +101,18 @@ const ProductCard: FC<Props> = ({ product }) => {
 			<div className="product-card__body">
 				<Rating defaultValue={ 4 } max={ 5 } size='small' readOnly />
 				<div className="product-card__body__title">
-					<Typography variant='h6' >{ product.title.slice( 0, 40 ) }{ product.title.length > 40 && '...' }</Typography>
-					<Typography variant='body2' >
-						{ product.description.slice( 0, 80 ) }{ product.description.length > 80 && '...' }
-					</Typography>
+					<Typography variant='h6' >{ product.name.slice( 0, 40 ) } { product.name.length > 40 && '...' }</Typography>
 				</div>
 			</div>
 
 			<div className="product-card__footer">
 				<div className="product-card__footer__prices">
-					<span className='second-price' >$250</span>
-					<span className='main-price' >${ product.price }</span>
+					{ product.discount > 0 && <span className='second-price' >${ product.price }</span> } 
+					<span className='main-price' >${ product.discount > 0 ? product.priceWithDiscount : product.price }</span>
 				</div>
 				
 				<CustomButtonLink
-					hreflink={`/product/`}
+					hreflink={`/product/${ product.slug }`}
 					text='Comprar'
 					variant='outlined'
 					color='primary'

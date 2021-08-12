@@ -13,15 +13,13 @@ const login = ( ) => {
 			redirectTo='/'
 		>
 			<Layout>
-				<main>
-					<HeaderMain 
+				<main className='login-main' >
+					{/* <HeaderMain 
 						title='Iniciar sesión'
 						subTitle='Unete al más grande tienda en linea para los amantes del vino'
-					/>
+					/> */}
 					<Login />
 				</main>
-
-				<FooterMain />
 			</Layout>
 		</Auth>
 	)

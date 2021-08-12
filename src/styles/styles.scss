@@ -6,6 +6,18 @@
 .main-100-vh{
 	min-height: calc( 100vh - #{ $nav-main-heigth } - #{ $footer-main-heigth } );
 }
+@media #{ $xs } {
+	.grid-container {
+		margin: $m5 0;
+		display: grid;
+		grid-template-columns: repeat( 2, 1fr ) ;
+		gap: 20px ;
+		justify-content: center;
+	}
+}
+@media #{ $sm } { .grid-container{ grid-template-columns: repeat( 3, 1fr ) } }
+@media #{ $md } { .grid-container{ grid-template-columns: repeat( 4, 1fr ) } }
+@media #{ $lg } { .grid-container{ grid-template-columns: repeat( 5, 1fr ) } }
 
 //components
 @import './components/header-main.scss';

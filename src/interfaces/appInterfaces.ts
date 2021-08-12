@@ -22,7 +22,7 @@ export interface IGlobalToast {
 export interface IHome {
 	products: {
 		sliderProducts: IBannerProduct[],
-		bestSales: IProduct[],
+		pinkWine: IProduct[],
 		flashSale: IProduct[]
 	}
 }

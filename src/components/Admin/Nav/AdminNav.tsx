@@ -74,6 +74,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 						<Grid item >
 							<IconButton
 								color='inherit'
+								onClick={ () => location.push( '/' ) }
 							>
 								<Home />
 							</IconButton>

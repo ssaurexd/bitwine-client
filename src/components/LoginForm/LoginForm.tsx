@@ -44,9 +44,9 @@ const LoginForm: FC = () => {
 	/* funtions */
 	const _Submit = async ( values: FormValues ) => {
 
-		const { ok, user, msg, token } = await userAuthLogin( values )
-		
 		dispath( logInStart() )
+		
+		const { ok, user, msg, token } = await userAuthLogin( values )
 
 		if( ok ) { 
 
@@ -90,7 +90,6 @@ const LoginForm: FC = () => {
 								placeholder='ejemplo@ejemplo.com'
 								name="email"
 								autoComplete="email"
-								autoFocus
 								error={ errors.email ? true : false }
 								value={ values.email }
 								onChange={ handleChange }

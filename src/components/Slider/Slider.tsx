@@ -13,7 +13,6 @@ interface Props {
 	titleIcon?: ReactElement,
 	products: IProduct[]
 }
-const fakeData: Array<any> = [ '','','','','','','','','','','','' ]
 
 const Slider: FC<Props> = ({ title, titleIcon, products }) => {
 
@@ -52,7 +51,7 @@ const Slider: FC<Props> = ({ title, titleIcon, products }) => {
 				>
 					{
 						products.map(( product ) => (
-							<SwiperSlide key={ product.id } >
+							<SwiperSlide key={ product._id } >
 								<ProductCard product={ product } />
 							</SwiperSlide>
 						))

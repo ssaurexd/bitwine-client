@@ -16,7 +16,7 @@ const initialState: IApp = {
 	},
 	home: {
 		products: {
-			bestSales: [],
+			pinkWine: [],
 			flashSale: [],
 			sliderProducts: []
 		}

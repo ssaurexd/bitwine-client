@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { globalStyles } from '../../config/theme'
 
 
+const { drawerWidth } = globalStyles
 const useStyle = makeStyles( ( theme ) => ({
 	appBar: {
 		flexGrow: 1,
@@ -18,6 +20,11 @@ const useStyle = makeStyles( ( theme ) => ({
 		minHeight: '50px',
 		minWidth: '50px',
 		position: 'relative'
+	},
+	drawerPaper: {
+		width: drawerWidth,
+		border: 'none',
+		borderRight: '1px solid #f3f3f3',
 	},
 	menu: {
 		color: '#525252'

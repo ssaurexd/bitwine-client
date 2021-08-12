@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import {
+	Container,
 	Grid, 
 	Paper 
 } from '@material-ui/core'
@@ -57,95 +58,96 @@ const Dashboard: FC = () => {
 
 	return (
 		<main>
-			<Grid container spacing={ 3 } >
-				<Grid container item spacing={ 3 } >
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper }>
+			<Container>
+				<Grid container spacing={ 3 } >
+					<Grid container item spacing={ 3 } >
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper }>
 
-						</Paper>
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper } >
+
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper } >
+
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper } >
+
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper } >
+
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
+							<Paper className={ classes.paper } >
+
+							</Paper>
+						</Grid>
 					</Grid>
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper } >
 
-						</Paper>
+					<Grid container item spacing={ 3 } >
+						<Grid item xs={ 12 } md={ 6 } >
+							<Paper className={ classes.paper2 } >
+								<div>
+									<ResponsiveContainer width="100%" height="100%">
+										<AreaChart
+										width={500}
+										height={400}
+										data={data}
+										margin={{
+											top: 10,
+											right: 30,
+											left: 0,
+											bottom: 0,
+										}}
+										>
+										<CartesianGrid strokeDasharray="3 3" />
+										<XAxis dataKey="name" />
+										<YAxis />
+										<Tooltip />
+										<Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+										</AreaChart>
+									</ResponsiveContainer>
+								</div>
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } md={ 6 }  >
+							<Paper className={ classes.paper2 } >
+
+							</Paper>
+						</Grid>
 					</Grid>
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper } >
 
-						</Paper>
+					<Grid container item spacing={ 3 } >
+						<Grid item xs={ 12 } md={ 6 } >
+							<Paper className={ classes.paper2 } >
+
+							</Paper>
+						</Grid>
+						<Grid item xs={ 12 } md={ 6 }  >
+							<Paper className={ classes.paper2 } >
+
+							</Paper>
+						</Grid>
 					</Grid>
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper } >
 
-						</Paper>
-					</Grid>
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper } >
+					<Grid container item spacing={ 3 } >
+						<Grid item xs={ 12 } md={ 12 } >
+							<Paper className={ classes.paper2 } >
 
-						</Paper>
-					</Grid>
-					<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 2 } >
-						<Paper className={ classes.paper } >
-
-						</Paper>
+							</Paper>
+						</Grid>
 					</Grid>
 				</Grid>
-
-				<Grid container item spacing={ 3 } >
-					<Grid item xs={ 12 } md={ 6 } >
-						<Paper className={ classes.paper2 } >
-							<div>
-
-								<ResponsiveContainer width="100%" height="100%">
-									<AreaChart
-									width={500}
-									height={400}
-									data={data}
-									margin={{
-										top: 10,
-										right: 30,
-										left: 0,
-										bottom: 0,
-									}}
-									>
-									<CartesianGrid strokeDasharray="3 3" />
-									<XAxis dataKey="name" />
-									<YAxis />
-									<Tooltip />
-									<Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-									</AreaChart>
-								</ResponsiveContainer>
-							</div>
-						</Paper>
-					</Grid>
-					<Grid item xs={ 12 } md={ 6 }  >
-						<Paper className={ classes.paper2 } >
-
-						</Paper>
-					</Grid>
-				</Grid>
-
-				<Grid container item spacing={ 3 } >
-					<Grid item xs={ 12 } md={ 6 } >
-						<Paper className={ classes.paper2 } >
-
-						</Paper>
-					</Grid>
-					<Grid item xs={ 12 } md={ 6 }  >
-						<Paper className={ classes.paper2 } >
-
-						</Paper>
-					</Grid>
-				</Grid>
-
-				<Grid container item spacing={ 3 } >
-					<Grid item xs={ 12 } md={ 12 } >
-						<Paper className={ classes.paper2 } >
-
-						</Paper>
-					</Grid>
-				</Grid>
-			</Grid>
+			</Container>
 		</main>
 	)
 }

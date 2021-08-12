@@ -1,4 +1,13 @@
-@media #{ $xs } { 
+@media #{ $xs } {
+	.login-main {
+		min-height: 100vh;
+		background-image: url('../../../public/assets/images/defaultHeaderBG.jpg');
+		background-size: cover;
+		background-color: black;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 	.btn-google, .btn-fb {
 		width: 100%;
 		display: inline-block;

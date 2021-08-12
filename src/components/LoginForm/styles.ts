@@ -10,7 +10,8 @@ const useStyle = makeStyles( theme => ({
 		alignItems: 'center',
 		boxShadow: theme.shadows[2],
 		padding: theme.spacing(3),
-		borderRadius: globalStyles.shape.borderRadius2
+		borderRadius: globalStyles.shape.borderRadius2,
+		backgroundColor: 'white'
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.

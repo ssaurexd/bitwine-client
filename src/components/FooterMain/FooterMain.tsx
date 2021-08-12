@@ -29,7 +29,7 @@ const FooterMain: FC = () => {
 							<Grid item >
 								<Typography variant='h5' color='initial' >BitWine</Typography>		
 								<Typography variant='body2'>
-									Best market place to buy wines
+									El mejor lugar para comprar vino
 								</Typography>
 							</Grid>
 

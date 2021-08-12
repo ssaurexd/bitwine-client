@@ -62,13 +62,13 @@ const useProductForm  = ( props: Props ) => {
 
 	const handlePrice = ( value: string ) => {
 
-		const valueFloat = parseFloat( value ) 
+		const valueFloat = parseFloat( value )
 
 		if( !isNaN( valueFloat ) ) {
 
 			const countToDiscount: number = ( discount / 100 ) * valueFloat
 	
-			setPriceWithDiscount( valueFloat - countToDiscount )
+			setPriceWithDiscount( parseFloat( ( valueFloat - countToDiscount ).toFixed( 2 ) ) )
 			setPrice( valueFloat )
 		}
 	}
@@ -81,7 +81,7 @@ const useProductForm  = ( props: Props ) => {
 
 			const countToDiscount: number = ( valueFloat / 100 ) * price 
 	
-			setPriceWithDiscount( price - countToDiscount )
+			setPriceWithDiscount( parseFloat( ( price - countToDiscount ).toFixed( 2 ) ) )
 			setDiscount( valueFloat )
 		}
 	}

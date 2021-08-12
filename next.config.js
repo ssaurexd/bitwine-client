@@ -7,7 +7,9 @@ module.exports = {
       'png.pngtree.com', 
       'via.placeholder.com', 
       'www.thewineshops.com',
-      'fakestoreapi.com'
+      'fakestoreapi.com',
+      'localhost',
+      '192.168.1.64'
     ],
   }
 }

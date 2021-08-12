@@ -8,6 +8,10 @@ const useStyle = makeStyles( ( theme ) => ({
 		'&:hover': {
 			boxShadow: theme.shadows[9]
 		}
+	},
+	productCardShadow: {
+		backgroundColor: 'transparent',
+		boxShadow: 'none'
 	}
 }))
 

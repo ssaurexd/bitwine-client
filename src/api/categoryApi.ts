@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { ICategory, ICategoryResponseTopLevel } from '../interfaces/categoryInterfaces'
+import { settings } from '../config/settings'
 
 
 const categoryApi = axios.create({
-	baseURL: 'http://localhost:3001/api/categories',
+	baseURL: `${ settings.BASE_PATH }/api/categories`,
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Credentials': 'true'
