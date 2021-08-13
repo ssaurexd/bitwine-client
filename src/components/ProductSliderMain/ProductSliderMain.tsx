@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { IBannerProduct } from '../../interfaces/productInterfaces'
+import { IBannerProduct, IProduct } from '../../interfaces/productInterfaces'
 import ProductCardSliderMain from './ProductCardSliderMain'
 
 
 interface Props {
-	products: IBannerProduct[]
+	products: IProduct[]
 }
 
 const ProductSliderMain: FC<Props> = ({ products }) => {
@@ -23,7 +23,7 @@ const ProductSliderMain: FC<Props> = ({ products }) => {
 				>
 					{ 	
 						products.map(( product ) => (
-							<SwiperSlide key={ product.id } >
+							<SwiperSlide key={ product._id } >
 								<ProductCardSliderMain product={ product } />
 							</SwiperSlide>
 						))

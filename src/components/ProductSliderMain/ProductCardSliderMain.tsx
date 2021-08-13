@@ -1,13 +1,13 @@
 import { FC } from 'react'
-import { Button, Typography } from '@material-ui/core'
 import Image from 'next/image'
+import { Button, Typography } from '@material-ui/core'
 
-import defaultProduct from '../../../public/assets/images/products/default.png'
-import { IBannerProduct } from '../../interfaces/productInterfaces'
+import { IBannerProduct, IProduct } from '../../interfaces/productInterfaces'
+import { settings } from '../../config/settings'
 
 
 interface Props {
-	product: IBannerProduct
+	product: IProduct
 }
 
 const ProductCardSliderMain: FC<Props> = ({ product }) => {
@@ -31,7 +31,7 @@ const ProductCardSliderMain: FC<Props> = ({ product }) => {
 			</div>
 			<div className="card__image">
 				<Image 
-					src={ product.image } 
+					src={ `${ settings.BASE_PATH }/${ product.image }` } 
 					alt='Default' 
 					width={ 320 } 
 					height={ 100 }

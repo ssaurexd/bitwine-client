@@ -1,20 +1,23 @@
 import { FC, ReactElement } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Button, Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
 import useStyle from './styles'
-import ProductCard from '../ProductCard'
 import { IProduct } from '../../interfaces/productInterfaces'
+
+import ProductCard from '../ProductCard'
+import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
 	title: string,
 	titleIcon?: ReactElement,
+	category: string,
 	products: IProduct[]
 }
 
-const Slider: FC<Props> = ({ title, titleIcon, products }) => {
+const Slider: FC<Props> = ({ title, titleIcon, products, category }) => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -31,14 +34,14 @@ const Slider: FC<Props> = ({ title, titleIcon, products }) => {
 					</div>
 
 					<div className='see-more'>
-						<Button 
-							variant='text'
+						<CustomButtonLink 
+							hreflink={ `/market?category=${ category }` }
+							text='Ver todo'
 							color='default'
+							variant='text'
 							size='small'
 							endIcon={ <ArrowRightIcon /> }
-						>
-							Ver todo
-						</Button>
+						/>
 					</div>
 				</div>
 				

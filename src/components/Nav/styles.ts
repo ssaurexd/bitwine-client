@@ -6,7 +6,8 @@ const { drawerWidth } = globalStyles
 const useStyle = makeStyles( ( theme ) => ({
 	appBar: {
 		flexGrow: 1,
-		height: '80px'
+		height: '80px',
+		color: '#525252'
 	},
 	toolBar: {
 		paddingTop: theme.spacing(1),

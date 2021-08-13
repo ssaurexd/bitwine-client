@@ -21,9 +21,10 @@ export interface IGlobalToast {
 -------------------------------------------------------- */
 export interface IHome {
 	products: {
-		sliderProducts: IBannerProduct[],
+		sliderProducts: IProduct[],
 		pinkWine: IProduct[],
-		flashSale: IProduct[]
+		flashSale: IProduct[],
+		products: IProduct[]
 	}
 }
 /* --END-- home

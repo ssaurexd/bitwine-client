@@ -3,7 +3,7 @@ import {
 	IApiCreateProductTopLevel, 
 	IAPICategoryProductsTopLevel, 
 	IApiUploadProductImageTopLeve,
-	IApiProductsByCategoryTopLevel
+	IApiProductsTopLevel
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
 
@@ -75,16 +75,31 @@ export const getFlashSales = async (): Promise<IAPICategoryProductsTopLevel> => 
 	}
 }
 
-export const getProductsByCategory = async ( category: string, limit: number = 12, page: number = 0 ): Promise<IApiProductsByCategoryTopLevel> => {
+export const getProductsByCategory = async ( category: string, limit: number = 12, page: number = 0 ): Promise<IApiProductsTopLevel> => {
 	
 	try {
 		
-		const resp = await productApi.get<IApiProductsByCategoryTopLevel>( `/by-category/${ category }?limit=${ limit }&page=${ page }`)
+		const resp = await productApi.get<IApiProductsTopLevel>( `/by-category/${ category }?limitQuery=${ limit }&pageQuery=${ page }`)
 
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiProductsByCategoryTopLevel = error.response.data
+		const resp: IApiProductsTopLevel = error.response.data
+
+		return resp
+	}
+}
+
+export const getProducts = async ( limit: number = 12, page: number = 0 ): Promise<IApiProductsTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.get<IApiProductsTopLevel>( `/?limitQuery=${ limit }&pageQuery=${ page }`)
+
+		return resp.data
+	} catch ( error ) {
+		
+		const resp: IApiProductsTopLevel = error.response.data
 
 		return resp
 	}

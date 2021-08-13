@@ -1,9 +1,10 @@
 @media #{ $xs } {
 	.login-main {
 		min-height: 100vh;
-		background-image: url('../../../public/assets/images/defaultHeaderBG.jpg');
+		background-image: url('../../../public/assets/images/defaultLoginBG.jpg');
 		background-size: cover;
 		background-color: black;
+		background-position: center right;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -57,7 +57,7 @@ export interface IAPICategoryProductsTopLevel {
 	products: IProduct[],
 	msg: string
 }
-export interface IApiProductsByCategoryTopLevel {
+export interface IApiProductsTopLevel {
 	ok:       boolean,
 	total: number,
 	page: number,

@@ -18,7 +18,8 @@ const initialState: IApp = {
 		products: {
 			pinkWine: [],
 			flashSale: [],
-			sliderProducts: []
+			sliderProducts: [],
+			products: []
 		}
 	},
 	dashboard: {
