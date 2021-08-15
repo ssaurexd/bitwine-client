@@ -1,4 +1,5 @@
-import { IBannerProduct, IProduct } from './productInterfaces'
+import { IBanner } from './bannerInterfaces'
+import { IProduct } from './productInterfaces'
 
 /* --START-- toast
 -------------------------------------------------------- */
@@ -21,7 +22,7 @@ export interface IGlobalToast {
 -------------------------------------------------------- */
 export interface IHome {
 	products: {
-		sliderProducts: IProduct[],
+		sliderProducts: IBanner[],
 		pinkWine: IProduct[],
 		flashSale: IProduct[],
 		products: IProduct[]

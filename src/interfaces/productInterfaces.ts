@@ -20,11 +20,6 @@ export interface IProduct {
 	slug: string,
 }
 
-export interface IBannerProduct {
-	image: string,
-	id: number
-}
-
 /* --START-- create product
 -------------------------------------------------------- */
 export interface Error {

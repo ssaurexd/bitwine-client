@@ -1,21 +1,23 @@
+import { useEffect } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 
-import { IBannerProduct, IProduct } from '../interfaces/productInterfaces'
+import { IProduct } from '../interfaces/productInterfaces'
+import { useAppDispatch } from '../hooks/reduxHooks'
+import { initHome } from '../redux/slices/appSlice'
+import { getFlashSales, getProducts, getProductsByCategory } from '../api/productApi'
+import { getBannersForHome } from '../api/bannerApi'
+import { IBanner } from '../interfaces/bannerInterfaces'
 
 import Auth from '../components/init/Auth'
 import Home from '../components/screens/Home'
 import HeaderMain from '../components/HeaderMain'
 import FooterMain from '../components/FooterMain'
 import Layout from '../components/init/Layout'
-import { useAppDispatch } from '../hooks/reduxHooks'
-import { useEffect } from 'react'
-import { initHome } from '../redux/slices/appSlice'
-import { getFlashSales, getProducts, getProductsByCategory } from '../api/productApi'
 
 interface Props {
 	sales: IProduct[],
 	pinkWine: IProduct[],
-	banner: IProduct[],
+	banner: IBanner[],
 	products: IProduct[]
 }
 
@@ -63,14 +65,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
 		getFlashSales(),
 		getProductsByCategory('pink-wine'),
 		getProducts( 15, 0 ),
-		getProductsByCategory('flash-sales', 4),
+		getBannersForHome()
 	])
 
 	return {
 		props: {
 			sales: salesResp.ok ? salesResp.products : [],
 			pinkWine: pinkWineResp.ok ? pinkWineResp.products : [],
-			banner: bannerResp.ok ? bannerResp.products: [],
+			banner: bannerResp.ok ? bannerResp.banners: [],
 			products: productsResp.ok ? productsResp.products : []
 		}
 	}

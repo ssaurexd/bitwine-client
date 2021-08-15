@@ -94,6 +94,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 						layout='fill'
 						objectFit='contain'
 						className='product-card__header__image-img'
+						alt={ product.name }
 					/>
 				</div>
 			</div>

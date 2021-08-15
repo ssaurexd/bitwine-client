@@ -157,6 +157,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-amex.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img1'
 								/>
 							</Grid>
 							<Grid item >
@@ -164,6 +165,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-mastercard.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img2'
 								/>
 							</Grid>
 							<Grid item >
@@ -171,6 +173,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-visa.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img3'
 								/>
 							</Grid>
 							<Grid item >
@@ -178,6 +181,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-secure.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img4'
 								/>
 							</Grid>
 							<Grid item >
@@ -185,6 +189,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-privacy.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img5'
 								/>
 							</Grid>
 						</Grid>

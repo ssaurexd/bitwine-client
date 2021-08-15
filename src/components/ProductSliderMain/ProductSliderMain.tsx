@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { IBannerProduct, IProduct } from '../../interfaces/productInterfaces'
+
+import { IBanner } from '../../interfaces/bannerInterfaces'
+
 import ProductCardSliderMain from './ProductCardSliderMain'
 
 
 interface Props {
-	products: IProduct[]
+	products: IBanner[]
 }
 
 const ProductSliderMain: FC<Props> = ({ products }) => {
@@ -20,6 +22,7 @@ const ProductSliderMain: FC<Props> = ({ products }) => {
 						delay: 8000,
 						disableOnInteraction: false	
 					}}
+					loop
 				>
 					{ 	
 						products.map(( product ) => (

@@ -24,6 +24,7 @@ const Logo: FC<Props> = ({ transparent }) => {
 							src={ logoImage }
 							layout='responsive'
 							objectFit='contain'
+							alt='Logo'
 						/> 
 					</Grid>
 					<Grid item xs={ 6 } sm={ 8 } md={ 9 } lg={ 9 } >

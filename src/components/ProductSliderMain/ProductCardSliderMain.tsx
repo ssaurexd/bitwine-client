@@ -2,37 +2,37 @@ import { FC } from 'react'
 import Image from 'next/image'
 import { Button, Typography } from '@material-ui/core'
 
-import { IBannerProduct, IProduct } from '../../interfaces/productInterfaces'
 import { settings } from '../../config/settings'
+import { IBanner } from '../../interfaces/bannerInterfaces'
+import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
-	product: IProduct
+	product: IBanner
 }
 
 const ProductCardSliderMain: FC<Props> = ({ product }) => {
 	return (
 		<div className='card' >
 			<div className="card__info">
-				<Typography variant='h2' >50% Off For Your First Shopping</Typography>
+				<Typography variant='h2' >{ product.title }</Typography>
 				<Typography>
 					{/* 150 caracteres maximo */}
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia provident voluptatibus ipsa deserunt libero totam, praesentium corrupti adipisci!
+					{ product.description }
 				</Typography>
 				<div className="card-info__btn">
-					<Button
-						color='primary'
+					<CustomButtonLink 
+						hreflink={ `/product/${ product.productSlug }` }
+						text='Comprar'
 						variant='contained'
-						disableElevation
-					>
-						Comprar
-					</Button>
+						color='primary'
+					/>
 				</div>
 			</div>
 			<div className="card__image">
 				<Image 
-					src={ `${ settings.BASE_PATH }/${ product.image }` } 
-					alt='Default' 
+					src={ `${ settings.BASE_PATH }/${ product.productImg }` } 
+					alt={ product.title } 
 					width={ 320 } 
 					height={ 100 }
 					objectFit='contain'

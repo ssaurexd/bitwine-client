@@ -1,19 +1,24 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 
-interface Props {
-	imgSrc: string
-}
-
-const useStyle = makeStyles<Theme, Props>( ( theme ) => ({
+const useStyle = makeStyles( ( theme ) => ({
 	root: {
 		width: '100%',
-		height: '400px',
-		margin: '10px 0 70px 0',
-		backgroundImage: props => `url(${ props.imgSrc })`,
-		backgroundSize: ' 100% 100% ',
-		backgroundPosition: 'center center',
-		backgroundRepeat: 'no-repeat'
+		height: '500px',
+		margin: '50px 0 10px 0',
+		display: 'grid',
+		position: 'relative',
+		gridTemplateColumns: 'repeat( 1, 1fr )',
+		justifyContent: 'space-between',
+		gap: 10,
+		[theme.breakpoints.up('md')]: {
+			gridTemplateColumns: 'repeat( 2, 1fr )'
+		}
+	},
+	imgContainer: {
+		maxHeight: 400,
+		width: '100%',
+		position: 'relative'
 	}
 }))
 
