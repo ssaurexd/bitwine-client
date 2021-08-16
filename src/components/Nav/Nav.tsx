@@ -26,9 +26,10 @@ import ShopCart from '../ShopCart'
 
 
 interface Props {
+	haveHeader: boolean
 }
 
-const Nav: FC<Props> = (  ) => {
+const Nav: FC<Props> = ({ haveHeader }) => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -42,7 +43,7 @@ const Nav: FC<Props> = (  ) => {
 		<nav className='nav-main'>
 			<AppBar 
 				position='fixed'
-				color={ isScrolling ? 'transparent' : 'default' } 
+				color={ isScrolling && haveHeader ? 'transparent' : 'default' } 
 				elevation={ isScrolling ? 0 : 3 }
 				className={ classes.appBar }
 			>
@@ -51,17 +52,17 @@ const Nav: FC<Props> = (  ) => {
 						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
 							{/* logo */}
 							<Grid item xs={ 2 } lg={ 2 } >
-								<Logo transparent={ isScrolling } />
+								<Logo transparent={ isScrolling && haveHeader ? true : false } />
 							</Grid>
 							
 							{/* nav options */}
 							<Grid container item xs={ 10 } justify='flex-end' >
-								<List className={ `${ isScrolling && classes.colorWhite }` } >
+								<List className={ `${ isScrolling && haveHeader && classes.colorWhite }` } >
 									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
 										{/* search input */}
 										<Hidden only={['xs']} >
 											<Grid item >
-												<CustomSearch transparent={ isScrolling } />
+												<CustomSearch transparent={ isScrolling && haveHeader ? true : false } />
 											</Grid>
 										</Hidden>
 
@@ -106,7 +107,7 @@ const Nav: FC<Props> = (  ) => {
 												<IconButton 
 													onClick={ () => setOpenDrawer( true ) }
 												>
-													<MenuIcon className={`${ classes.menu } ${ isScrolling && classes.colorWhite }`} />
+													<MenuIcon className={`${ classes.menu } ${ isScrolling && haveHeader && classes.colorWhite }`} />
 												</IconButton>
 											</Grid>
 										</Hidden>

@@ -41,7 +41,7 @@ const app: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 		<Auth
 			admitedRoles={ ['user', 'admin', 'guest'] }
 		>
-			<Layout>
+			<Layout haveHeader >
 				<main className='main-100-vh' >
 					<HeaderMain 
 						title='El mejor mercado en linea para comprar vinos'

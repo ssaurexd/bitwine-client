@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
 import { 
 	FavoriteBorder, 
@@ -27,22 +27,10 @@ const ProductCard: FC<Props> = ({ product }) => {
 	const haveDiscount = product.discount > 0 ? true : false 
 
 	/* hooks */
-	const [ isOnWishList, setIsOnWishList ] = useState<boolean>( false )
 	const classes = useStyle()
 	const dispatch = useAppDispatch()
 
 	/* funtions */
-	const checkIsInWishList = ( productId: string ) =>  {
-		
-		const userWishList: [{ id: string }] = [{ id: '123' }]
-		const isProductOnTheList = userWishList.find( item => item.id === productId )
-
-		if( isProductOnTheList ) {
-			return setIsOnWishList( true )
-		}
-
-		setIsOnWishList( false )
-	}
 
 	const onAddToWishList = () => {
 		
@@ -53,11 +41,6 @@ const ProductCard: FC<Props> = ({ product }) => {
 			severity: 'success'
 		}))
 	}
-
-	useEffect( () => {
-
-		checkIsInWishList('123')
-	}, [ isOnWishList ])
 
 	return (
 		<div className={`product-card ${ classes.productCard }`} >
@@ -80,10 +63,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 							size='small'
 							onClick={ onAddToWishList }
 						>
-							{ isOnWishList
-								? <Favorite fontSize='default' color='primary'/>
-								: <FavoriteBorder fontSize='default' color='primary'/>
-							}
+							<Favorite fontSize='default'/>
 						</IconButton>
 					</div>
 				</div>

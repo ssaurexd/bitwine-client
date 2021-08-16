@@ -90,10 +90,10 @@ theme.typography.h1 = {
 		fontSize: '1.8rem'
 	},
 	[ theme.breakpoints.up('md') ]: {
-		fontSize: '2.8rem'
+		fontSize: '2.2rem'
 	},
 	[ theme.breakpoints.up('lg') ]: {
-		fontSize: '3.5rem',
+		fontSize: '2.3rem',
 	},
 }
 theme.typography.h2 = {
@@ -104,10 +104,10 @@ theme.typography.h2 = {
 		fontSize: '1.6rem'
 	},
 	[ theme.breakpoints.up('md') ]: {
-		fontSize: '2.2rem'
+		fontSize: '2rem'
 	},
 	[ theme.breakpoints.up('lg') ]: {
-		fontSize: '3rem',
+		fontSize: '2.4rem',
 	},
 }
 theme.typography.h3 = {
@@ -121,7 +121,7 @@ theme.typography.h3 = {
 		fontSize: '1.8rem'
 	},
 	[ theme.breakpoints.up('lg') ]: {
-		fontSize: '2.5rem',
+		fontSize: '2rem',
 	},
 }
 theme.typography.h4 = {
@@ -135,7 +135,7 @@ theme.typography.h4 = {
 		fontSize: '1.6rem'
 	},
 	[ theme.breakpoints.up('lg') ]: {
-		fontSize: '2rem',
+		fontSize: '1.9rem',
 	},
 }
 theme.typography.h5 = {
@@ -177,7 +177,9 @@ export const globalStyles = {
 		borderRadius1: 4,
 		borderRadius2: 8,
 	},
-	drawerWidth: 300
+	drawerWidth: 300,
+	navHeight: 80,
+	footerHeight: '6rem'
 }
 
 export default theme

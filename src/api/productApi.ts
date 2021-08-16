@@ -3,7 +3,8 @@ import {
 	IApiCreateProductTopLevel, 
 	IAPICategoryProductsTopLevel, 
 	IApiUploadProductImageTopLeve,
-	IApiProductsTopLevel
+	IApiProductsTopLevel,
+	IApiProductTopLevel
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
 
@@ -100,6 +101,21 @@ export const getProducts = async ( limit: number = 12, page: number = 0 ): Promi
 	} catch ( error ) {
 		
 		const resp: IApiProductsTopLevel = error.response.data
+
+		return resp
+	}
+}
+
+export const getProductBySlug = async ( slug: string ): Promise<IApiProductTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.get<IApiProductTopLevel>( `/by-slug/${ slug }` )
+
+		return resp.data
+	} catch ( error ) {
+		
+		const resp: IApiProductTopLevel = error.response.data
 
 		return resp
 	}

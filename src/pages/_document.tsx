@@ -26,7 +26,7 @@ export default class _document extends Document {
 					<meta name="keywords" content="API, Blog, SEO, Fast, BItBlog, Make a blog faster" />
 					<meta name="robots" content="index, follow" />
 					<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-					<meta name="language" content="Spanish" />
+					<meta name="language" content="spanish" />
 				</Head>
 				
 				<body>

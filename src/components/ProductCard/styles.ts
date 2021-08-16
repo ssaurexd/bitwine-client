@@ -6,7 +6,7 @@ const useStyle = makeStyles( ( theme ) => ({
 		boxShadow: theme.shadows[2],
 		transition: 'box-shadow ease 400ms',
 		'&:hover': {
-			boxShadow: theme.shadows[9]
+			boxShadow: theme.shadows[3]
 		}
 	},
 	productCardShadow: {

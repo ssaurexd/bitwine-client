@@ -62,3 +62,9 @@ export interface IApiProductsTopLevel {
 	previous: boolean,
 	products: IProduct[],
 }
+export interface IApiProductTopLevel {
+	ok: boolean,
+	msg: string,
+	product: IProduct,
+	related: IProduct[]
+}
