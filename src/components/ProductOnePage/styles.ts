@@ -44,8 +44,17 @@ const useStyle = makeStyles( ( theme ) => ({
 		width: '100%',
 		height: '100%'
 	},
-	rate: {
+	content: {
 		marginTop: theme.spacing( 3 )
+	},
+	contentContainer: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		alignItems: 'center'
+	},
+	price: {
+		textDecoration: 'line-through',
+		textDecorationColor: 'inherit'
 	},
 	gridContainer: {
 		margin: theme.spacing( 3, 0 ),
@@ -64,6 +73,12 @@ const useStyle = makeStyles( ( theme ) => ({
 		[theme.breakpoints.up( 'lg' )]: {
 			gridTemplateColumns: 'repeat( 5, 1fr )'
 		},
+	},
+	cartContainer: {
+		margin: '10px 0'
+	},
+	description: {
+		maxWidth: 800
 	}
 }))
 
