@@ -57,7 +57,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 			elevation={ 3 }
 		>
 			<Toolbar>
-				<Grid container alignItems='center' justify='space-between' >
+				<Grid container alignItems='center' justifyContent='space-between' >
 					<Grid item xs={ 1 } >
 						<IconButton
 							color="inherit"
@@ -70,7 +70,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 						</IconButton>
 					</Grid>
 
-					<Grid container item xs={ 11 } justify='flex-end' >
+					<Grid container item xs={ 11 } justifyContent='flex-end' >
 						<Grid item >
 							<IconButton
 								color='inherit'

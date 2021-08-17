@@ -145,13 +145,13 @@ const FooterMain: FC = () => {
 				<Divider variant='middle' className='footer-main__divider' />
 
 				<div className='footer-main__rights'>
-					<Grid container justify='space-between' alignItems='center'>
+					<Grid container justifyContent='space-between' alignItems='center'>
 						<Grid item sm={ 6 } >
 							<Typography variant='body2' >
 								All rights reserverd BitWines { currentYear }
 							</Typography>
 						</Grid>
-						<Grid container item spacing={ 1 } xs={ 12 } sm={ 6 } justify='flex-end' wrap='nowrap' >
+						<Grid container item spacing={ 1 } xs={ 12 } sm={ 6 } justifyContent='flex-end' wrap='nowrap' >
 							<Grid item >
 								<Image 
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-amex.svg'

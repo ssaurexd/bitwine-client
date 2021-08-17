@@ -31,7 +31,7 @@ const OurProducts: FC = () => {
 					<OurProductCard key={ product._id } product={ product } />
 				))}
 			</section>
-			<Grid container justify='center' >
+			<Grid container justifyContent='center' >
 				<Grid item >
 					<CustomButtonLink
 						text='Ver más'

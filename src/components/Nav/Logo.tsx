@@ -18,7 +18,7 @@ const Logo: FC<Props> = ({ transparent }) => {
 	return (
 		<Link href='/' >
 			<a className={`${ classes.logo } ${ transparent && classes.colorWhite }`} >
-				<Grid container alignItems='center' wrap='nowrap' justify='flex-start' >
+				<Grid container alignItems='center' wrap='nowrap' justifyContent='flex-start' >
 					<Grid item xs={ 6 } sm={ 4 } md={ 3 } lg={ 3 } >
 						<Image 
 							src={ logoImage }

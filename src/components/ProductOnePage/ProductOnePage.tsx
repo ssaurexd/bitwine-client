@@ -33,7 +33,7 @@ const ProductOnePage: FC<Props> = ({ product, related }) => {
 	return (
 		<main className={ classes.root } >
 			<Container className={ classes.container } >
-				<Grid container justify='center' spacing={ 3 } >
+				<Grid container justifyContent='center' spacing={ 3 } >
 					<Grid item xs={ 12 } md={ 8 } >
 						<SliderOneProduct product={ product } />
 					</Grid>

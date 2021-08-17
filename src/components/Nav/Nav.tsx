@@ -49,14 +49,14 @@ const Nav: FC<Props> = ({ haveHeader }) => {
 			>
 				<Toolbar className={classes.toolBar } >
 					<Container >
-						<Grid container alignItems='center' justify='space-between' wrap='nowrap' >
+						<Grid container alignItems='center' justifyContent='space-between' wrap='nowrap' >
 							{/* logo */}
 							<Grid item xs={ 2 } lg={ 2 } >
 								<Logo transparent={ isScrolling && haveHeader ? true : false } />
 							</Grid>
 							
 							{/* nav options */}
-							<Grid container item xs={ 10 } justify='flex-end' >
+							<Grid container item xs={ 10 } justifyContent='flex-end' >
 								<List className={ `${ isScrolling && haveHeader && classes.colorWhite }` } >
 									<Grid container item direction='row' wrap='nowrap' alignItems='center' >
 										{/* search input */}

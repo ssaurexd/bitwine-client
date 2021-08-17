@@ -75,8 +75,8 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 				paper: classes.drawerPaper
 			}}
 		>
-			<Grid container justify='space-between' alignItems='center' direction='column' >
-				<Grid container item justify='flex-end' direction='row' >
+			<Grid container justifyContent='space-between' alignItems='center' direction='column' >
+				<Grid container item justifyContent='flex-end' direction='row' >
 					<Grid item  >
 						<IconButton onClick={ onClose }>
 							<MenuOpen />
@@ -84,7 +84,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 					</Grid>
 				</Grid>
 
-				<Grid container item direction='column' justify='space-between' >
+				<Grid container item direction='column' justifyContent='space-between' >
 					<Grid item >
 						<List>
 							{ user.isLoggedIn && 

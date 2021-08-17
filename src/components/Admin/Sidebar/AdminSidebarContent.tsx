@@ -14,7 +14,8 @@ import {
 	Add,
 	Face,
 	Settings,
-	Dashboard
+	Dashboard,
+	List as ListIcon
 } from '@material-ui/icons'
 
 import useStyle from './styles'
@@ -83,6 +84,12 @@ const AdminSidebarContent: FC = () => {
 			</ListItem>
 			<Collapse in={ productOpen } >
 				<List>
+					<SidebarItem
+						href='/admin/products/list'
+						icon={ <ListIcon /> }
+						title='Mis productos'
+						nested
+					/>
 					<SidebarItem
 						href='/admin/products/create'
 						icon={ <Add /> }

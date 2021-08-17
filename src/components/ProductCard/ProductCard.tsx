@@ -56,14 +56,14 @@ const ProductCard: FC<Props> = ({ product }) => {
 						<IconButton
 							size='small'
 						>
-							<AddShoppingCart fontSize='default' />
+							<AddShoppingCart fontSize='medium' />
 						</IconButton>
 						
 						<IconButton
 							size='small'
 							onClick={ onAddToWishList }
 						>
-							<Favorite fontSize='default'/>
+							<Favorite fontSize='medium'/>
 						</IconButton>
 					</div>
 				</div>

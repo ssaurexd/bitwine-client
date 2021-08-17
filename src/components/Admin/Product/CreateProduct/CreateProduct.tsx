@@ -118,7 +118,7 @@ const CreateProduct: FC<Props> = ({ categories }) => {
 		<Container >
 			<Typography variant='subtitle1' className={ classes.title } align='center' color='textPrimary'>Crear nuevo producto: </Typography>
 			<form onSubmit={ _onSubmit } encType='multipart/form-data' method='post' >
-				<Grid container spacing={ 3 } justify='center'>
+				<Grid container spacing={ 3 } justifyContent='center'>
 					<Grid item container spacing={ 3 } xs={ 12 } md={ 7 } lg={ 8 }  >
 						{/* product form */}
 						<Grid item >
@@ -208,7 +208,7 @@ const CreateProduct: FC<Props> = ({ categories }) => {
 					</Grid>
 
 					{/* category - image */}
-					<Grid container item justify='center' direction='column' spacing={ 3 } xs={ 12 } md={ 3 } lg={ 4 } >
+					<Grid container item justifyContent='center' direction='column' spacing={ 3 } xs={ 12 } md={ 3 } lg={ 4 } >
 						<Grid item >
 							<Paper className={ classes.paper } >
 								<Typography variant='subtitle2' className={ classes.subTitle } color='textSecondary'>Categoría: </Typography>

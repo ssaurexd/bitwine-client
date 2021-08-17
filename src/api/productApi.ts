@@ -106,6 +106,21 @@ export const getProducts = async ( limit: number = 12, page: number = 0 ): Promi
 	}
 }
 
+export const getAllProducts = async (): Promise<IApiProductsTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.get<IApiProductsTopLevel>( '/list-all' )
+
+		return resp.data
+	} catch ( error ) {
+		
+		const resp: IApiProductsTopLevel = error.response.data
+
+		return resp
+	}
+}
+
 export const getProductBySlug = async ( slug: string ): Promise<IApiProductTopLevel> => {
 	
 	try {
