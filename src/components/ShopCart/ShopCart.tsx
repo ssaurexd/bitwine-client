@@ -4,12 +4,16 @@ import {
 	Badge
 } from '@material-ui/core'
 import { ShoppingCart } from '@material-ui/icons'
-import useShopCart from '../../hooks/useShopCart'
+import { useAppSelector } from '../../hooks/reduxHooks'
 
 
 const ShopCart: FC = () => {
-
+	
 	/* hooks */
+	const { items } = useAppSelector( state => state.store.shopCart )
+
+	/* state */
+	const totalItem = items.length
 	
 	/* funtions */
 
@@ -17,7 +21,7 @@ const ShopCart: FC = () => {
 		<IconButton
 			color='inherit'
 		>
-			<Badge badgeContent={ 0 } color='primary' >
+			<Badge badgeContent={ totalItem } color='primary' >
 				<ShoppingCart />
 			</Badge>
 		</IconButton>

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { userAuthRefreshToken, userAuthLogOut } from '../api/userApi'
 import { logIn, logOut, Roles } from '../redux/slices/userSlice'
 import { getIsLoggedIn, getRememberMe } from '../helpers/auth'
+import { initStore } from '../redux/middlewares/storeMiddlewares'
 
 
 interface Props {
@@ -32,6 +33,7 @@ const useAuth = ({ admitedRoles, redirectTo }: Props ) => {
 				const { user, token } = await userAuthRefreshToken()
 
 				dispatch( logIn({ ...user, isLoggedIn: true }) )
+				dispatch( initStore() )
 
 				if( getRememberMe() ) {
 					localStorage.setItem( 'token', token )

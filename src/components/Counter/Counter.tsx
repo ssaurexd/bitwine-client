@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, FunctionComponentElement, useState } from 'react'
 import { 
 	IconButton
 } from '@material-ui/core'
@@ -12,40 +12,23 @@ import { IProduct } from '../../interfaces/productInterfaces'
 
 
 interface Props {
-	product: IProduct
-}
+	product: IProduct,
+	counter: number,
+	onAdd: () => void,
+	onRemove: () => void
+}	
 
-const Counter: FC<Props> = ({ product }) => {
+const Counter: FC<Props> = ({ product, counter, onAdd, onRemove }) => {
 
 	/* hooks */
 	const classes = useStyle()
-	const [ counter, setCounter ] = useState<number>( 1 )
-
-	/* funtions */
-	const handleAddItem = (  ) => {
-
-		if( product.onStock <= counter ) return
-		else {
-
-			setCounter( counter + 1 )
-		}
-	}
-
-	const handleRemoveItem = (  ) => {
-		
-		if( counter <= 1 ) return
-		else {
-
-			setCounter( counter - 1 )
-		}
-	}
 
 	return (
 		<div className={ classes.root } >
 			<IconButton
 				size='small'
 				color='secondary'
-				onClick={ handleRemoveItem }
+				onClick={ onRemove }
 			>
 				<Remove />
 			</IconButton>
@@ -53,7 +36,7 @@ const Counter: FC<Props> = ({ product }) => {
 			<IconButton
 				size='small'
 				color='secondary'
-				onClick={ handleAddItem }
+				onClick={ onAdd }
 			>
 				<Add />
 			</IconButton>

@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { 
-	FavoriteBorder, 
+import {
 	AddShoppingCart,
 	Favorite 
 } from '@material-ui/icons'
@@ -12,7 +11,9 @@ import useStyle from './styles'
 import { IProduct } from '../../interfaces/productInterfaces'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
+import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
 import { settings } from '../../config/settings'
+import { IStoreItem } from '../../interfaces/storeIntergaces'
 
 import CustomButtonLink from '../CustomButtonLink'
 
@@ -42,6 +43,23 @@ const ProductCard: FC<Props> = ({ product }) => {
 		}))
 	}
 
+	const onAddToShopCart = () => {
+		
+		const item: IStoreItem = {
+			_id: product._id,
+			count: 1,
+			description: product.description,
+			discount: product.discount,
+			image: product.image,
+			price: product.price,
+			priceWithDiscount: product.priceWithDiscount,
+			slug: product.slug,
+			name: product.name
+		}
+
+		dispatch( addItemStoreThunk({ item, type: 'shopCart' }) )
+	}
+
 	return (
 		<div className={`product-card ${ classes.productCard }`} >
 			<div className="product-card__header">
@@ -55,6 +73,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 					<div className="product-card__header__extra-info__icons">
 						<IconButton
 							size='small'
+							onClick={ onAddToShopCart }
 						>
 							<AddShoppingCart fontSize='medium' />
 						</IconButton>

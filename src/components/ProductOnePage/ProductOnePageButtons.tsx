@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import {
 	IconButton,
 	Button
@@ -7,9 +7,13 @@ import {
 	Favorite,
 	AddShoppingCart
 } from '@material-ui/icons'
-import Counter from '../Counter/Counter'
 import useStyle from './styles'
 import { IProduct } from '../../interfaces/productInterfaces'
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { IStoreItem } from '../../interfaces/storeIntergaces'
+import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
+
+import Counter from '../Counter/Counter'
 
 
 interface Props {
@@ -17,16 +21,54 @@ interface Props {
 }
 
 const ProductOnePageButtons: FC<Props> = ({ product }) => {
-
+	
 	/* hooks */
 	const classes = useStyle()
+	const [ count, setCount ] = useState<number>( 1 )
+	const dispatch = useAppDispatch()
+
+	/* funtions */
+	const handleAddItem = (  ) => {
+
+		if( product.onStock <= count ) return
+		else {
+
+			setCount( count + 1 )
+		}
+	}
+
+	const handleRemoveItem = (  ) => {
+		
+		if( count <= 1 ) return
+		else {
+
+			setCount( count - 1 )
+		}
+	}
+
+	const onAddToShopCart = () => {
+		
+		const item: IStoreItem = {
+			_id: product._id,
+			count,
+			description: product.description,
+			discount: product.discount,
+			image: product.image,
+			price: product.price,
+			priceWithDiscount: product.priceWithDiscount,
+			slug: product.slug,
+			name: product.name
+		}
+
+		dispatch( addItemStoreThunk({ item, type: 'shopCart' }) )
+	}
 
 	return (
 		<section>
 			<div className={ classes.cartContainer } >
-				<Counter product={ product } />
+				<Counter product={ product } onAdd={ handleAddItem } onRemove={ handleRemoveItem } counter={ count } />
 				<div >
-					<IconButton>
+					<IconButton onClick={ onAddToShopCart }>
 						<AddShoppingCart />
 					</IconButton>
 					<IconButton>
