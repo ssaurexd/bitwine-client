@@ -57,7 +57,7 @@ export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, 
 
 		try {
 
-			if( alreadyProductExist ) {
+			if( !alreadyProductExist ) {
 
 				await storeApi.post<IApiResponseAddItem>( `/${ _id }/${ type }`, JSON.stringify({ product: item }) )
 			}

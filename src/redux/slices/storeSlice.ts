@@ -1,8 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { numberToDecimals } from '../../helpers/helpers'
 import { 
-	IAddItemStore,
 	IStore
 } from '../../interfaces/storeIntergaces'
 import {
