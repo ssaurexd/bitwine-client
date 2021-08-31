@@ -6,7 +6,8 @@ import {
 } from '../../interfaces/storeIntergaces'
 import {
 	addItemStoreThunk,
-	initStore
+	initStore,
+	updateCountItemStoreThunk
 } from '../middlewares/storeMiddlewares'
 
 
@@ -24,6 +25,7 @@ const storeSlice = createSlice({
 	initialState,
 	name: 'shopCart',
 	reducers: {
+		resetStore: ( state ) => initialState
 	},
 	extraReducers: ( builder ) => {
 		builder
@@ -60,10 +62,29 @@ const storeSlice = createSlice({
 						state.wishList.items = [ ...state.wishList.items, action.payload.item ]
 				}
 			})
+			.addCase( updateCountItemStoreThunk.fulfilled, ( state, action ) => {
+
+				const alreadyProductExist = state.shopCart.items.find( item => item._id === action.payload.item._id ) 
+
+				if( alreadyProductExist ) {
+
+					state.shopCart.items = state.shopCart.items.map( item => {
+	
+						if ( item._id === action.payload.item._id ) {
+							item.count = action.payload.count
+						}
+						return item
+					}) 
+				} else {
+
+					return state
+				}
+			})
 	}
 })
 
 export const {
+	resetStore
 } = storeSlice.actions
 
 export default storeSlice.reducer

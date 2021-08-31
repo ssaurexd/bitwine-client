@@ -6,7 +6,9 @@ import {
 	IAddItemStore, 
 	IApiInitStoreTopLevel, 
 	IApiResponseAddItem, 
+	IApiResponseUpdateItem, 
 	IStore,
+	IUpdateItemStore,
 } from '../../interfaces/storeIntergaces'
 import { getTotalShopCart } from '../../helpers/helpers'
 
@@ -49,11 +51,11 @@ export const initStore = createAsyncThunk<IStore, void, { state: RootState }>(
 
 export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, { state: RootState }>(
 	'shopCart/addItemStoreThunk',
-	async ({ item, type }, { getState, dispatch } ) => {
+	async ({ item, type }, { getState } ) => {
 
 		const { _id } = getState().user
 		const { items } = getState().store[type]
-		const alreadyProductExist = items.find( item => item._id === item._id ) 
+		const alreadyProductExist = items.find( prod => prod._id === item._id ) 
 
 		try {
 
@@ -74,5 +76,41 @@ export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, 
 		}
 	}
 )
+
+export const updateCountItemStoreThunk = createAsyncThunk<IUpdateItemStore, IUpdateItemStore, { state: RootState }>(
+	'shopCart/updateCountItemStoreThunk',
+	async ({ item, type, count }, { getState } ) => {
+
+		const { _id } = getState().user
+		const { items } = getState().store[type]
+		const alreadyProductExist = items.find( item => item._id === item._id ) 
+
+		try {
+
+			if( alreadyProductExist ) {
+
+				await storeApi.put<IApiResponseUpdateItem>( `/${ _id }/${ type }`, JSON.stringify({ productId: item._id, count }) )
+			}
+			
+			return {
+				item, 
+				type,
+				count
+			}
+		} catch ( error ) {
+            console.log("🚀 ~ file: storeMiddlewares.ts ~ line 102 ~ error", error.response)
+			return {
+				item, 
+				type,
+				count
+			}
+		}
+	}
+)
 /* --END-- thunks
+-------------------------------------------------------- */
+
+/* --START-- actions
+-------------------------------------------------------- */
+/* --END-- actions
 -------------------------------------------------------- */

@@ -20,6 +20,15 @@ export interface IStore {
 		items: IStoreItem[]
 	}
 } 
+export interface IApiStoreTypeContainer {
+	_id: string,
+	uid: string,
+	type: IStoreType,
+	products: IStoreItem[]
+}
+
+/* --START-- responses
+-------------------------------------------------------- */
 export interface IApiInitStoreTopLevel {
 	ok: boolean,
 	shopCart: IApiStoreTypeContainer,
@@ -29,12 +38,12 @@ export interface IApiResponseAddItem {
 	ok: boolean,
 	msg: string
 }
-export interface IApiStoreTypeContainer {
-	_id: string,
-	uid: string,
-	type: IStoreType,
-	products: IStoreItem[]
+export interface IApiResponseUpdateItem {
+	ok: boolean,
+	msg: string
 }
+/* --END-- responses
+-------------------------------------------------------- */
 
 /* --START-- funtions
 -------------------------------------------------------- */
@@ -42,6 +51,12 @@ export interface IApiStoreTypeContainer {
 export interface IAddItemStore {
 	item: IStoreItem,
 	type: IStoreType
+}
+/* updateItem */
+export interface IUpdateItemStore {
+	item: IStoreItem,
+	type: IStoreType,
+	count: number
 }
 /* --END-- funtions
 -------------------------------------------------------- */

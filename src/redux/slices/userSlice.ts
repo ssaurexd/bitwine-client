@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { resetStore } from './storeSlice'
 
 
 export type Roles = 
@@ -57,6 +58,8 @@ export const userSlice = createSlice({
 			localStorage.removeItem( 'isLoggedIn' )
 			localStorage.removeItem( 'token' )
 			localStorage.removeItem( 'rememberMe' )
+			
+			resetStore()
 			return initialState
 		}
 	}

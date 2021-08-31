@@ -1,16 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers, AnyAction } from '@reduxjs/toolkit'
 
 import userReducer from './slices/userSlice'
 import storeReducer from './slices/storeSlice'
 import appReducer from './slices/appSlice'
 
 
-const store = configureStore({
-	reducer: {
-		user: userReducer,
-		store: storeReducer,
-		app: appReducer
-	},
+export const rootReducer = combineReducers({
+	user: userReducer,
+	store: storeReducer,
+	app: appReducer
+})
+
+export const store = configureStore({
+	reducer: rootReducer
 })
 
 export type RootState = ReturnType<typeof store.getState>
