@@ -3,12 +3,14 @@ import { NextPage, GetServerSideProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 
 import { IProduct } from '../../interfaces/productInterfaces'
-import { getProductBySlug, getProductsByCategory } from '../../api/productApi'
+import { getProductBySlug } from '../../api/productApi'
+import { settings } from '../../config/settings'
 
 import Auth from '../../components/init/Auth'
 import FooterMain from '../../components/FooterMain'
 import Layout from '../../components/init/Layout'
 import ProductOnePage from '../../components/ProductOnePage'
+import SEO from '../../components/SEO'
 
 
 
@@ -23,10 +25,18 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 		<Auth
 			admitedRoles={ ['admin', 'guest', 'user'] }
 		>
-			<Layout >
-				<ProductOnePage product={ product } related={ related } />
-				<FooterMain />
-			</Layout>
+			<>
+				<SEO
+					desc={ product.description }
+					title={ `BitWine - ${ product.name }` }
+					url={ `www.bitwine.com/product/${ product.slug }` }
+					urlImage={ `${ settings.BASE_PATH }/${ product.image }` }
+				/>
+				<Layout >
+					<ProductOnePage product={ product } related={ related } />
+					<FooterMain />
+				</Layout>
+			</>
 		</Auth>
 	)
 }

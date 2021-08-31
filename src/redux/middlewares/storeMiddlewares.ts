@@ -53,13 +53,13 @@ export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, 
 	'shopCart/addItemStoreThunk',
 	async ({ item, type }, { getState } ) => {
 
-		const { _id } = getState().user
+		const { _id, isLoggedIn } = getState().user
 		const { items } = getState().store[type]
 		const alreadyProductExist = items.find( prod => prod._id === item._id ) 
 
 		try {
 
-			if( !alreadyProductExist ) {
+			if( !alreadyProductExist && isLoggedIn ) {
 
 				await storeApi.post<IApiResponseAddItem>( `/${ _id }/${ type }`, JSON.stringify({ product: item }) )
 			}
@@ -81,13 +81,13 @@ export const updateCountItemStoreThunk = createAsyncThunk<IUpdateItemStore, IUpd
 	'shopCart/updateCountItemStoreThunk',
 	async ({ item, type, count }, { getState } ) => {
 
-		const { _id } = getState().user
+		const { _id, isLoggedIn } = getState().user
 		const { items } = getState().store[type]
 		const alreadyProductExist = items.find( item => item._id === item._id ) 
 
 		try {
 
-			if( alreadyProductExist ) {
+			if( alreadyProductExist && isLoggedIn ) {
 
 				await storeApi.put<IApiResponseUpdateItem>( `/${ _id }/${ type }`, JSON.stringify({ productId: item._id, count }) )
 			}
@@ -98,7 +98,7 @@ export const updateCountItemStoreThunk = createAsyncThunk<IUpdateItemStore, IUpd
 				count
 			}
 		} catch ( error ) {
-            console.log("🚀 ~ file: storeMiddlewares.ts ~ line 102 ~ error", error.response)
+
 			return {
 				item, 
 				type,

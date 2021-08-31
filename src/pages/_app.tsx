@@ -30,11 +30,6 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
 	return (
 		<Provider store={ store } >
-			<Head>
-				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-				<title>BitBlog - El mejor lugar para comprar vino</title>
-			</Head>
-
 			<ThemeProvider theme={ theme } >
 				<CssBaseline />
 				<Component { ...pageProps } />
