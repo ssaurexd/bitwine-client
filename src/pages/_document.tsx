@@ -10,7 +10,6 @@ export default class _document extends Document {
 			<Html lang="es">
 				<Head>
 					<meta name="theme-color" content={theme.palette.primary.main} />
-					<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 					<meta name="robots" content="index, follow" /> 
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 					<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

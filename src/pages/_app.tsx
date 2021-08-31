@@ -30,6 +30,10 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
 	return (
 		<Provider store={ store } >
+			<Head>
+				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+			</Head>
+
 			<ThemeProvider theme={ theme } >
 				<CssBaseline />
 				<Component { ...pageProps } />
