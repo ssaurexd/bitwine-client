@@ -7,6 +7,7 @@ import {
 	IApiInitStoreTopLevel, 
 	IApiResponseAddItem, 
 	IApiResponseUpdateItem, 
+	IDeleteItemStore, 
 	IStore,
 	IUpdateItemStore,
 } from '../../interfaces/storeIntergaces'
@@ -71,6 +72,33 @@ export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, 
 		} catch ( error ) {
 			return {
 				item, 
+				type
+			}
+		}
+	}
+)
+
+export const deleteItemStoreThunk = createAsyncThunk<IDeleteItemStore, IDeleteItemStore, { state: RootState }>(
+	'shopCart/deleteItemStoreThunk',
+	async ({ productId, type }, { getState } ) => {
+
+		const { _id, isLoggedIn } = getState().user
+
+		try {
+
+			if( isLoggedIn ) {
+
+				await storeApi.delete<IApiResponseAddItem>( `/${ _id }/${ type }`, { data: JSON.stringify({ productId }) } )
+			}
+			
+			return {
+				productId, 
+				type
+			}
+		} catch ( error ) {
+
+			return {
+				productId, 
 				type
 			}
 		}

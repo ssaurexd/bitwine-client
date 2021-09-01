@@ -1,4 +1,5 @@
 import { IStoreItem } from "../interfaces/storeIntergaces"
+import { settings } from '../config/settings'
 
 
 export const numberToDecimals = ( number: number, decimals: number = 2 ): number => {
@@ -17,4 +18,9 @@ export const getTotalShopCart = ( products: IStoreItem[] ): number => {
 	})
 
 	return numberToDecimals( total )
+}
+
+export const getLinkImage = ( img: string ): string => {
+	
+	return `${ settings.BASE_PATH }/${ img }`
 }

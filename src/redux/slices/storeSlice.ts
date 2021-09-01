@@ -6,6 +6,7 @@ import {
 } from '../../interfaces/storeIntergaces'
 import {
 	addItemStoreThunk,
+	deleteItemStoreThunk,
 	initStore,
 	updateCountItemStoreThunk
 } from '../middlewares/storeMiddlewares'
@@ -79,6 +80,10 @@ const storeSlice = createSlice({
 
 					return state
 				}
+			})
+			.addCase( deleteItemStoreThunk.fulfilled, ( state, { payload } ) => {
+				
+				state[payload.type].items = state[payload.type].items.filter( item => item._id !== payload.productId )
 			})
 	}
 })

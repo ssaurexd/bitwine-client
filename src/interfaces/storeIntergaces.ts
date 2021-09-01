@@ -52,6 +52,10 @@ export interface IAddItemStore {
 	item: IStoreItem,
 	type: IStoreType
 }
+export interface IDeleteItemStore {
+	productId: string,
+	type: IStoreType
+}
 /* updateItem */
 export interface IUpdateItemStore {
 	item: IStoreItem,

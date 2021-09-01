@@ -12,8 +12,8 @@ import {
 import { AddShoppingCart, Favorite } from '@material-ui/icons'
 
 import useStyle from './styles'
-import { settings } from '../../config/settings'
 import { IProduct } from '../../interfaces/productInterfaces'
+import { getLinkImage } from '../../helpers/helpers'
 
 
 interface Props {
@@ -30,7 +30,7 @@ const OurProductCard: FC<Props> = ({ product }) => {
 			<CardActionArea className={ classes.cardActionArea } >
 				<Link href={ `/product/${ product.slug }` } >
 					<a>
-						<CardMedia className={ classes.cardMedia } image={`${ settings.BASE_PATH }/${ product.image }`} />
+						<CardMedia className={ classes.cardMedia } image={ getLinkImage( product.image ) } />
 						<CardContent>
 							<Typography variant='subtitle1' color='textSecondary' >
 								{ product.name }

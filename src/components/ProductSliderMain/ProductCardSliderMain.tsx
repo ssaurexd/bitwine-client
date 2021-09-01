@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Button, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
-import { settings } from '../../config/settings'
 import { IBanner } from '../../interfaces/bannerInterfaces'
+
 import CustomButtonLink from '../CustomButtonLink'
+import { getLinkImage } from '../../helpers/helpers'
 
 
 interface Props {
@@ -17,7 +18,6 @@ const ProductCardSliderMain: FC<Props> = ({ product }) => {
 			<div className="card__info">
 				<Typography variant='h2' >{ product.title }</Typography>
 				<Typography>
-					{/* 150 caracteres maximo */}
 					{ product.description }
 				</Typography>
 				<div className="card-info__btn">
@@ -31,7 +31,7 @@ const ProductCardSliderMain: FC<Props> = ({ product }) => {
 			</div>
 			<div className="card__image">
 				<Image 
-					src={ `${ settings.BASE_PATH }/${ product.productImg }` } 
+					src={ getLinkImage( product.productImg ) } 
 					alt={ product.title } 
 					width={ 320 } 
 					height={ 100 }

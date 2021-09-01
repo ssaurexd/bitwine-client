@@ -12,8 +12,8 @@ import { IProduct } from '../../interfaces/productInterfaces'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
 import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
-import { settings } from '../../config/settings'
 import { IStoreItem } from '../../interfaces/storeIntergaces'
+import { getLinkImage } from '../../helpers/helpers'
 
 import CustomButtonLink from '../CustomButtonLink'
 
@@ -24,7 +24,6 @@ interface Props {
 
 const ProductCard: FC<Props> = ({ product }) => {
 
-	const { BASE_PATH } = settings
 	const haveDiscount = product.discount > 0 ? true : false 
 
 	/* hooks */
@@ -89,7 +88,7 @@ const ProductCard: FC<Props> = ({ product }) => {
 
 				<div className="product-card__header__image">
 					<Image 
-						src={`${ BASE_PATH }/${ product.image }` }
+						src={ getLinkImage( product.image ) }
 						layout='fill'
 						objectFit='contain'
 						className='product-card__header__image-img'
