@@ -56,9 +56,9 @@ const ProductOnePage: FC<Props> = ({ product, related }) => {
 								<Typography className={ classes.description } component='div' dangerouslySetInnerHTML={{ __html: product.description }} />
 							</section>
 						</Grid>
-						<Divider />
+						<Divider className={ classes.divider } />
 						<Grid item xs >
-							<section>
+							<section >
 								<Typography variant='h3' >Productos relacionados</Typography>
 								<section className={ classes.gridContainer } >
 									{ related.map( product => (

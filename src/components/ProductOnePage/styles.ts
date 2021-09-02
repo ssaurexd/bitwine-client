@@ -5,6 +5,7 @@ import { globalStyles } from '../../config/theme'
 const useStyle = makeStyles( ( theme ) => ({
 	root: {
 		marginTop: globalStyles.navHeight + theme.spacing(6),
+		marginBottom: theme.spacing(6),
 		minHeight: `calc( 100vh - ${ globalStyles.footerHeight } - ${ globalStyles.navHeight }px )`
 	},
 	container: {
@@ -79,6 +80,9 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	description: {
 		maxWidth: 800
+	},
+	divider: {
+		margin: theme.spacing( 6, 0 ),
 	}
 }))
 

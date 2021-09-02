@@ -22,7 +22,7 @@ const OurProducts: FC = () => {
 	const classes = useStyle()
 
 	return (
-		<Container>
+		<Container className={ classes.root } >
 			<Typography variant='h4' align='center' >
 				Nuestros Productos
 			</Typography>

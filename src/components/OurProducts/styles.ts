@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 
 const useStyle = makeStyles( ( theme ) => ({
+	root: {
+		marginBottom: theme.spacing( 6 )
+	},
 	cardActionArea: {
 		paddingTop: 10
 	},
