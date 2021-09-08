@@ -53,3 +53,7 @@ export interface IApp {
 	home: IHome,
 	dashboard: IDashboard
 }
+export interface IApiErrorResponse {
+	ok: boolean,
+	msg: string
+}

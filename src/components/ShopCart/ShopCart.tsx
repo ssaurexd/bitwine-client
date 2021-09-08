@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
 	IconButton,
 	Badge,
@@ -61,11 +62,11 @@ const ShopCart: FC = () => {
 							<Close />
 						</IconButton>
 					</div>
-					<List className={ classes.listContainer } >
+					<List >
 						{ totalItem >= 1 &&
 							<ListItem>
 								<CustomButtonLink
-									hreflink='/shop-cart'
+									hreflink='/process-payment'
 									text='Terminar de comprar'
 									fullWidth
 									size='small'
@@ -73,7 +74,6 @@ const ShopCart: FC = () => {
 								/>
 							</ListItem>
 						}
-
 						{
 							items.map(( prod, index ) => (
 								<div key={ prod._id } >
@@ -86,7 +86,9 @@ const ShopCart: FC = () => {
 											/>
 										</div>
 										<div className={ classes.descProduct } >
-											<Typography variant='body1' >{ prod.name }</Typography>
+											<Link href={ `/product/${ prod.slug }` } >
+												<Typography onClick={ () => setOpenDrawer( false ) } component='a' variant='body1' >{ prod.name }</Typography>
+											</Link>
 											<Typography variant='body2' >Cantidad: { prod.count }</Typography>
 											<Typography variant='body2' color='primary' >${ prod.priceWithDiscount }</Typography>
 										</div>

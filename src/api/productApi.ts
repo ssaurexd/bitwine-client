@@ -1,10 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { 
 	IApiCreateProductTopLevel, 
 	IAPICategoryProductsTopLevel, 
 	IApiUploadProductImageTopLeve,
 	IApiProductsTopLevel,
-	IApiProductTopLevel
+	IApiProductTopLevel,
+	IApiProductStockTopLevel
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
 
@@ -27,7 +28,8 @@ export const createProduct = async ( data: any ): Promise<IApiCreateProductTopLe
 		return resp.data
 	} catch ( error ) {
 
-		const resp: IApiCreateProductTopLevel = error.response.data
+		const err = error as AxiosError<IApiCreateProductTopLevel>
+		const resp = err.response?.data as IApiCreateProductTopLevel
 
 		return resp
 	}
@@ -55,7 +57,8 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 		return resp.data
 	} catch ( error ) {
 
-		const resp: IApiUploadProductImageTopLeve = error.response.data
+		const err = error as AxiosError<IApiUploadProductImageTopLeve>
+		const resp = err.response?.data as IApiUploadProductImageTopLeve
 
 		return resp
 	}
@@ -70,7 +73,8 @@ export const getFlashSales = async (): Promise<IAPICategoryProductsTopLevel> => 
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IAPICategoryProductsTopLevel = error.response.data
+		const err = error as AxiosError<IAPICategoryProductsTopLevel>
+		const resp = err.response?.data as IAPICategoryProductsTopLevel
 
 		return resp
 	}
@@ -85,7 +89,8 @@ export const getProductsByCategory = async ( category: string, limit: number = 1
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiProductsTopLevel = error.response.data
+		const err = error as AxiosError<IApiProductsTopLevel>
+		const resp = err.response?.data as IApiProductsTopLevel
 
 		return resp
 	}
@@ -100,7 +105,8 @@ export const getProducts = async ( limit: number = 12, page: number = 0 ): Promi
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiProductsTopLevel = error.response.data
+		const err = error as AxiosError<IApiProductsTopLevel>
+		const resp = err.response?.data as IApiProductsTopLevel
 
 		return resp
 	}
@@ -115,7 +121,8 @@ export const getAllProducts = async (): Promise<IApiProductsTopLevel> => {
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiProductsTopLevel = error.response.data
+		const err = error as AxiosError<IApiProductsTopLevel>
+		const resp = err.response?.data as IApiProductsTopLevel
 
 		return resp
 	}
@@ -130,7 +137,24 @@ export const getProductBySlug = async ( slug: string ): Promise<IApiProductTopLe
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiProductTopLevel = error.response.data
+		const err = error as AxiosError<IApiProductTopLevel>
+		const resp = err.response?.data as IApiProductTopLevel
+
+		return resp
+	}
+}
+
+export const getProductStockById = async ( productId: string ): Promise<IApiProductStockTopLevel> => {
+	
+	try {
+		
+		const resp = await productApi.post<IApiProductStockTopLevel>( '/product-stock', JSON.stringify({ productId }) )
+
+		return resp.data
+	} catch ( error ) {
+
+		const err = error as AxiosError<IApiProductStockTopLevel>
+		const resp = err.response?.data as IApiProductStockTopLevel
 
 		return resp
 	}

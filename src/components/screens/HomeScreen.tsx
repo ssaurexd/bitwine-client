@@ -12,7 +12,7 @@ import Ads from '../Ads'
 interface Props {
 }
 
-const Home: FC<Props> = () => {
+const HomeScreen: FC<Props> = () => {
 
 	const { products } = useAppSelector( state => state.app.home )
 	
@@ -30,4 +30,4 @@ const Home: FC<Props> = () => {
 	)
 }
 
-export default Home
+export default HomeScreen

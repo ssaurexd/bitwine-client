@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import { settings } from '../config/settings'
-import {  } from '../interfaces/storeIntergaces'
 
 
 export const storeApi = axios.create({

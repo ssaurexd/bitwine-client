@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 import { settings } from '../config/settings'
 import { IApiBannerHomeTopLevel } from '../interfaces/bannerInterfaces'
@@ -22,7 +22,8 @@ export const getBannersForHome = async ( ): Promise<IApiBannerHomeTopLevel> => {
 		return resp.data
 	} catch ( error ) {
 		
-		const resp: IApiBannerHomeTopLevel = error.response.data
+		const err = error as AxiosError<IApiBannerHomeTopLevel>
+		const resp = err.response?.data as IApiBannerHomeTopLevel
 
 		return resp
 	}

@@ -9,7 +9,7 @@ import { getBannersForHome } from '../api/bannerApi'
 import { IBanner } from '../interfaces/bannerInterfaces'
 
 import Auth from '../components/init/Auth'
-import Home from '../components/screens/Home'
+import HomeScreen from '../components/screens/HomeScreen'
 import HeaderMain from '../components/HeaderMain'
 import FooterMain from '../components/FooterMain'
 import Layout from '../components/init/Layout'
@@ -58,7 +58,7 @@ const app: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 							bottomShadow={ true }
 						/>
 
-						<Home />
+						<HomeScreen />
 					</main>
 
 					<FooterMain />

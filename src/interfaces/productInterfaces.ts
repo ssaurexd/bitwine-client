@@ -68,3 +68,8 @@ export interface IApiProductTopLevel {
 	product: IProduct,
 	related: IProduct[]
 }
+export interface IApiProductStockTopLevel {
+	ok: boolean,
+	msg: string,
+	onStock: number
+}

@@ -3,11 +3,11 @@ import { FC } from 'react'
 import LoginForm from '../LoginForm'
 
 
-const Login: FC = () => {
+const LoginScreen: FC = () => {
 
 	return (
 		<LoginForm />
 	)
 }
 
-export default Login
+export default LoginScreen

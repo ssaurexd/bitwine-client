@@ -51,16 +51,14 @@ const storeSlice = createSlice({
 						const numberTotal = state.shopCart.total + action.payload.item.count * action.payload.item.priceWithDiscount
 						const total: number = numberToDecimals( numberTotal )
 	
-						return {
-							...state,
-							shopCart: {
-								items: [ ...state.shopCart.items, action.payload.item ],
-								total
-							}
-						}
+						state.shopCart.items = [ ...state.shopCart.items, action.payload.item ]
+						state.shopCart.total = total
+						break
 					
 					case 'wishList': 
+
 						state.wishList.items = [ ...state.wishList.items, action.payload.item ]
+						break
 				}
 			})
 			.addCase( updateCountItemStoreThunk.fulfilled, ( state, action ) => {
@@ -76,6 +74,10 @@ const storeSlice = createSlice({
 						}
 						return item
 					}) 
+					let numberTotal: number = 0 
+					state.shopCart.items.map( item =>  numberTotal = numberTotal + ( item.count * item.priceWithDiscount ) )
+					const total: number = numberToDecimals( numberTotal )
+					state.shopCart.total = total
 				} else {
 
 					return state
@@ -84,6 +86,10 @@ const storeSlice = createSlice({
 			.addCase( deleteItemStoreThunk.fulfilled, ( state, { payload } ) => {
 				
 				state[payload.type].items = state[payload.type].items.filter( item => item._id !== payload.productId )
+				let numberTotal: number = 0 
+				state.shopCart.items.map( item =>  numberTotal = numberTotal + ( item.count * item.priceWithDiscount ) )
+				const total: number = numberToDecimals( numberTotal )
+				state.shopCart.total = total
 			})
 	}
 })

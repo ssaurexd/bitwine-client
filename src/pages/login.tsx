@@ -1,5 +1,5 @@
 import Auth from '../components/init/Auth'
-import Login from '../components/screens/Login'
+import LoginScreen from '../components/screens/LoginScreen'
 import Layout from '../components/init/Layout'
 
 
@@ -12,7 +12,7 @@ const login = ( ) => {
 		>
 			<Layout haveHeader >
 				<main className='login-main' >
-					<Login />
+					<LoginScreen />
 				</main>
 			</Layout>
 		</Auth>

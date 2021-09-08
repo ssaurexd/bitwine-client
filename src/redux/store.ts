@@ -5,14 +5,12 @@ import storeReducer from './slices/storeSlice'
 import appReducer from './slices/appSlice'
 
 
-export const rootReducer = combineReducers({
-	user: userReducer,
-	store: storeReducer,
-	app: appReducer
-})
-
 export const store = configureStore({
-	reducer: rootReducer
+	reducer: {
+		user: userReducer,
+		store: storeReducer,
+		app: appReducer
+	}
 })
 
 export type RootState = ReturnType<typeof store.getState>

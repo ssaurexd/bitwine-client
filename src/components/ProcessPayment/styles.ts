@@ -1,23 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { globalStyles } from '../../config/theme'
 
 
+const { navHeight } = globalStyles
 const useStyle = makeStyles( ( theme ) => ({
-	shopCartDrawer: {
-		width: 330,
+	root: {
+		marginTop: navHeight + theme.spacing( 2 ),
+		position: 'relative'
 	},
-	drawerPaper: {
-		width: 330,
-	},
-	closeContainser: {
-		display: 'flex',
-		justifyContent: 'flex-end',
-		marginBottom: theme.spacing( 2 )
+	stepperRoot: {
+		width: '100%',
+		backgroundColor: '#fafafa',
 	},
 	listItem: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		flexWrap: 'wrap',
 		margin: theme.spacing( 1, 0 )
 	},
 	imgProduct: {

@@ -25,7 +25,8 @@ let theme =  createMuiTheme({
 				},
 				a: {
 					textDecoration: 'none',
-					color: 'inherit'
+					color: 'inherit',
+					cursor: 'pointer'
 				}
 			}
 		}

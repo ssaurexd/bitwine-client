@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ICategory, ICategoryResponseTopLevel } from '../interfaces/categoryInterfaces'
 import { settings } from '../config/settings'
 
@@ -14,9 +14,18 @@ const categoryApi = axios.create({
 
 export const getCategories = async (): Promise<ICategory[]> => {
 	
-	const resp = await categoryApi.get<ICategoryResponseTopLevel>( '/' )
+	try {
+		
+		const resp = await categoryApi.get<ICategoryResponseTopLevel>( '/' )
+	
+		return resp.data.categories
+	} catch ( error ) {
 
-	return resp.data.categories
+		const err = error as AxiosError<ICategoryResponseTopLevel>
+		const resp = err.response?.data as ICategoryResponseTopLevel
+
+		return resp.categories
+	}
 }
 
 
