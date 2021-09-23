@@ -24,12 +24,18 @@ const ProcessPayment: FC<Props> = () => {
 	const classes = useStyle()
 	const [ stepIndex, setStepIndex ] = useState( 0 )
 
+	/* funtions */
+	const onNextStep = (  ) => {
+		
+		setStepIndex( stepIndex + 1 )
+	}
+
 	return (
 		<section className={ classes.root } >
 			<Container>
 				<ProcessPaymentStepper stepIndex={ stepIndex } steps={ steps } />
 				{ stepIndex === 0 &&
-					<MyProducts />
+					<MyProducts onNextStep={ onNextStep } />
 				}
 			</Container>
 		</section>

@@ -13,24 +13,64 @@ const useStyle = makeStyles( ( theme ) => ({
 		backgroundColor: '#fafafa',
 	},
 	listItem: {
+		width: '100%',
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		flexWrap: 'wrap',
+		flexWrap: 'nowrap',
 		margin: theme.spacing( 1, 0 )
+	},
+	paperListItemContainer: {
+		margin: theme.spacing( 2, 0 ),
+		'&:first-child': {
+			marginTop: 0 - theme.spacing( 1 )
+		}
+	},
+	gridItemsContainer: {
+		overflowY: 'scroll',
+		maxHeight: 700,
+		boxSizing: 'border-box',
+		padding: theme.spacing( 1 ),
+		'&::-webkit-scrollbar': {
+			width: 6
+		},
+		'&::-webkit-scrollbar-track': {
+			backgroundColor: '#ccc',
+			borderRadius: 25
+		},
+		'&::-webkit-scrollbar-thumb': {
+			backgroundColor: '#9e9e9e',
+			borderRadius: 25
+		}
+	},
+	descContainer: {
+		display: 'flex',
+		justifyContent: 'flex-start',
 	},
 	imgProduct: {
 		width: 50,
 		height: 50,
-		position: 'relative'
+		position: 'relative',
+		alignSelf: 'center',
+		[theme.breakpoints.up( 'sm' )]: {
+			width: 100,
+			height: 100
+		}
 	},
 	descProduct: {
-		width: 230,
+		width: '60%',
 		display: 'flex',
 		minHeight: 50,
 		height: 'auto',
 		flexDirection: 'column'
+	},
+	total: {
+		margin: theme.spacing( 1, 0 ),
+		padding: theme.spacing( 1 ),
+		display: 'flex',
+		flexWrap: 'nowrap',
+		alignItems: 'center'
 	}
 }))
 
