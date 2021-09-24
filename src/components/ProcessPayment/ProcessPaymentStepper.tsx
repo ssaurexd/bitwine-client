@@ -1,6 +1,12 @@
 import { FC } from 'react'
 import { 
-	MobileStepper,
+	Stepper,
+	useTheme,
+	useMediaQuery,
+	Box,
+	Step,
+	StepLabel,
+	Paper
 } from '@material-ui/core'
 
 import useStyle from './styles';
@@ -15,21 +21,24 @@ const ProcessPaymentStepper: FC<Props> = ({ stepIndex, steps }) => {
 
 	/* hooks */
 	const classes = useStyle()
+	const theme = useTheme()
+	const gtSM = useMediaQuery( theme.breakpoints.up('sm') )
 
 	return (
-		<MobileStepper 
-			className={ classes.stepperRoot }
-			position='static'
-			variant='dots'
-			nextButton={
-				<div></div>
-			}
-			backButton={
-				<div></div>
-			}
-			steps={ steps.length }
+		<Stepper
 			activeStep={ stepIndex }
-		/>
+			orientation={ gtSM ? 'horizontal' : 'vertical' }
+			alternativeLabel={ gtSM ? true : false }
+			className={ classes.stepperRoot }
+		>
+			{
+				steps.map( step => (
+					<Step key={ step } >
+						<StepLabel>{ step }</StepLabel>
+					</Step>
+				))
+			}
+		</Stepper>
 	)
 }
 

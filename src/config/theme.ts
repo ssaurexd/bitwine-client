@@ -74,7 +74,8 @@ let theme =  createMuiTheme({
 	props: {
 		MuiButton: {
 			disableElevation: true,
-			variant: 'outlined'
+			variant: 'contained',
+			size: 'small'
 		},
 		MuiTextField: {
 			variant: 'outlined',

@@ -10,8 +10,17 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	stepperRoot: {
 		width: '100%',
-		backgroundColor: '#fafafa',
+		backgroundColor: '#fff',
+		borderRadius: theme.shape.borderRadius,
+		boxShadow: theme.shadows[1],
+		margin: theme.spacing( 3, 0 )
 	},
+	subTitle: {
+		marginBottom: 20,
+		textTransform: 'uppercase'
+	},
+	/* --START-- MyProducts
+	-------------------------------------------------------- */
 	listItem: {
 		width: '100%',
 		display: 'flex',
@@ -19,7 +28,6 @@ const useStyle = makeStyles( ( theme ) => ({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		flexWrap: 'nowrap',
-		margin: theme.spacing( 1, 0 )
 	},
 	paperListItemContainer: {
 		margin: theme.spacing( 2, 0 ),
@@ -31,7 +39,8 @@ const useStyle = makeStyles( ( theme ) => ({
 		overflowY: 'scroll',
 		maxHeight: 700,
 		boxSizing: 'border-box',
-		padding: theme.spacing( 1 ),
+		paddingRight: theme.spacing( 1 ),
+		marginBottom: theme.spacing( 2 ),
 		'&::-webkit-scrollbar': {
 			width: 6
 		},
@@ -65,13 +74,30 @@ const useStyle = makeStyles( ( theme ) => ({
 		height: 'auto',
 		flexDirection: 'column'
 	},
-	total: {
-		margin: theme.spacing( 1, 0 ),
-		padding: theme.spacing( 1 ),
+	/* --END-- MyProducts
+	-------------------------------------------------------- */
+
+	/* --START-- PaymentDetails
+	-------------------------------------------------------- */
+	paperTotal: {
+		display: 'flex',
+		flexDirection: 'column',
+		padding: theme.spacing( 2 ),
+		marginBottom: theme.spacing( 2 )
+	},
+	totalBox: {
+		width: '100%',
 		display: 'flex',
 		flexWrap: 'nowrap',
-		alignItems: 'center'
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginBottom: theme.spacing( 2 )
+	},
+	mb3: {
+		marginBottom: theme.spacing( 3 )
 	}
+	/* --END-- PaymentDetails
+	-------------------------------------------------------- */
 }))
 
 export default useStyle

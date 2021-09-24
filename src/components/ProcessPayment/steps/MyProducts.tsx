@@ -4,7 +4,6 @@ import {
 	ListItem,
 	Typography,
 	IconButton,
-	Divider,
 	Grid,
 	Paper,
 	Button
@@ -17,6 +16,7 @@ import { getLinkImage } from '../../../helpers/helpers'
 import useStyle from '../styles'
 
 import Counter from '../../Counter/Counter'
+import TotalInfo from '../TotalInfo'
 
 
 interface Props {
@@ -26,12 +26,9 @@ interface Props {
 const MyProducts: FC<Props> = ({ onNextStep }) => {
 
 	/* hooks */
-	const { items, total } = useAppSelector( state => state.store.shopCart )
+	const { items } = useAppSelector( state => state.store.shopCart )
 	const dispatch = useAppDispatch()
 	const classes = useStyle()
-
-	/* state */
-	const totalItem = items.length
 
 	/* funtions */
 	const deleteShopCartItem = ( productId: string ) => {
@@ -40,7 +37,7 @@ const MyProducts: FC<Props> = ({ onNextStep }) => {
 	}
 
 	return (
-		<Grid container wrap='wrap-reverse' spacing={ 3 } >
+		<Grid container spacing={ 3 } >
 			<Grid item xs={ 12 } md ={ 8 } >
 				<div className={ classes.gridItemsContainer } >
 					{
@@ -75,11 +72,8 @@ const MyProducts: FC<Props> = ({ onNextStep }) => {
 				</div>
 			</Grid>
 			<Grid item xs={ 12 } md ={ 4 } >
-				<Paper>
-					<div className={ classes.total } >
-						<Typography variant='subtitle1' >Total: </Typography>
-						<Typography variant='subtitle2' >${ total }</Typography>
-					</div>
+				<Paper className={ classes.paperTotal } >
+					<TotalInfo />
 				</Paper>
 				<Button
 					fullWidth
@@ -87,8 +81,9 @@ const MyProducts: FC<Props> = ({ onNextStep }) => {
 					color='secondary'
 					variant='contained'
 					onClick={ onNextStep }
+					className={ classes.mb3 }
 				>
-					Continuar
+					Siguiente
 				</Button>
 			</Grid>
 		</Grid>
