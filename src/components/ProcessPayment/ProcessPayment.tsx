@@ -13,7 +13,7 @@ import PaymentDetails from './steps/PaymentDetails'
 const steps: string[] = [
 	'Mis Productos', 
 	'Detalles', 
-	'Facturación'
+	'Pago'
 ]
 
 interface Props {}

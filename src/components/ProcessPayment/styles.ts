@@ -74,6 +74,9 @@ const useStyle = makeStyles( ( theme ) => ({
 		height: 'auto',
 		flexDirection: 'column'
 	},
+	underline: {
+		textDecoration: 'line-through'
+	},
 	/* --END-- MyProducts
 	-------------------------------------------------------- */
 
@@ -95,7 +98,7 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	mb3: {
 		marginBottom: theme.spacing( 3 )
-	}
+	},
 	/* --END-- PaymentDetails
 	-------------------------------------------------------- */
 }))
