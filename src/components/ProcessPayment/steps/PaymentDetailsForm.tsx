@@ -6,11 +6,13 @@ import {
 	Grid, 
 	Paper, 
 	TextField, 
-	Typography, 
+	Typography,
 } from '@material-ui/core'
 
 import useStyle from '../styles'
 import { useAppSelector } from '../../../hooks/reduxHooks'
+
+import Btn from '../../Btn/Btn'
 
 
 export interface IInitialValues {
@@ -21,7 +23,6 @@ export interface IInitialValues {
 	zip: string,
 	phone: string,
 	email: string,
-	country: string,
 	suburb: string,
 	delegation: string,
 	state: string
@@ -37,7 +38,6 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 	const { isLoggedIn, email } = useAppSelector( state => state.user )
 	const formik = useFormik<IInitialValues>({
 		initialValues: {
-			country: '',
 			email: isLoggedIn ? email : '',
 			houseNumber: '',
 			lastName: '',
@@ -50,24 +50,30 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 			state: ''
 		},
 		onSubmit: ( values ) => {
-        	console.log("🚀 ~ file: PaymentDetailsForm.tsx ~ line 52 ~ values", values)
 			onNextStep()
 		},
 		validationSchema: yup.object({
-			country: yup.string().trim().required('El país es necesario'),
-			email: yup.string().required('El país es necesario'),
-			houseNumber: yup.string().required('El país es necesario'),
-			lastName: yup.string().required('El país es necesario'),
-			name: yup.string().required('El país es necesario'),
-			phone: yup.string().required('El Tel. Celular es necesario'),
-			street: yup.string().required('El país es necesario'),
-			zip: yup.string().required('El país es necesario'),
-			suburb: yup.string().required('El país es necesario'),
-			delegation: yup.string().required('El país es necesario'),
-			state: yup.string().required('El país es necesario'),
+			email: yup.string().email('Ingresa un email valido').required('El email es necesario'),
+			houseNumber: yup.number().typeError('Ingresa un numero').required('El numero de tu casa es necesario'),
+			lastName: yup.string(),
+			name: yup.string().trim().required('El nombre es necesario'),
+			phone: yup.number().typeError('Ingresa un numero').required('El Tel. Celular es necesario'),
+			street: yup.string().required('La calles es requerida'),
+			zip: yup.number().typeError('Ingresa un numero').required('El codigo postal es necesario'),
+			suburb: yup.string().trim().required('La colonia es necesaria'),
+			delegation: yup.string().trim().required('La delegación es necesaria'),
+			state: yup.string().trim().required('El estado es necesario'),
 		})
 	})
 
+	/* funtions */
+	const onSaveAddress = (  ) => {
+
+		if( ( formik.isValid && formik.dirty ) ) {
+			console.log('Entre aqui');
+		}
+	}
+	
 	return (
 		<form method='POST' onSubmit={ formik.handleSubmit } >
 			<Paper className={ classes.paperTotal } >
@@ -80,21 +86,24 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 								label='Nombre'
 								name='name'
 								fullWidth
+								margin='normal'
 								value={ formik.values.name }
 								onChange={ formik.handleChange }
 								onBlur={ formik.handleBlur }
-								error={ formik.errors.name ? true : false }
-								helperText={ formik.errors.name ? formik.errors.name : '' }
+								error={ formik.touched.name && formik.errors.name ? true : false }
+								helperText={ formik.touched.name && formik.errors.name ? formik.errors.name : '' }
 							/>
 						</Grid>
 						<Grid item xs={ 12 } md={ 6 } >
 							<TextField 
-								value={ formik.values.lastName }
 								size='small'
-								onChange={ formik.handleChange }
 								label='Apellidos'
 								name='lastName'
 								fullWidth
+								margin='normal'
+								value={ formik.values.lastName }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
 							/>
 						</Grid>
 						<Grid item xs={ 12 } >
@@ -107,20 +116,23 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 								value={ formik.values.phone }
 								onChange={ formik.handleChange }
 								onBlur={ formik.handleBlur }
-								error={ formik.errors.phone ? true : false }
-								helperText={ formik.errors.phone ? formik.errors.phone : '' }
+								error={ formik.touched.phone && formik.errors.phone ? true : false }
+								helperText={ formik.touched.phone && formik.errors.phone ? formik.errors.phone : '' }
 							/>
 						</Grid>
 						{ !isLoggedIn &&
 							<Grid item xs={ 12 } >
 								<TextField 
-									value={ formik.values.email }
 									size='small'
-									onChange={ formik.handleChange }
 									label='Email'
 									name='email'
 									fullWidth
 									margin='normal'
+									value={ formik.values.email }
+									onChange={ formik.handleChange }
+									onBlur={ formik.handleBlur }
+									error={ formik.touched.email && formik.errors.email ? true : false }
+									helperText={ formik.touched.email && formik.errors.email ? formik.errors.email : '' }
 								/>
 							</Grid>
 						}
@@ -134,53 +146,104 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 					<Grid item container spacing={ 1 } xs >
 						<Grid item xs={ 12 } md={ 6 } >
 							<TextField 
-								value={ formik.values.name }
 								size='small'
-								onChange={ formik.handleChange }
-								label='Nombre'
-								name='name'
+								label='Calle'
+								name='street'
 								fullWidth
+								margin='normal'
+								value={ formik.values.street }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.street && formik.errors.street ? true : false }
+								helperText={ formik.touched.street && formik.errors.street ? formik.errors.street : '' }
 							/>
 						</Grid>
 						<Grid item xs={ 12 } md={ 6 } >
 							<TextField 
-								value={ formik.values.lastName }
 								size='small'
-								onChange={ formik.handleChange }
-								label='Apellidos'
-								name='lastName'
+								label='Numero interior/exterior'
+								name='houseNumber'
 								fullWidth
+								margin='normal'
+								value={ formik.values.houseNumber }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.houseNumber && formik.errors.houseNumber ? true : false }
+								helperText={ formik.touched.houseNumber && formik.errors.houseNumber ? formik.errors.houseNumber : '' }
 							/>
 						</Grid>
 						<Grid item xs={ 12 } >
 							<TextField 
-								value={ formik.values.phone }
-								onChange={ formik.handleChange }
 								size='small'
-								label='Tel. Celular'
-								name='phone'
+								label='Colonia'
+								name='suburb'
 								fullWidth
 								margin='normal'
+								value={ formik.values.suburb }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.suburb && formik.errors.suburb ? true : false }
+								helperText={ formik.touched.suburb && formik.errors.suburb ? formik.errors.suburb : '' }
 							/>
 						</Grid>
-						{ !isLoggedIn &&
-							<Grid item xs={ 12 } >
-								<TextField 
-									value={ formik.values.email }
-									size='small'
-									onChange={ formik.handleChange }
-									label='Email'
-									name='email'
-									fullWidth
-									margin='normal'
-								/>
-							</Grid>
-						}
+						<Grid item xs={ 12 } >
+							<TextField 
+								size='small'
+								label='Codigo Postal'
+								name='zip'
+								fullWidth
+								margin='normal'
+								value={ formik.values.zip }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.zip && formik.errors.zip ? true : false }
+								helperText={ formik.touched.zip && formik.errors.zip ? formik.errors.zip : '' }
+							/>
+						</Grid>
+						<Grid item xs={ 12 } >
+							<TextField 
+								size='small'
+								label='Estado'
+								name='state'
+								fullWidth
+								margin='normal'
+								value={ formik.values.state }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.state && formik.errors.state ? true : false }
+								helperText={ formik.touched.state && formik.errors.state ? formik.errors.state : '' }
+							/>
+						</Grid>
+						<Grid item xs={ 12 } >
+							<TextField 
+								size='small'
+								label='Delegación'
+								name='delegation'
+								fullWidth
+								margin='normal'
+								value={ formik.values.delegation }
+								onChange={ formik.handleChange }
+								onBlur={ formik.handleBlur }
+								error={ formik.touched.delegation && formik.errors.delegation ? true : false }
+								helperText={ formik.touched.delegation && formik.errors.delegation ? formik.errors.delegation : '' }
+							/>
+						</Grid>
 					</Grid>
 				</Grid>
 			</Paper>
 
-			<Grid container item xs justifyContent='space-between' direction='row' wrap='wrap'  >
+			<Grid container item xs justifyContent='space-between' direction='row' wrap='wrap' >
+				{ isLoggedIn && ( formik.isValid && formik.dirty ) &&
+					<Grid item xs={ 12 } >
+						<Btn 
+							variant='contained' 
+							color='primary' 
+							onClick={ onSaveAddress }
+							className={ classes.mb3 }
+							title='Guardar dirección'
+						/>
+					</Grid>
+				}
 				<Grid item xs={ 12 } md={ 5 } >
 					<Button
 						variant='outlined' 
@@ -194,7 +257,8 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 				</Grid>
 				<Grid item xs={ 12 } md={ 5 } >
 					<Button 
-						color='secondary' fullWidth
+						color='secondary' 
+						fullWidth
 						className={ classes.mb3 }
 						type='submit'
 					>

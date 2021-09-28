@@ -25,6 +25,7 @@ import { openToast } from '../../../../redux/slices/appSlice'
 
 import CustomDropzone from '../../../CustomDropzone'
 import SunEditorRichText from '../../../SunEditorRichText'
+import Btn from '../../../Btn/Btn'
 
 
 interface Props {
@@ -279,19 +280,15 @@ const CreateProduct: FC<Props> = ({ categories }) => {
 							</Paper>
 						</Grid>
 						<Grid item xs >
-							<div className={ classes.btnWrapper }>
-								<Button
-									variant='contained'
-									color='secondary'
-									fullWidth
-									disableElevation
-									disabled={ loading }
-									type='submit'
-								>
-									Crear
-								</Button>
-								{ loading && <CircularProgress size={ 24 } color='inherit' className={ classes.btnProgress } /> }
-							</div>
+							<Btn 
+								variant='contained'
+								color='secondary'
+								fullWidth
+								disableElevation
+								type='submit'
+								isLoading={ loading }
+								title='Crear'
+							/>
 						</Grid>
 					</Grid>
 				</Grid>

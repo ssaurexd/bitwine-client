@@ -34,16 +34,6 @@ const useStyle = makeStyles( ( theme ) => ({
 		border: 'none',
 		backgroundColor: 'inherit'
 	},
-	btnWrapper: {
-		position: 'relative'
-	},
-	btnProgress: {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		marginTop: -12,
-		marginLeft: -12,
-	},
 	btnContainer: {
 		width: '100%'
 	},
