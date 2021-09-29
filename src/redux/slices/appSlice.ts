@@ -3,7 +3,8 @@ import {
 	IApp,
 	IChangeDashboardMenuItem,
 	IGlobalToast,
-	IHome
+	IHome,
+	IPaymentInfoStepTwo
 } from '../../interfaces/appInterfaces'
 
 
@@ -28,6 +29,20 @@ const initialState: IApp = {
 			avatarOpen: false,
 			productOpen: false
 		}
+	},
+	paymentInfo: {
+		stepTwo: {
+			email: 'ssaurexd@gmail.com',
+			houseNumber: '123',
+			lastName: '',
+			name: 'Aure',
+			phone: '12353242',
+			street: 'Tulum',
+			zip: '14200',
+			suburb: 'Heroes de padierna',
+			delegation: 'Tlalpan',
+			state: ''
+		}
 	}
 } 
 
@@ -36,6 +51,7 @@ const appSlice = createSlice({
 	initialState,
 	reducers: {
 		closeToast: ( state ) => {
+
 			return {
 				...state,
 				globalToast: {
@@ -47,6 +63,7 @@ const appSlice = createSlice({
 			}
 		},
 		openToast: ( state, action: PayloadAction<IGlobalToast> ) => {
+
 			return {
 				...state,
 				globalToast: {
@@ -55,12 +72,14 @@ const appSlice = createSlice({
 			}
 		},
 		initHome: ( state, action: PayloadAction<IHome> ) => {
+
 			return {
 				...state,
 				home: action.payload
 			}
 		}, 
 		changeDashboardMenuItem: ( state, action: PayloadAction<IChangeDashboardMenuItem> ) => {
+
 			return {
 				...state,
 				dashboard: {
@@ -73,6 +92,7 @@ const appSlice = createSlice({
 			}
 		},
 		changeSidebar: ( state, action ) => {
+
 			return {
 				...state,
 				dashboard: {
@@ -80,6 +100,10 @@ const appSlice = createSlice({
 					sidebarOpen: action.payload
 				}
 			}
+		},
+		setStepTwoPaymentInfo: ( state, action: PayloadAction<IPaymentInfoStepTwo> ) => {
+
+			state.paymentInfo.stepTwo = action.payload
 		}
 	}
 })
@@ -89,6 +113,7 @@ export const {
 	openToast,
 	initHome,
 	changeDashboardMenuItem,
-	changeSidebar
+	changeSidebar,
+	setStepTwoPaymentInfo
 } = appSlice.actions
 export default appSlice.reducer

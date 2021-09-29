@@ -17,7 +17,8 @@ import { getTotalShopCart } from '../../helpers/helpers'
 const initialState: IStore = {
 	shopCart: {
 		items: [],
-		total: 0
+		total: 0,
+		shipment: 0
 	},
 	wishList: {
 		items: []
@@ -37,7 +38,8 @@ export const initStore = createAsyncThunk<IStore, void, { state: RootState }>(
 			const data: IStore = {
 				shopCart: {
 					items: resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products,
-					total: getTotalShopCart( resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products )
+					total: getTotalShopCart( resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products ),
+					shipment: 0
 				}, 
 				wishList: { items: resp.data.wishList?.products === null ? [] : resp.data.wishList?.products ?? [] }
 			}

@@ -17,7 +17,7 @@ const TotalInfo: FC<Props> = () => {
 
 	/* hooks */
 	const classes = useStyle()
-	const { total, items } = useAppSelector( state => state.store.shopCart )
+	const { total, items, shipment } = useAppSelector( state => state.store.shopCart )
 
 	/* state */
 	const tax: number = numberToDecimals( total * 0.16 )
@@ -32,7 +32,7 @@ const TotalInfo: FC<Props> = () => {
 			</div>
 			<div className={ classes.totalBox } >
 				<Typography variant='subtitle1' >Costo de envio:</Typography>
-				<Typography variant='subtitle2' >${ 0 }</Typography>
+				<Typography variant='subtitle2' >${ shipment }</Typography>
 			</div>
 			<div className={ classes.totalBox } >
 				<Typography variant='subtitle1' >IVA (16%):</Typography>

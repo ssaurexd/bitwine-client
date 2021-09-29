@@ -14,7 +14,8 @@ export type IStoreType = 'shopCart' | 'wishList'
 export interface IStore {
 	shopCart: {
 		items: IStoreItem[],
-		total: number 
+		total: number,
+		shipment: number
 	},
 	wishList: {
 		items: IStoreItem[]

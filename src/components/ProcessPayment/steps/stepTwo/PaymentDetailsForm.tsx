@@ -9,24 +9,14 @@ import {
 	Typography,
 } from '@material-ui/core'
 
-import useStyle from '../styles'
-import { useAppSelector } from '../../../hooks/reduxHooks'
+import useStyle from '../../styles'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks'
+import { IPaymentInfoStepTwo } from '../../../../interfaces/appInterfaces'
 
-import Btn from '../../Btn/Btn'
+import Btn from '../../../Btn'
+import { setStepTwoPaymentInfo } from '../../../../redux/slices/appSlice'
 
 
-export interface IInitialValues {
-	name: string,
-	lastName: string,
-	street: string,
-	houseNumber: string,
-	zip: string,
-	phone: string,
-	email: string,
-	suburb: string,
-	delegation: string,
-	state: string
-}
 interface Props {
 	onGoBack: () => void,
 	onNextStep: () => void
@@ -35,21 +25,16 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 
 	/* hooks */
 	const classes = useStyle()
+	const dispatch = useAppDispatch()
 	const { isLoggedIn, email } = useAppSelector( state => state.user )
-	const formik = useFormik<IInitialValues>({
+	const { paymentInfo } = useAppSelector( state => state.app )
+	const formik = useFormik<IPaymentInfoStepTwo>({
 		initialValues: {
-			email: isLoggedIn ? email : '',
-			houseNumber: '',
-			lastName: '',
-			name: '',
-			phone: '',
-			street: '',
-			zip: '',
-			suburb: '',
-			delegation: '',
-			state: ''
+			...paymentInfo.stepTwo,
+			email: isLoggedIn ? email : paymentInfo.stepTwo.email,
 		},
 		onSubmit: ( values ) => {
+			handleSubmit( values )
 			onNextStep()
 		},
 		validationSchema: yup.object({
@@ -63,7 +48,8 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 			suburb: yup.string().trim().required('La colonia es necesaria'),
 			delegation: yup.string().trim().required('La delegación es necesaria'),
 			state: yup.string().trim().required('El estado es necesario'),
-		})
+		}),
+		validateOnChange: true
 	})
 
 	/* funtions */
@@ -72,6 +58,11 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 		if( ( formik.isValid && formik.dirty ) ) {
 			console.log('Entre aqui');
 		}
+	}
+
+	const handleSubmit = ( values: IPaymentInfoStepTwo ) => {
+		
+		dispatch( setStepTwoPaymentInfo( values ) )
 	}
 	
 	return (

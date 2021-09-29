@@ -10,13 +10,13 @@ import {
 } from '@material-ui/core'
 import { Delete } from '@material-ui/icons'
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks'
-import { deleteItemStoreThunk } from '../../../redux/middlewares/storeMiddlewares'
-import { getLinkImage } from '../../../helpers/helpers'
-import useStyle from '../styles'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks'
+import { deleteItemStoreThunk } from '../../../../redux/middlewares/storeMiddlewares'
+import { getLinkImage } from '../../../../helpers/helpers'
+import useStyle from '../../styles'
 
-import Counter from '../../Counter/Counter'
-import TotalInfo from '../TotalInfo'
+import Counter from '../../../Counter/Counter'
+import TotalInfo from '../../TotalInfo'
 
 
 interface Props {

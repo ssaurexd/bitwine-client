@@ -15,7 +15,8 @@ import {
 const initialState: IStore = {
 	shopCart: {
 		items: [],
-		total: 0
+		total: 0,
+		shipment: 0
 	},
 	wishList: {
 		items: []

@@ -101,6 +101,14 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	/* --END-- PaymentDetails
 	-------------------------------------------------------- */
+
+	/* --START-- ShipmentDetails
+	-------------------------------------------------------- */
+	acordion: {
+		marginBottom: theme.spacing( 3 )
+	}
+	/* --END-- ShipmentDetails
+	-------------------------------------------------------- */
 }))
 
 export default useStyle

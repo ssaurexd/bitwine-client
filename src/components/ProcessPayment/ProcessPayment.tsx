@@ -6,14 +6,15 @@ import {
 import useStyle from './styles'
 
 import ProcessPaymentStepper from './ProcessPaymentStepper'
-import MyProducts from './steps/MyProducts'
-import PaymentDetails from './steps/PaymentDetails'
+import MyProducts from './steps/stepOne/MyProducts'
+import PaymentDetails from './steps/stepTwo/PaymentDetails'
+import ShipmentDetails from './steps/stepThree/ShipmentDetails'
 
 
 const steps: string[] = [
 	'Mis Productos', 
 	'Detalles', 
-	'Pago'
+	'Forma de pago'
 ]
 
 interface Props {}
@@ -53,6 +54,10 @@ const ProcessPayment: FC<Props> = () => {
 				{ stepIndex === 1 &&
 					<PaymentDetails onNextStep={ onNextStep } onGoBack={ onGoBack } />
 				}
+
+				{ stepIndex === 2 &&
+					<ShipmentDetails onGoBack={ onGoBack } />
+				}	
 			</Container>
 		</section>
 	)

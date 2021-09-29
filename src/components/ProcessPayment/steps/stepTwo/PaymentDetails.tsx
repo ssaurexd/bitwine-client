@@ -5,8 +5,8 @@ import {
 	Paper
 } from '@material-ui/core'
 
-import useStyle from '../styles'
-import TotalInfo from '../TotalInfo'
+import useStyle from '../../styles'
+import TotalInfo from '../../TotalInfo'
 import PaymentDetailsForm from './PaymentDetailsForm'
 
 
@@ -21,8 +21,8 @@ const PaymentDetails: FC<Props> = ({ onNextStep, onGoBack }) => {
 
 	/* funtions */
 	const onSubmit = ( ) => {
-		console.log('Se hizo submit' );
 		
+		console.log('Se hizo submit' );
 	}
 
 	return (

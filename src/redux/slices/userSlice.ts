@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { IPaymentInfoStepTwo } from '../../interfaces/appInterfaces'
 import { resetStore } from './storeSlice'
 
 
@@ -14,6 +16,7 @@ interface UserState{
 	lastName: string,
 	isLoggedIn: boolean,
 	role: Roles,
+	address: IPaymentInfoStepTwo[]
 	loading?: boolean,
 	avatar?:string
 }
@@ -25,6 +28,7 @@ const initialState: UserState = {
 	lastName: '',
 	role: 'guest',
 	avatar: '',
+	address: [],
 	isLoggedIn: false,
 	loading: false
 }
