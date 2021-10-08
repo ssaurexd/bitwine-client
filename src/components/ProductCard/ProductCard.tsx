@@ -86,15 +86,13 @@ const ProductCard: FC<Props> = ({ product }) => {
 					</div>
 				</div>
 
-				<div className="product-card__header__image">
-					<Image 
-						src={ getLinkImage( product.image ) }
-						layout='fill'
-						objectFit='contain'
-						className='product-card__header__image-img'
-						alt={ product.name }
-					/>
-				</div>
+				<Image 
+					src={ getLinkImage( product.image ) }
+					layout='fill'
+					objectFit='contain'
+					className='product-card__header__image-img'
+					alt={ product.name }
+				/>
 			</div>
 
 			<div className="product-card__body">
