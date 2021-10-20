@@ -13,6 +13,20 @@ export interface IAPIUser {
 	email:     string;
 	name:      string;
 	lastName:  string;
+	address: IUserAddress[]
+}
+
+export interface IUserAddress {
+	name: string,
+	lastName?: string,
+	street: string,
+	houseNumber: string,
+	zip: string,
+	phone: string,
+	email: string,
+	suburb: string,
+	delegation: string,
+	state: string
 }
 
 // /refresh-token

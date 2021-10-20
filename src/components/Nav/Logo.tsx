@@ -8,16 +8,16 @@ import logoImage from '../../../public/assets/images/logo.png'
 
 
 interface Props {
-	transparent: boolean
+	isScrolling: boolean
 }
 
-const Logo: FC<Props> = ({ transparent }) => {
+const Logo: FC<Props> = ({ isScrolling }) => {
 
-	const classes = useStyle()
+	const classes = useStyle({ isScrolling })
 
 	return (
 		<Link href='/' >
-			<a className={`${ classes.logo } ${ transparent && classes.colorWhite }`} >
+			<a className={ classes.logo } >
 				<Grid container alignItems='center' wrap='nowrap' justifyContent='flex-start' >
 					<Grid item xs={ 6 } sm={ 4 } md={ 3 } lg={ 3 } >
 						<Image 
@@ -28,7 +28,7 @@ const Logo: FC<Props> = ({ transparent }) => {
 						/> 
 					</Grid>
 					<Grid item xs={ 6 } sm={ 8 } md={ 9 } lg={ 9 } >
-						<Typography variant='h2'>BitWine</Typography>		
+						<Typography variant='h2' color='inherit' >BitWine</Typography>		
 					</Grid>
 				</Grid>
 			</a>

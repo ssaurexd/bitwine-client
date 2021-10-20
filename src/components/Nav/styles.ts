@@ -1,13 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { globalStyles } from '../../config/theme'
 
 
+interface Props {
+	isScrolling: boolean,
+}
 const { drawerWidth } = globalStyles
-const useStyle = makeStyles( ( theme ) => ({
+const useStyle = makeStyles<Theme, Props>( ( theme ) => ({
 	appBar: {
 		flexGrow: 1,
 		height: '80px',
-		color: '#525252'
+		color: props => props.isScrolling ? '#fff' : '#525252'
 	},
 	toolBar: {
 		paddingTop: theme.spacing(1),
@@ -16,7 +19,6 @@ const useStyle = makeStyles( ( theme ) => ({
 	},
 	logo: {
 		textDecoration: 'none',
-		color: '#525252',
 		with: 'auto',
 		minHeight: '50px',
 		minWidth: '50px',
@@ -26,12 +28,6 @@ const useStyle = makeStyles( ( theme ) => ({
 		width: drawerWidth,
 		border: 'none',
 		borderRight: '1px solid #f3f3f3',
-	},
-	menu: {
-		color: '#525252'
-	},
-	colorWhite: {
-		color: 'white'
 	},
 	drawerList: {
 		flexGrow: 1,

@@ -1,11 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { AxiosError } from 'axios'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { userAuthRefreshToken, userAuthLogOut } from '../api/userApi'
 import { logIn, logOut, Roles } from '../redux/slices/userSlice'
 import { getIsLoggedIn, getRememberMe } from '../helpers/auth'
 import { initStore } from '../redux/middlewares/storeMiddlewares'
+import { IAPIRefreshTokenTopLevel } from '../interfaces/user'
 
 
 interface Props {
@@ -26,7 +28,7 @@ const useAuth = ({ admitedRoles, redirectTo }: Props ) => {
 
 		const hasSession = getIsLoggedIn()
 
-		if( hasSession) {
+		if( hasSession ) {
 
 			try {
 				
@@ -40,7 +42,10 @@ const useAuth = ({ admitedRoles, redirectTo }: Props ) => {
 				}
 			} catch ( error ) {
 
-				if( error.response.data.expired ) {
+				const err = error as AxiosError<IAPIRefreshTokenTopLevel>
+				const resp = err.response?.data as IAPIRefreshTokenTopLevel
+				
+				if( resp.expired ) {
 	
 					const { ok } = await userAuthLogOut()
 		

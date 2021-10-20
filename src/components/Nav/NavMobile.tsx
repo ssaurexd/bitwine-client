@@ -27,21 +27,22 @@ import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'
-import CustomSearch from './CustomSearch'
+import CustomSearch from '../CustomSearch/CustomSearch'
 
 
 interface Props {
 	open: boolean,
-	onClose: () => void
+	onClose: () => void,
+	isScrolling: boolean
 }
 
-const NavMobile: FC<Props> = ({ open, onClose }) => {
+const NavMobile: FC<Props> = ({ open, onClose, isScrolling }) => {
 
 	/* hooks */
 	const location = useRouter()
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
-	const classes = useStyle()
+	const classes = useStyle({ isScrolling })
 	
 	/* state */
 	const pathName = location.pathname
@@ -140,11 +141,6 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 
 						</List>
 					</Grid>
-					<Hidden only={['sm']} >
-						<ListItem>
-							<CustomSearch transparent={ false } onMobile />
-						</ListItem>
-					</Hidden>
 				</Grid>
 			</Grid>
 		</Drawer>

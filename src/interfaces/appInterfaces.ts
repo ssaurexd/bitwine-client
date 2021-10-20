@@ -1,5 +1,6 @@
 import { IBanner } from './bannerInterfaces'
 import { IProduct } from './productInterfaces'
+import { IUserAddress } from './user'
 
 /* --START-- toast
 -------------------------------------------------------- */
@@ -48,29 +49,12 @@ export interface IChangeDashboardMenuItem {
 /* --END-- dashboard
 -------------------------------------------------------- */
 
-/* --START-- paymentInfo
--------------------------------------------------------- */
-export interface IPaymentInfoStepTwo {
-	name: string,
-	lastName?: string,
-	street: string,
-	houseNumber: string,
-	zip: string,
-	phone: string,
-	email: string,
-	suburb: string,
-	delegation: string,
-	state: string
-}
-/* --END-- paymentInfo
--------------------------------------------------------- */
-
 export interface IApp {
 	globalToast: IGlobalToast,
 	home: IHome,
 	dashboard: IDashboard,
 	paymentInfo: {
-		stepTwo: IPaymentInfoStepTwo
+		stepTwo: IUserAddress
 	}
 }
 export interface IApiErrorResponse {

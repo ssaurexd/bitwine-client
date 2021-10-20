@@ -9,7 +9,7 @@ const useNav = () => {
 	const onScroll = () => {
 		
 		const bodyScrollY = window.scrollY
-		const navElement = document.querySelector('.nav-main')
+		const navElement = document.querySelector('#nav-main')
 		const navHeight = navElement?.firstElementChild?.clientHeight
 		
 		if( navHeight && bodyScrollY < navHeight ) setIsScrolling( true )

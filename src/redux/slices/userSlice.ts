@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IUserAddress } from '../../interfaces/user'
 
-import { IPaymentInfoStepTwo } from '../../interfaces/appInterfaces'
 import { resetStore } from './storeSlice'
 
 
@@ -16,7 +16,7 @@ interface UserState{
 	lastName: string,
 	isLoggedIn: boolean,
 	role: Roles,
-	address: IPaymentInfoStepTwo[]
+	address: IUserAddress[]
 	loading?: boolean,
 	avatar?:string
 }
