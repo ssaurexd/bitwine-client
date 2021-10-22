@@ -19,6 +19,13 @@ export interface IProduct {
 	updatedAt: string,
 	slug: string,
 }
+export interface ISearchItem {
+	_id: string,
+	name: string,
+	categories: ICategory[],
+	img: string,
+	slug: string
+}
 
 /* --START-- create product
 -------------------------------------------------------- */
@@ -72,4 +79,9 @@ export interface IApiProductStockTopLevel {
 	ok: boolean,
 	msg: string,
 	onStock: number
+}
+export interface IApiSearchProductTopLevel {
+	ok: boolean,
+	msg: string,
+	products: IProduct[],
 }

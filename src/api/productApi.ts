@@ -5,7 +5,8 @@ import {
 	IApiUploadProductImageTopLeve,
 	IApiProductsTopLevel,
 	IApiProductTopLevel,
-	IApiProductStockTopLevel
+	IApiProductStockTopLevel,
+	IApiSearchProductTopLevel
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
 
@@ -155,6 +156,22 @@ export const getProductStockById = async ( productId: string ): Promise<IApiProd
 
 		const err = error as AxiosError<IApiProductStockTopLevel>
 		const resp = err.response?.data as IApiProductStockTopLevel
+
+		return resp
+	}
+}
+
+export const searchProductByQueryString = async ( query: string ): Promise<IApiSearchProductTopLevel> => {
+	
+	try {
+
+		const resp = await productApi.post<IApiSearchProductTopLevel>( '/search-by-query', JSON.stringify({ query }))
+
+		return resp.data
+	} catch ( error ) {
+		
+		const err = error as AxiosError<IApiSearchProductTopLevel>
+		const resp = err.response?.data as IApiSearchProductTopLevel
 
 		return resp
 	}

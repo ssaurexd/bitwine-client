@@ -16,6 +16,9 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import useStyle from './styles'
+import { ISearchItem } from '../../interfaces/productInterfaces'
+import SearchItem from './SearchItem'
+import { searchProductByQueryString } from '../../api/productApi'
 
 
 interface ISearchValues {
@@ -70,7 +73,7 @@ const CustomDialogSearch: FC<PropsDialog> = ({ onClose, open }) => {
 	const theme = useTheme()
   	const isSmall = useMediaQuery( theme.breakpoints.down('xs') )
 	const classes = useStyle({})
-	const [ products, setProducts ] = useState<any>( [] )
+	const [ products, setProducts ] = useState<ISearchItem[]>( [] )
 	const [ isLoading, setIsLoading ] = useState( false )
 	const [ msg, setMsg ] = useState( 'Buscar algo' )
 	const {
@@ -83,7 +86,7 @@ const CustomDialogSearch: FC<PropsDialog> = ({ onClose, open }) => {
 		initialValues: {
 			search: ''
 		},
-		onSubmit: () => _onSubmit(),
+		onSubmit: ({ search }) => _onSubmit( search ),
 		validationSchema: Yup.object({
 			search: Yup.string().trim().required('Ingresa un texto')
 		})
@@ -95,17 +98,35 @@ const CustomDialogSearch: FC<PropsDialog> = ({ onClose, open }) => {
 		onClose()
 	}
 	
-	const _onSubmit = async ( ) => {
+	const _onSubmit = async ( query: string ) => {
 
 		setIsLoading( true )
-		setTimeout( () => {
+		const { products, msg, ok } = await searchProductByQueryString( query )
 
-			setProducts([
-			])
-			if( products.length > 0 ) setMsg('')
-			else setMsg( 'No hay resultados' )
+		if( ok ) {
+
+			if( products.length === 0 ) setMsg( 'No hay resultados' )
+
+			setProducts(
+				products.map( prod => {
+
+					const newProduct: ISearchItem = {
+						_id: prod._id,
+						categories: prod.categories,
+						img: prod.image,
+						name: prod.name,
+						slug: prod.slug
+					}
+
+					return newProduct
+				})
+			)
 			setIsLoading( false )
-		}, 5000)
+		} else {
+
+			setProducts( [] )
+			setIsLoading( false ) 
+		}
 	}
 
 	return (
@@ -138,9 +159,11 @@ const CustomDialogSearch: FC<PropsDialog> = ({ onClose, open }) => {
 				</DialogTitle>
 				<DialogContent dividers className={ classes.dialogContent } >
 					{ isLoading && <CircularProgress color='primary' size={ 30 } /> }
-					{ !isLoading && products.map(( item: any, i: number ) => (
-						<div key={ i } >{item.name}</div>
+
+					{ !isLoading && products.map(( item, i ) => (
+						<SearchItem key={ item._id + i } item={ item } onCloseSearch={ handleClose } />
 					))}
+
 					{ !isLoading && products.length === 0 && <span>{ msg }</span> }
 				</DialogContent>
 			</form>
