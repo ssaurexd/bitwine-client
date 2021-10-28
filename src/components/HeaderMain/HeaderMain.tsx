@@ -50,7 +50,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 						variant='contained'
 						color='primary'
 						size='large'
-						hreflink='/admin'
+						hreflink='/market'
 						text='Empezar a comprar'
 						disableElevation
 					/>

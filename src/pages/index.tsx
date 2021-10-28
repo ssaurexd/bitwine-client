@@ -68,7 +68,7 @@ const app: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 	)
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<Props, any> = async () => {
 	
 	const [ salesResp, pinkWineResp, productsResp, bannerResp ] = await Promise.all([
 		getFlashSales(),

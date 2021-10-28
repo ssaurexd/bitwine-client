@@ -51,7 +51,6 @@ const SearchItem: FC<Props> = ({ item: { name, slug, img, categories }, onCloseS
 									{ category.name } <span>{ i !== categories.length - 1 ? ' / ' : '' }</span>
 								</Typography> 
 							))}
-							{console.log("🚀 ~ file: SearchItem.tsx ~ line 52 ~ categories", categories)}
 						</div>
 
 					</div>

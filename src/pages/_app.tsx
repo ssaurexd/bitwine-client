@@ -24,7 +24,7 @@ import theme from '../config/theme'
 import Toast from '../components/Toast'
 
 
-SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard, Autoplay, Thumbs]);
+SwiperCore.use([ Pagination, Navigation, Mousewheel, Keyboard, Autoplay, Thumbs ]);
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 

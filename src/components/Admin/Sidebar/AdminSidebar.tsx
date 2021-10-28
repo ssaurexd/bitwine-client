@@ -8,7 +8,6 @@ import { ChevronLeft } from '@material-ui/icons'
 
 import useStyle from './styles'
 
-import Logo from '../../Nav/Logo'
 import AdminSidebarContent from './AdminSidebarContent'
 
 
