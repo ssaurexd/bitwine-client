@@ -248,7 +248,7 @@ const CreateProduct: FC<Props> = ({ categories }) => {
 											<MenuItem key={ category._id } value={ category._id } >{ category.name }</MenuItem>
 										))}
 									</Select>
-									<FormHelperText>{ errors.categories }</FormHelperText>
+									<FormHelperText>{ errors?.categories }</FormHelperText>
 								</FormControl>
 							</Paper>
 						</Grid>

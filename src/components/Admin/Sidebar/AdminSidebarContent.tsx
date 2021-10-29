@@ -41,7 +41,7 @@ const AdminSidebarContent: FC = () => {
 		<List>
 			<div className={ classes.sidebarProfile }>
 				<div className={ classes.sidebarProfileAvatar } >
-					<Image className={ classes.sidebarProfileAvatar_img } src={ avatar ? avatar : defaultAvatar.src } alt="Avatar" objectFit='contain' />
+					<Image className={ classes.sidebarProfileAvatar_img } src={ avatar ? avatar : defaultAvatar.src } alt="Avatar" objectFit='contain' layout='fill' />
 				</div>
 			</div>
 
