@@ -3,13 +3,13 @@ import { Container } from '@material-ui/core'
 
 import Auth from '../components/init/Auth'
 import Layout from '../components/init/Layout'
-import Market from '../components/Market'
+import MarketLayout from '../components/Market'
 
 
 interface Props {
 	
 }
-const market: FC<Props> = () => {
+const Market: FC<Props> = () => {
 
 	return (
 		<Auth
@@ -17,11 +17,11 @@ const market: FC<Props> = () => {
 		>
 			<Layout haveHeader={ false } >
 				<Container>
-					<Market />
+					<MarketLayout />
 				</Container>
 			</Layout>
 		</Auth>
 	)
 }
 
-export default market
+export default Market

@@ -72,7 +72,7 @@ const Nav: FC<Props> = ({ haveHeader }) => {
 								</Grid>
 
 								{ user.isLoggedIn 
-									? <Profile />
+									? <Profile isScrolling={ isScrolling } />
 									: (
 										<>
 											<Hidden only={['sm', 'xs']} >

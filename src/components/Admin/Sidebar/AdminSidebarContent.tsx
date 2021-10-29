@@ -7,6 +7,7 @@ import {
 	ListItemIcon, 
 	ListItemText
 } from '@material-ui/core'
+import Image from 'next/image'
 import {
 	Storefront,
 	ExpandLess,
@@ -40,7 +41,7 @@ const AdminSidebarContent: FC = () => {
 		<List>
 			<div className={ classes.sidebarProfile }>
 				<div className={ classes.sidebarProfileAvatar } >
-					<img className={ classes.sidebarProfileAvatar_img } src={ avatar ? avatar : defaultAvatar.src } alt="Avatar" />
+					<Image className={ classes.sidebarProfileAvatar_img } src={ avatar ? avatar : defaultAvatar.src } alt="Avatar" objectFit='contain' />
 				</div>
 			</div>
 

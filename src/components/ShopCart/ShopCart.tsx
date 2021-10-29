@@ -83,10 +83,11 @@ const ShopCart: FC = () => {
 												src={ getLinkImage( prod.image ) }
 												layout='fill'
 												objectFit='contain'
+												alt={ prod.name }
 											/>
 										</div>
 										<div className={ classes.descProduct } >
-											<Link href={ `/product/${ prod.slug }` } >
+											<Link href={ `/product/${ prod.slug }` } passHref={ true } >
 												<Typography onClick={ () => setOpenDrawer( false ) } component='a' variant='body1' >{ prod.name }</Typography>
 											</Link>
 											<Typography variant='body2' >Cantidad: { prod.count }</Typography>

@@ -37,12 +37,12 @@ const useStyle = makeStyles( ( theme ) => ({
 		width: 100,
 		height: 100,
 		borderRadius: '100%',
-		overflow: 'hidden'
+		overflow: 'hidden',
+		position: 'relative'
 	},
 	sidebarProfileAvatar_img: {
 		width: '100%',
 		height: '100%',
-		objectFit: 'contain'
 	},
 	listItemActiveLink: {
 		borderRight: `3px solid ${ theme.palette.secondary.main }`,

@@ -25,14 +25,17 @@ import { useRouter } from 'next/router'
 import { resetStore } from '../../redux/slices/storeSlice'
 
 
-const Profile: FC = () => {
+interface Props {
+	isScrolling: boolean
+}
+const Profile: FC<Props> = ({ isScrolling }) => {
 
 	/* hooks */
 	const [ anchorEl, setAnchorEl ] = useState<null | HTMLElement>( null )
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
 	const location = useRouter()
-	const classes = useStyle()
+	const classes = useStyle({ isScrolling })
 	const open = Boolean( anchorEl )
 
 	/* funtions */

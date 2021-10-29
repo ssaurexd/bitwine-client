@@ -6,7 +6,7 @@ import FooterMain from '../components/FooterMain'
 import Auth from '../components/init/Auth'
 
 
-const custom404: FC = () => {
+const Custom404: FC = () => {
 	return (
 		<Auth
 			admitedRoles={['admin', 'guest', 'user']}
@@ -44,4 +44,4 @@ const custom404: FC = () => {
 	)
 }
 
-export default custom404
+export default Custom404

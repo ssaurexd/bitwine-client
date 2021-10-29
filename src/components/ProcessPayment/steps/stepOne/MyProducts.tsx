@@ -15,7 +15,7 @@ import { deleteItemStoreThunk } from '../../../../redux/middlewares/storeMiddlew
 import { getLinkImage } from '../../../../helpers/helpers'
 import useStyle from '../../styles'
 
-import Counter from '../../../Counter/Counter'
+import Counter from '../../../Counter'
 import TotalInfo from '../../TotalInfo'
 
 
@@ -50,6 +50,7 @@ const MyProducts: FC<Props> = ({ onNextStep }) => {
 												src={ getLinkImage( prod.image ) }
 												layout='fill'
 												objectFit='contain'
+												alt={ prod.name }
 											/>
 										</div>
 										<div className={ classes.descProduct } >

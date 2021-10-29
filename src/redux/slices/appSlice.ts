@@ -3,9 +3,9 @@ import {
 	IApp,
 	IChangeDashboardMenuItem,
 	IGlobalToast,
-	IHome,
-	IPaymentInfoStepTwo
+	IHome
 } from '../../interfaces/appInterfaces'
+import { IUserAddress } from '../../interfaces/user'
 
 
 const initialState: IApp = {
@@ -101,7 +101,7 @@ const appSlice = createSlice({
 				}
 			}
 		},
-		setStepTwoPaymentInfo: ( state, action: PayloadAction<IPaymentInfoStepTwo> ) => {
+		setStepTwoPaymentInfo: ( state, action: PayloadAction<IUserAddress> ) => {
 
 			state.paymentInfo.stepTwo = action.payload
 		}

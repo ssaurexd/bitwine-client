@@ -3,10 +3,10 @@ import { NextPage } from 'next'
 import FooterMain from '../components/FooterMain'
 import Auth from '../components/init/Auth'
 import Layout from '../components/init/Layout'
-import ProcessPayment from '../components/ProcessPayment'
+import ProcessPaymentLayout from '../components/ProcessPayment'
 
 
-const processPayment: NextPage = () => {
+const ProcessPayment: NextPage = () => {
 
 	return (
 		<Auth
@@ -14,7 +14,7 @@ const processPayment: NextPage = () => {
 		>
 			<Layout >
 				<main className='main-100-vh' >
-					<ProcessPayment />
+					<ProcessPaymentLayout />
 				</main>
 				<FooterMain />
 			</Layout>
@@ -22,4 +22,4 @@ const processPayment: NextPage = () => {
 	)
 }
 
-export default processPayment
+export default ProcessPayment

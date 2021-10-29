@@ -40,6 +40,7 @@ const SearchItem: FC<Props> = ({ item: { name, slug, img, categories }, onCloseS
 							objectFit='contain'
 							width={ 30 }
 							height={ 30 }
+							alt={ name }
 						/>
 					</div>
 

@@ -11,10 +11,10 @@ import {
 
 import useStyle from '../../styles'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks'
-import { IPaymentInfoStepTwo } from '../../../../interfaces/appInterfaces'
+import { IUserAddress } from '../../../../interfaces/user'
+import { setStepTwoPaymentInfo } from '../../../../redux/slices/appSlice'
 
 import Btn from '../../../Btn'
-import { setStepTwoPaymentInfo } from '../../../../redux/slices/appSlice'
 
 
 interface Props {
@@ -28,7 +28,7 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 	const dispatch = useAppDispatch()
 	const { isLoggedIn, email } = useAppSelector( state => state.user )
 	const { paymentInfo } = useAppSelector( state => state.app )
-	const formik = useFormik<IPaymentInfoStepTwo>({
+	const formik = useFormik<IUserAddress>({
 		initialValues: {
 			...paymentInfo.stepTwo,
 			email: isLoggedIn ? email : paymentInfo.stepTwo.email,
@@ -60,7 +60,7 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 		}
 	}
 
-	const handleSubmit = ( values: IPaymentInfoStepTwo ) => {
+	const handleSubmit = ( values: IUserAddress ) => {
 		
 		dispatch( setStepTwoPaymentInfo( values ) )
 	}

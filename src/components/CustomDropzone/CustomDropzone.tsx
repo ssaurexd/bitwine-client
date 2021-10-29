@@ -1,10 +1,11 @@
 import { FC, useState } from 'react'
 import clsx from 'clsx'
+import Image from 'next/image'
 import Dropzone, {
 	DropzoneProps
 } from 'react-dropzone'
 import { Backup } from '@material-ui/icons'
-import { Card, Paper, Typography } from '@material-ui/core'
+import { Card, Typography } from '@material-ui/core'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import useStyle from './styles'
@@ -72,7 +73,7 @@ const CustomDropzone: FC<Props> = ( props ) => {
 
 									<SwiperSlide key={`${ file.name }-${ index }`} className={ classes.swiperSlide } >
 										<div className={ classes.imgContainer } >
-											<img className={ classes.preview } src={ URL.createObjectURL( file ) } alt={ file.name } />
+											<Image className={ classes.preview } src={ URL.createObjectURL( file ) } alt={ file.name } objectFit='contain' />
 										</div>
 									</SwiperSlide>
 								))}

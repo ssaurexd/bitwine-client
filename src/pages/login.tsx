@@ -3,7 +3,7 @@ import LoginScreen from '../components/screens/LoginScreen'
 import Layout from '../components/init/Layout'
 
 
-const login = ( ) => {
+const Login = ( ) => {
 
 	return (
 		<Auth
@@ -19,4 +19,4 @@ const login = ( ) => {
 	)
 }
 
-export default login
+export default Login

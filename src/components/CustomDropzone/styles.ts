@@ -50,7 +50,6 @@ const useStyle = makeStyles<Theme, StyleProps>( ( theme ) => ({
 		height: '100%',
 		maxHeight: 200,
 		maxWidth: 250,
-		objectFit: 'contain',
 		borderRadius: globalStyles.shape.borderRadius2
 	},
 	isDropping: {
