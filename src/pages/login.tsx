@@ -1,29 +1,20 @@
 import Auth from '../components/init/Auth'
-import Login from '../components/screens/Login'
-import HeaderMain from '../components/HeaderMain'
-import FooterMain from '../components/FooterMain'
+import LoginScreen from '../components/screens/LoginScreen'
+import Layout from '../components/init/Layout'
 
 
 const login = ( ) => {
 
 	return (
 		<Auth
-			admitedRoles={ ['none'] }
-			needToRedirect={ false }
-			redirectTo={ '/' }
+			admitedRoles={ ['guest'] }
+			redirectTo='/'
 		>
-			<>
-				<main>
-					<HeaderMain 
-						title='Iniciar sesión'
-						subTitle='Unete al más grande tienda en linea para los amantes del vino'
-					/>
-					
-					<Login />
+			<Layout haveHeader >
+				<main className='login-main' >
+					<LoginScreen />
 				</main>
-
-				<FooterMain />
-			</>
+			</Layout>
 		</Auth>
 	)
 }

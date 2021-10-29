@@ -2,27 +2,29 @@ import { FC } from 'react'
 import  Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import SwiperCore, {
 	Pagination,
 	Navigation,
 	Mousewheel,
 	Keyboard,
-	Autoplay
+	Autoplay,
+	Thumbs
 } from 'swiper/core'
 import 'swiper/swiper.min.css'
 import 'swiper/components/navigation/navigation.min.css'
 import 'swiper/components/pagination/pagination.min.css'
+import 'swiper/components/thumbs/thumbs.min.css'
+import 'suneditor/dist/css/suneditor.min.css'
 
 import '../styles/styles.scss'
 import store from '../redux/store'
 import theme from '../config/theme'
 
-import Layout from '../components/init/Layout'
 import Toast from '../components/Toast'
 
 
-SwiperCore.use([Pagination, Navigation, Mousewheel, Keyboard, Autoplay]);
+SwiperCore.use([ Pagination, Navigation, Mousewheel, Keyboard, Autoplay, Thumbs ]);
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
@@ -30,14 +32,11 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 		<Provider store={ store } >
 			<Head>
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-				<title>BitBlog - Best API for getting a blog</title>
 			</Head>
-			
-			<ThemeProvider theme={ theme } >
-				<Layout>
-					<Component { ...pageProps } />
-				</Layout>
 
+			<ThemeProvider theme={ theme } >
+				<CssBaseline />
+				<Component { ...pageProps } />
 				<Toast />
 			</ThemeProvider>
 		</Provider>

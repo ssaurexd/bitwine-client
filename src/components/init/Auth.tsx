@@ -1,24 +1,23 @@
 import { FC, ReactElement } from 'react'
+
 import useAuth from '../../hooks/useAuth'
+import { Roles } from '../../redux/slices/userSlice'
 
 import GlobalLoading from '../GlobalLoading'
 
 
 interface Props {
 	children: ReactElement,
-	admitedRoles: Array<string>,
-	needToRedirect: boolean,
-	redirectTo: string 
+	admitedRoles: Roles[],
+	redirectTo?: string 
 }
 
-const Auth: FC<Props> = ({ admitedRoles, children, needToRedirect, redirectTo }) => {
+const Auth: FC<Props> = ({ admitedRoles, children, redirectTo = '/login' }) => {
 
 	/* hooks */
-	const { globalLoading } = useAuth({ admitedRoles, needToRedirect, redirectTo })
+	const { globalLoading } = useAuth({ admitedRoles, redirectTo })
 
-	if( globalLoading ) return <GlobalLoading show={ globalLoading } />
-
-	return  children 
+	return ( globalLoading ? <GlobalLoading show={ true } /> : children )
 }
 
 export default Auth

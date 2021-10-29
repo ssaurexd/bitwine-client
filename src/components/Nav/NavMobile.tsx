@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import {
 	Drawer,
 	List,
@@ -13,8 +12,7 @@ import {
 	ListItemAvatar,
 	ListItemText,
 	Avatar,
-	Hidden,
-	Container
+	Hidden
 } from '@material-ui/core'
 import { 
 	MenuOpen,
@@ -25,25 +23,26 @@ import {
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import useStyle from './styles'
-import { userAuthLogOut } from '../../helpers/userApi'
+import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'
-import CustomSearch from './CustomSearch'
+import CustomSearch from '../CustomSearch/CustomSearch'
 
 
 interface Props {
 	open: boolean,
-	onClose: () => void
+	onClose: () => void,
+	isScrolling: boolean
 }
 
-const NavMobile: FC<Props> = ({ open, onClose }) => {
+const NavMobile: FC<Props> = ({ open, onClose, isScrolling }) => {
 
 	/* hooks */
 	const location = useRouter()
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
-	const classes = useStyle( )
+	const classes = useStyle({ isScrolling })
 	
 	/* state */
 	const pathName = location.pathname
@@ -60,7 +59,11 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 		
 		const { ok } = await userAuthLogOut()
 
-		if( ok ) dispatch( logOut() ) 
+		if( ok ) {
+
+			dispatch( logOut() ) 
+			location.push( '/' )
+		} 
 	}
 
 	return (
@@ -68,10 +71,13 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 			open={ open }
 			anchor='left'
 			onClose={ onClose }
-			className='nav-main'
+			className='nav-mobile-main'
+			classes={{
+				paper: classes.drawerPaper
+			}}
 		>
-			<Grid container justify='space-between' alignItems='center' direction='column' >
-				<Grid container item justify='flex-end' direction='row' >
+			<Grid container justifyContent='space-between' alignItems='center' direction='column' >
+				<Grid container item justifyContent='flex-end' direction='row' >
 					<Grid item  >
 						<IconButton onClick={ onClose }>
 							<MenuOpen />
@@ -79,7 +85,7 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 					</Grid>
 				</Grid>
 
-				<Grid container item direction='column' justify='space-between' >
+				<Grid container item direction='column' justifyContent='space-between' >
 					<Grid item >
 						<List>
 							{ user.isLoggedIn && 
@@ -135,11 +141,6 @@ const NavMobile: FC<Props> = ({ open, onClose }) => {
 
 						</List>
 					</Grid>
-					<Hidden only={['sm']} >
-						<ListItem>
-							<CustomSearch transparent={ false } onMobile />
-						</ListItem>
-					</Hidden>
 				</Grid>
 			</Grid>
 		</Drawer>

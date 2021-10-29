@@ -1,19 +1,17 @@
 import { FC } from 'react'
-import { CssBaseline } from '@material-ui/core'
 
 import Nav from '../Nav'
 
 
 interface Props {
-	children: JSX.Element
+	haveHeader?: boolean
 }
 
-const Layout: FC<Props> = ( { children } ) => {
+const Layout: FC<Props> = ({ children, haveHeader = false }) => {
 
 	return (
 		<>
-			<CssBaseline />
-			<Nav />
+			<Nav haveHeader={ haveHeader } />
 			{ children }
 		</>
 	)

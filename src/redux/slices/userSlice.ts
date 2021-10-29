@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IUserAddress } from '../../interfaces/user'
+
+import { resetStore } from './storeSlice'
 
 
 export type Roles = 
-	'' |
+	'guest' |
 	'user' |
 	'admin'
 
@@ -13,6 +16,7 @@ interface UserState{
 	lastName: string,
 	isLoggedIn: boolean,
 	role: Roles,
+	address: IUserAddress[]
 	loading?: boolean,
 	avatar?:string
 }
@@ -22,8 +26,9 @@ const initialState: UserState = {
 	email: '',
 	name: '',
 	lastName: '',
-	role: '',
+	role: 'guest',
 	avatar: '',
+	address: [],
 	isLoggedIn: false,
 	loading: false
 }
@@ -55,6 +60,10 @@ export const userSlice = createSlice({
 		logOut: ( state ) => {
 			
 			localStorage.removeItem( 'isLoggedIn' )
+			localStorage.removeItem( 'token' )
+			localStorage.removeItem( 'rememberMe' )
+			
+			resetStore()
 			return initialState
 		}
 	}

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Typography } from '@material-ui/core'
+import { Divider, Typography } from '@material-ui/core'
 
 import CustomButtonLink from '../CustomButtonLink'
-import defaultBanner from '../../../public/assets/images/defaultBanner.jpg'
+import defaultBanner from '../../../public/assets/images/defaultHeaderBG.jpg'
 
 
 interface Props {
@@ -15,8 +15,6 @@ interface Props {
 }
 
 const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, bottomShadow = false }) => {
-
-	/* state */
 
 	return (
 		<header className={`header-main ${ bottomShadow && 'shadow' }`}> 
@@ -32,13 +30,19 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 			<div className="header-main__container">
 				<div className="title-container">
 					<Typography 
-						variant='h1'
+						variant='h2'
 						className='title-container__h1'
 					>
 						{ title }
 					</Typography>
 
-					{ subTitle && <p className='title-container__subTitle' >{ subTitle }</p> }
+					{ subTitle && 
+						<>
+							<Divider className='header-main__divider' variant='middle' />
+							<p className='title-container__subTitle' >{ subTitle }
+							</p> 
+						</>
+					}
 				</div>
 
 				{ showBtn &&
@@ -46,8 +50,8 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 						variant='contained'
 						color='primary'
 						size='large'
-						hreflink='/pricing'
-						text='Go Shopping'
+						hreflink='/market'
+						text='Empezar a comprar'
 						disableElevation
 					/>
 				}

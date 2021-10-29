@@ -10,11 +10,8 @@ const useStyle = makeStyles( theme => ({
 		alignItems: 'center',
 		boxShadow: theme.shadows[2],
 		padding: theme.spacing(3),
-		borderRadius: globalStyles.shape.borderRadius
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
+		borderRadius: globalStyles.shape.borderRadius2,
+		backgroundColor: 'white'
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.

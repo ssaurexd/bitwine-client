@@ -29,7 +29,7 @@ const FooterMain: FC = () => {
 							<Grid item >
 								<Typography variant='h5' color='initial' >BitWine</Typography>		
 								<Typography variant='body2'>
-									Best market place to buy wines
+									El mejor lugar para comprar vino
 								</Typography>
 							</Grid>
 
@@ -145,18 +145,19 @@ const FooterMain: FC = () => {
 				<Divider variant='middle' className='footer-main__divider' />
 
 				<div className='footer-main__rights'>
-					<Grid container justify='space-between' alignItems='center'>
+					<Grid container justifyContent='space-between' alignItems='center'>
 						<Grid item sm={ 6 } >
 							<Typography variant='body2' >
 								All rights reserverd BitWines { currentYear }
 							</Typography>
 						</Grid>
-						<Grid container item spacing={ 1 } xs={ 12 } sm={ 6 } justify='flex-end' wrap='nowrap' >
+						<Grid container item spacing={ 1 } xs={ 12 } sm={ 6 } justifyContent='flex-end' wrap='nowrap' >
 							<Grid item >
 								<Image 
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-amex.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img1'
 								/>
 							</Grid>
 							<Grid item >
@@ -164,6 +165,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-mastercard.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img2'
 								/>
 							</Grid>
 							<Grid item >
@@ -171,6 +173,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-visa.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img3'
 								/>
 							</Grid>
 							<Grid item >
@@ -178,6 +181,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-secure.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img4'
 								/>
 							</Grid>
 							<Grid item >
@@ -185,6 +189,7 @@ const FooterMain: FC = () => {
 									src='https://www.thewineshops.com/media/wysiwyg/cms/i/c/icon-privacy.svg'
 									width={ 50 }
 									height={ 50 }
+									alt='footer img5'
 								/>
 							</Grid>
 						</Grid>

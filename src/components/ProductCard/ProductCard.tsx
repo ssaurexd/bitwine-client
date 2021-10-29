@@ -1,7 +1,6 @@
-import { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
-import { 
-	FavoriteBorder, 
+import {
 	AddShoppingCart,
 	Favorite 
 } from '@material-ui/icons'
@@ -9,38 +8,29 @@ import { IconButton, Typography } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
-import defaultProduct from '../../../public/assets/images/products/default.png'
-import useShopCart from '../../hooks/useShopCart'
-
-import CustomButtonLink from '../CustomButtonLink'
+import { IProduct } from '../../interfaces/productInterfaces'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
+import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
+import { IStoreItem } from '../../interfaces/storeIntergaces'
+import { getLinkImage } from '../../helpers/helpers'
+
+import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
-	product?: any, //TODO: Agregar interface de producto,
+	product: IProduct,
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
 
+	const haveDiscount = product.discount > 0 ? true : false 
+
 	/* hooks */
 	const classes = useStyle()
-	const [ isOnWishList, setIsOnWishList ] = useState<boolean>( false )
-	const [ haveDiscount, setHaveDiscount ] = useState<boolean>( true )
 	const dispatch = useAppDispatch()
 
 	/* funtions */
-	const checkIsInWishList = ( productId: string ) =>  {
-		
-		const userWishList: [{ id: string }] = [{ id: '123' }]
-		const isProductOnTheList = userWishList.find( item => item.id === productId )
-
-		if( isProductOnTheList ) {
-			return setIsOnWishList( true )
-		}
-
-		setIsOnWishList( false )
-	}
 
 	const onAddToWishList = () => {
 		
@@ -52,10 +42,22 @@ const ProductCard: FC<Props> = ({ product }) => {
 		}))
 	}
 
-	useEffect( () => {
+	const onAddToShopCart = () => {
+		
+		const item: IStoreItem = {
+			_id: product._id,
+			count: 1,
+			description: product.description,
+			discount: product.discount,
+			image: product.image,
+			price: product.price,
+			priceWithDiscount: product.priceWithDiscount,
+			slug: product.slug,
+			name: product.name
+		}
 
-		checkIsInWishList('123')
-	}, [ isOnWishList ])
+		dispatch( addItemStoreThunk({ item, type: 'shopCart' }) )
+	}
 
 	return (
 		<div className={`product-card ${ classes.productCard }`} >
@@ -63,58 +65,54 @@ const ProductCard: FC<Props> = ({ product }) => {
 				<div className="product-card__header__extra-info">
 					{ haveDiscount ?
 						<div className="product-card__header__extra-info__discount">
-							<span>-100% off</span>
+							<span>-{ product.discount }% off</span>
 						</div> : <span></span>
 					}
 
 					<div className="product-card__header__extra-info__icons">
 						<IconButton
 							size='small'
+							onClick={ onAddToShopCart }
 						>
-							<AddShoppingCart fontSize='default' />
+							<AddShoppingCart fontSize='medium' />
 						</IconButton>
 						
 						<IconButton
 							size='small'
 							onClick={ onAddToWishList }
 						>
-							{ isOnWishList
-								? <Favorite fontSize='default' color='secondary'/>
-								: <FavoriteBorder fontSize='default' color='secondary'/>
-							}
+							<Favorite fontSize='medium'/>
 						</IconButton>
 					</div>
 				</div>
 
-				<div className="product-card__header__image">
-					<Image 
-						src={ defaultProduct.src }
-						layout='fill'
-					/>
-				</div>
+				<Image 
+					src={ getLinkImage( product.image ) }
+					layout='fill'
+					objectFit='contain'
+					className='product-card__header__image-img'
+					alt={ product.name }
+				/>
 			</div>
 
 			<div className="product-card__body">
 				<Rating defaultValue={ 4 } max={ 5 } size='small' readOnly />
 				<div className="product-card__body__title">
-					<Typography variant='h6' >Titulo de Ejemplo </Typography>
-					<Typography variant='body2' >
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quisquam... 
-					</Typography>
+					<Typography variant='h6' >{ product.name.slice( 0, 40 ) } { product.name.length > 40 && '...' }</Typography>
 				</div>
 			</div>
 
 			<div className="product-card__footer">
 				<div className="product-card__footer__prices">
-					<span className='main-price' >$55</span>
-					<span className='second-price' >$250</span>
+					{ product.discount > 0 && <span className='second-price' >${ product.price }</span> } 
+					<span className='main-price' >${ product.discount > 0 ? product.priceWithDiscount : product.price }</span>
 				</div>
 				
 				<CustomButtonLink
-					hreflink={`/product/`}
+					hreflink={`/product/${ product.slug }`}
 					text='Comprar'
 					variant='outlined'
-					color='secondary'
+					color='primary'
 					size='small'
 				/>
 			</div>

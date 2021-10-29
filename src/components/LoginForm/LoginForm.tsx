@@ -12,7 +12,7 @@ import { Alert } from '@material-ui/lab'
 import { Formik } from 'formik'
 
 import useStyle from './styles'
-import { userAuthLogin } from '../../helpers/userApi'
+import { userAuthLogin } from '../../api/userApi'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { logIn, logInStart, logInFail } from '../../redux/slices/userSlice'
 
@@ -36,7 +36,7 @@ const LoginForm: FC = () => {
 	/* state */
 	const initialValues: FormValues = {
 		email: 'ssaurexd@gmail.com',
-		password: '',
+		password: '1234',
 		rememberMe: false
 	}
 	const [ msgError, setMsgError ] = useState<string | undefined>( '' )
@@ -44,15 +44,19 @@ const LoginForm: FC = () => {
 	/* funtions */
 	const _Submit = async ( values: FormValues ) => {
 
-		const { ok, user, msg } = await userAuthLogin( values )
-		
 		dispath( logInStart() )
+		
+		const { ok, user, msg, token } = await userAuthLogin( values )
 
 		if( ok ) { 
 
 			dispath( logIn({ ...user, isLoggedIn: true }) )
 			
-			if( values.rememberMe ) localStorage.setItem('rememberMe', JSON.stringify( values.rememberMe ) )
+			if( values.rememberMe ){
+
+				localStorage.setItem( 'rememberMe', JSON.stringify( values.rememberMe ) )
+				localStorage.setItem( 'token', token )
+			}	
 		} else {
 
 			dispath( logInFail() )
@@ -79,7 +83,6 @@ const LoginForm: FC = () => {
 								<Alert variant='outlined' severity='error'>{ msgError }</Alert>
 							}
 							<TextField
-								variant="outlined"
 								color='primary'
 								margin="normal"
 								fullWidth
@@ -87,22 +90,18 @@ const LoginForm: FC = () => {
 								placeholder='ejemplo@ejemplo.com'
 								name="email"
 								autoComplete="email"
-								autoFocus
-								size='small'
 								error={ errors.email ? true : false }
 								value={ values.email }
 								onChange={ handleChange }
 							/>
 
 							<TextField
-								variant="outlined"
 								color='primary'
 								margin="normal"
 								fullWidth
 								name="password"
 								label="Contraseña"
 								type="password"
-								size='small'
 								autoComplete="current-password"
 								error={ errors.password ? true : false }
 								value={ values.password }
@@ -113,7 +112,7 @@ const LoginForm: FC = () => {
 								control={( 
 									<Checkbox 
 										color="primary"
-										name='remenberMe' 
+										name='rememberMe' 
 										value={ values.rememberMe }
 										onChange={ handleChange }
 									/>

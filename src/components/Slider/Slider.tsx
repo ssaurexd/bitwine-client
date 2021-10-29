@@ -1,19 +1,23 @@
 import { FC, ReactElement } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Button, Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
 import useStyle from './styles'
+import { IProduct } from '../../interfaces/productInterfaces'
+
 import ProductCard from '../ProductCard'
+import CustomButtonLink from '../CustomButtonLink'
 
 
 interface Props {
 	title: string,
-	titleIcon?: ReactElement
+	titleIcon?: ReactElement,
+	category: string,
+	products: IProduct[]
 }
-const fakeData: Array<any> = [ '','','','','','','','','','','','' ]
 
-const Slider: FC<Props> = ({ title, titleIcon }) => {
+const Slider: FC<Props> = ({ title, titleIcon, products, category }) => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -22,19 +26,25 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 		<Container>
 			<section className='slider-main'>
 				<div className="slider-main__title-container">
-					<Typography variant='h4' > 
-						{ titleIcon && titleIcon }
-						{ title }
-					</Typography>
-					<Button 
-						variant='text'
-						color='primary'
-						size='small'
-						endIcon={ <ArrowRightIcon /> }
-					>
-						Ver todo
-					</Button>
+					<div className='divider'>
+						<Typography variant='h4'> 
+							{ titleIcon && titleIcon }
+							{ title }
+						</Typography>
+					</div>
+
+					<div className='see-more'>
+						<CustomButtonLink 
+							hreflink={ `/market?category=${ category }` }
+							text='Ver todo'
+							color='default'
+							variant='text'
+							size='small'
+							endIcon={ <ArrowRightIcon /> }
+						/>
+					</div>
 				</div>
+				
 				<Swiper
 					slidesPerView={'auto'}
 					spaceBetween={ 40 }
@@ -43,9 +53,9 @@ const Slider: FC<Props> = ({ title, titleIcon }) => {
 					lazy={ true }
 				>
 					{
-						fakeData.map(( item, index ) => (
-							<SwiperSlide key={ index + 'P' } >
-								<ProductCard  />
+						products.map(( product ) => (
+							<SwiperSlide key={ product._id } >
+								<ProductCard product={ product } />
 							</SwiperSlide>
 						))
 					}

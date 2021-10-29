@@ -1,75 +1,87 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { AxiosError } from 'axios'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { userAuthRefreshToken, userAuthLogOut } from '../helpers/userApi'
-import { logIn, logOut } from '../redux/slices/userSlice'
+import { userAuthRefreshToken, userAuthLogOut } from '../api/userApi'
+import { logIn, logOut, Roles } from '../redux/slices/userSlice'
+import { getIsLoggedIn, getRememberMe } from '../helpers/auth'
+import { initStore } from '../redux/middlewares/storeMiddlewares'
+import { IAPIRefreshTokenTopLevel } from '../interfaces/user'
 
 
 interface Props {
-	admitedRoles: Array<string>,
-	needToRedirect: boolean,
+	admitedRoles: Roles[],
 	redirectTo: string 
 }
-/* rutas en la que no se puede acceder si esta logeado */
-const pathsAuth: Array<string> = ['/login', '/signup']
 
-const useAuth = ( { admitedRoles, needToRedirect, redirectTo }: Props ) => {
+const useAuth = ({ admitedRoles, redirectTo }: Props ) => {
 
+	/* hooks */
 	const { role, isLoggedIn } = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
 	const location = useRouter()
-
-	/* state */
-	const [ globalLoading, setGlobalLoading ] = useState( false )
-	const [ needToCheck, setNeedToCheck ] = useState<string | null>( null )
-	
+	const [ globalLoading, setGlobalLoading ] = useState( true )
 
 	/* funtions */
 	const fetchUser = async ( ) => {
+
+		const hasSession = getIsLoggedIn()
+
+		if( hasSession ) {
+
+			try {
+				
+				const { user, token } = await userAuthRefreshToken()
+
+				dispatch( logIn({ ...user, isLoggedIn: true }) )
+				dispatch( initStore() )
+
+				if( getRememberMe() ) {
+					localStorage.setItem( 'token', token )
+				}
+			} catch ( error ) {
+
+				const err = error as AxiosError<IAPIRefreshTokenTopLevel>
+				const resp = err.response?.data as IAPIRefreshTokenTopLevel
+				
+				if( resp.expired ) {
+	
+					const { ok } = await userAuthLogOut()
 		
-		setGlobalLoading( true )
+					if( ok ) dispatch( logOut() )
+					return
+				}
 
-		const { ok, user, expired } = await userAuthRefreshToken()
+				location.push( '/' )
+				setGlobalLoading( false )
+				dispatch( logOut() )
+				return
+			}
+		} else {
 
-		if( ok ) {
-
-			dispatch( logIn({ ...user, isLoggedIn: true }) )
-		} else if( expired ) {
-
-			const { ok } = await userAuthLogOut()
-
-			if( ok ) dispatch( logOut() )
+			checkUserStatus()
 		}
-
-		setGlobalLoading( false )
 	}
 	
-	const checkUserStatus = (): void => {
+	const checkUserStatus = () => {
 
-		const userCanAccess: boolean = isLoggedIn && admitedRoles.includes( role )
+		const userCanAccess: boolean = admitedRoles.includes( role )
 
-		if( !userCanAccess && needToRedirect ) {
-			location.push( redirectTo )
-		}
-
-		if( isLoggedIn && pathsAuth.includes( location.pathname ) ) {
-			location.push( redirectTo )
-		}
+		if( !userCanAccess ) location.push( redirectTo ) 
+		setGlobalLoading( false )
 	}
 
 	useEffect( () => {
-		
-		setNeedToCheck( localStorage.getItem('isLoggedIn') )
-		
-		if( needToCheck ) fetchUser()
-	}, [ needToCheck ])
+
+		fetchUser()
+	}, [])
 
 	useEffect( () => {
-		
-		checkUserStatus()
-	}, [ isLoggedIn ])
 
+		if( isLoggedIn ) checkUserStatus()
+	}, [ isLoggedIn ])
+ 
 	return {
 		globalLoading
 	}

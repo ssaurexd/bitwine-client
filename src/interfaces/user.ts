@@ -4,7 +4,8 @@ import { Roles } from '../redux/slices/userSlice'
 export interface IAPILoginTopLevel {
 	ok:    boolean;
 	user:  IAPIUser,
-	msg?: string
+	msg?: string,
+	token: string
 }
 export interface IAPIUser {
 	role:      Roles;
@@ -12,13 +13,28 @@ export interface IAPIUser {
 	email:     string;
 	name:      string;
 	lastName:  string;
+	address: IUserAddress[]
+}
+
+export interface IUserAddress {
+	name: string,
+	lastName?: string,
+	street: string,
+	houseNumber: string,
+	zip: string,
+	phone: string,
+	email: string,
+	suburb: string,
+	delegation: string,
+	state: string
 }
 
 // /refresh-token
 export interface IAPIRefreshTokenTopLevel {
 	ok: boolean,
 	user: IAPIUser,
-	msg?: string,
+	msg: string,
+	token: string
 	expired?: boolean
 }
 

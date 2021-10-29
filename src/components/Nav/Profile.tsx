@@ -19,8 +19,10 @@ import {
 
 import useStyle from './styles'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { userAuthLogOut } from '../../helpers/userApi'
+import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
+import { useRouter } from 'next/router'
+import { resetStore } from '../../redux/slices/storeSlice'
 
 
 const Profile: FC = () => {
@@ -29,9 +31,9 @@ const Profile: FC = () => {
 	const [ anchorEl, setAnchorEl ] = useState<null | HTMLElement>( null )
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
+	const location = useRouter()
 	const classes = useStyle()
-
-	const open = Boolean(anchorEl);
+	const open = Boolean( anchorEl )
 
 	/* funtions */
 	const handleClick = ( event: MouseEvent<HTMLElement> ) => {
@@ -45,7 +47,12 @@ const Profile: FC = () => {
 		
 		const { ok } = await userAuthLogOut()
 
-		if( ok ) dispatch( logOut() ) 
+		if( ok ) {
+
+			dispatch( logOut() ) 
+			dispatch( resetStore() )
+			location.push( '/' )
+		} 
 	}
 
 	return (

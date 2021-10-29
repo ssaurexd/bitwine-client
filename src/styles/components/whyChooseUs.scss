@@ -1,0 +1,20 @@
+@media #{ $xs } {
+	.why-choose-us-main{
+		margin-top: $ms;
+		margin-bottom: $ms2;
+		.why-choose-us-main__cards-container {
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			flex-wrap: wrap;
+			margin-top: $ms;
+			&__card {
+				min-width: 250px;
+				min-height: 200px;
+				max-width: 250px;
+				max-height: 200px;
+			}
+		}
+	}
+}

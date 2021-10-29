@@ -1,4 +1,14 @@
-@media #{ $xs } { 
+@media #{ $xs } {
+	.login-main {
+		min-height: 100vh;
+		background-image: url('../../../public/assets/images/defaultLoginBG.jpg');
+		background-size: cover;
+		background-color: black;
+		background-position: center right;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 	.btn-google, .btn-fb {
 		width: 100%;
 		display: inline-block;
@@ -33,7 +43,7 @@
 	.btn-google{
 		background: #FFF;
 		margin-bottom: 20px;
-		border-radius: 25px;
+		border-radius: $br2;
 		&:hover{
 			background-color: darken($color: #fff, $amount: 5);
 			cursor: pointer;
@@ -48,7 +58,7 @@
 		
 	.btn-fb{
 		padding-top: 1.5px;
-		border-radius: 25px;
+		border-radius: $br2;
 		background: #4267b2;
 		&:hover{
 			background-color: darken($color: #4267b2, $amount: 5);
