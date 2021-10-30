@@ -1,3 +1,3 @@
 export const settings = {
-	BASE_PATH: 'http://localhost:3001'
+	BASE_PATH: 'https://bitwine-server.herokuapp.com'
 }
