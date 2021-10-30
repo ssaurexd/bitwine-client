@@ -52,7 +52,7 @@ const OurProductCard: FC<Props> = ({ product }) => {
 			<CardActionArea className={ classes.cardActionArea } >
 				<Link href={ `/product/${ product.slug }` } >
 					<a>
-						<CardMedia className={ classes.cardMedia } image={ getLinkImage( product.image ) } />
+						<CardMedia classes={{ root: classes.cardMedia }} image={ getLinkImage( product.image ) } />
 						<CardContent>
 							<Typography variant='subtitle1' color='textSecondary' >
 								{ product.name }
