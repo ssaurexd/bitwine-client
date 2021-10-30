@@ -17,7 +17,7 @@ const useStyle = makeStyles( ( theme ) => ({
 	cardMedia: {
 		height: 0,
 		paddingTop: '56.25%',
-		backgroundSize: 'contain'
+		backgroundSize: 'contain !important'
 	},
 	gridContainer: {
 		margin: theme.spacing( 3, 0 ),
