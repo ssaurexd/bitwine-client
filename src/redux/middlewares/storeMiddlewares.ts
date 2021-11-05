@@ -12,6 +12,7 @@ import {
 	IUpdateItemStore,
 } from '../../interfaces/storeIntergaces'
 import { getTotalShopCart } from '../../helpers/helpers'
+import { getRememberMe, getToken } from '../../helpers/auth'
 
 
 const initialState: IStore = {
@@ -34,7 +35,12 @@ export const initStore = createAsyncThunk<IStore, void, { state: RootState }>(
 		try {
 			
 			const { _id } = getState().user
-			const resp = await storeApi.get<IApiInitStoreTopLevel>( `/${ _id }` )
+			const rememberMe = getRememberMe()
+			const token = getToken()
+			const resp = await storeApi.get<IApiInitStoreTopLevel>( `/${ _id }`, {
+				data: { rememberMe },
+				headers: { 'x-token': rememberMe ? token: '' }
+			})
 			const data: IStore = {
 				shopCart: {
 					items: resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products,
