@@ -16,9 +16,7 @@ const categoryApi = axios.create({
 export const getCategories = async (): Promise<ICategory[]> => {
 	
 	try {
-		
-		const token = getToken()
-		const resp = await categoryApi.get<ICategoryResponseTopLevel>( '/', { headers: { 'x-token': token } } )
+		const resp = await categoryApi.get<ICategoryResponseTopLevel>( '/' )
 	
 		return resp.data.categories
 	} catch ( error ) {

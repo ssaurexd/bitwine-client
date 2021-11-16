@@ -19,6 +19,7 @@ import useStyle from './styles'
 import { userAuthLogOut } from '../../../api/userApi'
 import { useAppDispatch } from '../../../hooks/reduxHooks'
 import { logOut } from '../../../redux/slices/userSlice'
+import { resetStore } from '../../../redux/slices/storeSlice'
 
 
 interface Props {
@@ -41,6 +42,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 		if( ok ) {
 			
 			dispatch( logOut() ) 
+			dispatch( resetStore() )
 			location.push( '/' )
 		} 
 	}
