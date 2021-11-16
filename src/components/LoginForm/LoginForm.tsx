@@ -51,12 +51,10 @@ const LoginForm: FC = () => {
 		if( ok ) { 
 
 			dispath( logIn({ ...user, isLoggedIn: true }) )
+			localStorage.setItem( 'token', token )
 			
-			if( values.rememberMe ){
-
-				localStorage.setItem( 'rememberMe', JSON.stringify( values.rememberMe ) )
-				localStorage.setItem( 'token', token )
-			}	
+			if( values.rememberMe ) localStorage.setItem( 'rememberMe', JSON.stringify( values.rememberMe ) )
+		
 		} else {
 
 			dispath( logInFail() )

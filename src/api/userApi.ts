@@ -21,14 +21,14 @@ const userApi = axios.create({
 export const userAuthLogin = async ( body: any  ): Promise<IAPILoginTopLevel> => {
 
 	try {
-		const token = getToken()
-		const resp = await userApi.post<IAPILoginTopLevel>( '/login', JSON.stringify( body ), { headers: { 'x-token': token } } )
+		const resp = await userApi.post<IAPILoginTopLevel>( '/login', JSON.stringify( body ) )
 		
 		return resp.data
 	} catch ( error ) {
 		
 		const err = error as AxiosError<IAPILoginTopLevel>
 		const resp = err.response?.data as IAPILoginTopLevel
+        console.log("🚀 ~ file: userApi.ts ~ line 32 ~ userAuthLogin ~ err.response", err.response)
 
 		return resp
 	}
@@ -53,9 +53,7 @@ export const userAuthRefreshToken = async (): Promise<IAPIRefreshTokenTopLevel> 
 export const userAuthLogOut = async ( ): Promise<IAPILogOutTopLevel> => {
 
 	try {
-		
-		const token = getToken()
-		const resp = await userApi.post<IAPILogOutTopLevel>( '/logout', {}, { headers: { 'x-token': token } } )
+		const resp = await userApi.post<IAPILogOutTopLevel>( '/logout' )
 	
 		return resp.data
 	} catch ( error ) {
