@@ -21,8 +21,8 @@ const userApi = axios.create({
 export const userAuthLogin = async ( body: any  ): Promise<IAPILoginTopLevel> => {
 
 	try {
-		
-		const resp = await userApi.post<IAPILoginTopLevel>( '/login', JSON.stringify( body ) )
+		const token = getToken()
+		const resp = await userApi.post<IAPILoginTopLevel>( '/login', JSON.stringify( body ), { headers: { 'x-token': token } } )
 		
 		return resp.data
 	} catch ( error ) {
@@ -37,10 +37,8 @@ export const userAuthLogin = async ( body: any  ): Promise<IAPILoginTopLevel> =>
 export const userAuthRefreshToken = async (): Promise<IAPIRefreshTokenTopLevel> => {
 
 	try {
-		
-		const rememberMe = getRememberMe()
 		const token = getToken()
-		const resp = await userApi.post<IAPIRefreshTokenTopLevel>( '/refresh-token', { rememberMe }, { headers: { 'x-token': rememberMe ? token: '' } } )
+		const resp = await userApi.post<IAPIRefreshTokenTopLevel>( '/refresh-token', { headers: { 'x-token': token } } )
 	
 		return resp.data
 	} catch ( error ) {
@@ -56,7 +54,8 @@ export const userAuthLogOut = async ( ): Promise<IAPILogOutTopLevel> => {
 
 	try {
 		
-		const resp = await userApi.post<IAPILogOutTopLevel>( '/logout' )
+		const token = getToken()
+		const resp = await userApi.post<IAPILogOutTopLevel>( '/logout', {}, { headers: { 'x-token': token } } )
 	
 		return resp.data
 	} catch ( error ) {

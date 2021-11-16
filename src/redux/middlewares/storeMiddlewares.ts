@@ -35,11 +35,10 @@ export const initStore = createAsyncThunk<IStore, void, { state: RootState }>(
 		try {
 			
 			const { _id } = getState().user
-			const rememberMe = getRememberMe()
 			const token = getToken()
 			const resp = await storeApi.get<IApiInitStoreTopLevel>( `/${ _id }`, {
-				data: { rememberMe },
-				headers: { 'x-token': rememberMe ? token: '' }
+				data: { },
+				headers: { 'x-token': token}
 			})
 			const data: IStore = {
 				shopCart: {
@@ -65,12 +64,13 @@ export const addItemStoreThunk = createAsyncThunk<IAddItemStore, IAddItemStore, 
 		const { _id, isLoggedIn } = getState().user
 		const { items } = getState().store[type]
 		const alreadyProductExist = items.find( prod => prod._id === item._id ) 
+		const token = getToken()
 
 		try {
 
 			if( !alreadyProductExist && isLoggedIn ) {
 
-				await storeApi.post<IApiResponseAddItem>( `/${ _id }/${ type }`, JSON.stringify({ product: item }) )
+				await storeApi.post<IApiResponseAddItem>( `/${ _id }/${ type }`, JSON.stringify({ product: item }), { headers: { 'x-token': token } } )
 			}
 			
 			return {
@@ -91,12 +91,13 @@ export const deleteItemStoreThunk = createAsyncThunk<IDeleteItemStore, IDeleteIt
 	async ({ productId, type }, { getState } ) => {
 
 		const { _id, isLoggedIn } = getState().user
+		const token = getToken()
 
 		try {
 
 			if( isLoggedIn ) {
 
-				await storeApi.delete<IApiResponseAddItem>( `/${ _id }/${ type }`, { data: JSON.stringify({ productId }) } )
+				await storeApi.delete<IApiResponseAddItem>( `/${ _id }/${ type }`, { data: JSON.stringify({ productId }), headers: { 'x-token': token } } )
 			}
 			
 			return {
@@ -119,13 +120,14 @@ export const updateCountItemStoreThunk = createAsyncThunk<IUpdateItemStore, IUpd
 
 		const { _id, isLoggedIn } = getState().user
 		const { items } = getState().store[type]
-		const alreadyProductExist = items.find( item => item._id === item._id ) 
+		const alreadyProductExist = items.find( item => item._id === item._id )
+		const token = getToken() 
 
 		try {
 
 			if( alreadyProductExist && isLoggedIn ) {
 
-				await storeApi.put<IApiResponseUpdateItem>( `/${ _id }/${ type }`, JSON.stringify({ productId: item._id, count }) )
+				await storeApi.put<IApiResponseUpdateItem>( `/${ _id }/${ type }`, JSON.stringify({ productId: item._id, count }), { headers: { 'x-token': token } } )
 			}
 			
 			return {
@@ -144,9 +146,4 @@ export const updateCountItemStoreThunk = createAsyncThunk<IUpdateItemStore, IUpd
 	}
 )
 /* --END-- thunks
--------------------------------------------------------- */
-
-/* --START-- actions
--------------------------------------------------------- */
-/* --END-- actions
 -------------------------------------------------------- */
