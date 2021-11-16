@@ -9,7 +9,7 @@ import {
 import {
 	Avatar,
 	MenuList,
-	Menu,
+	Popover,
 	MenuItem,
 	ListItemIcon,
 	Grid,
@@ -71,11 +71,22 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 						{ user.name.charAt(0) }{ user.lastName.charAt(0) }
 					</Avatar>
 				</IconButton>
-				<Menu
+				<Popover
 					open={ open }
 					onClose={ handleClose }
 					id='profile-menu'
 					anchorEl={ anchorEl }
+					anchorOrigin={{
+						vertical: 'bottom',
+    					horizontal: 'center',
+					}}
+					transformOrigin={{
+						vertical: 'top',
+    					horizontal: 'center',
+					}}
+					classes={{
+						paper: classes.popoverMenu
+					}}
 				>
 					<MenuList>
 						<MenuItem>
@@ -109,7 +120,7 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 							Cerrar sesión
 						</MenuItem>
 					</MenuList>
-				</Menu>
+				</Popover>
 			</Grid>
 		</Hidden>
 	)

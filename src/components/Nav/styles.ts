@@ -41,6 +41,10 @@ const useStyle = makeStyles<Theme, Props>( ( theme ) => ({
 			left: '0 !important'
 		}
 	},
+	popoverMenu: {
+		borderRadius: '4px',
+		minWidth: '300px'
+	},
 	navMain__link: {
 		textDecoration: 'none',
 		position: 'relative',

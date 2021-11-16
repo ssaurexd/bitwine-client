@@ -3,35 +3,34 @@ import Link from 'next/link'
 import {
 	TextField,
 	Button,
-	FormControlLabel,
-	Checkbox,
 	Grid,
 	Container
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik } from 'formik'
+import * as Yup from 'yup'
 
-import useStyle from './styles'
-import { userAuthLogin } from '../../api/userApi'
+import useStyle from '../LoginForm/styles'
+import { userAuthSignup } from '../../api/userApi'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { 
-	logIn, 
-	logInStart, 
-	logInFail,
-	resetLoading 
-} from '../../redux/slices/userSlice'
+import { logIn, signUpStart, signUpFail, resetLoading } from '../../redux/slices/userSlice'
 
 import CustomDivider from '../CustomDivider'
-import SocialButtons from './SocialButtons'
+import SocialButtons from '../LoginForm/SocialButtons'
 
 
 interface FormValues {
+	name: string,
+	lastName: string,
 	email: string
 	password: string,
-	rememberMe: boolean
+	repeatPassword: string
+}
+interface Props {
+	
 }
 
-const LoginForm: FC = () => {
+const SignupForm: FC<Props> = () => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -42,7 +41,9 @@ const LoginForm: FC = () => {
 	const initialValues: FormValues = {
 		email: '',
 		password: '',
-		rememberMe: false
+		lastName: '',
+		name: '',
+		repeatPassword: ''
 	}
 	const [ msgError, setMsgError ] = useState<string | undefined>( '' )
 
@@ -57,20 +58,18 @@ const LoginForm: FC = () => {
 	/* funtions */
 	const _Submit = async ( values: FormValues ) => {
 
-		dispath( logInStart() )
+		dispath( signUpStart() )
 		
-		const { ok, user, msg, token } = await userAuthLogin( values )
+		const { ok, user, msg, token } = await userAuthSignup( values )
 
 		if( ok ) { 
 
 			dispath( logIn({ ...user, isLoggedIn: true }) )
 			localStorage.setItem( 'token', token )
-			
-			if( values.rememberMe ) localStorage.setItem( 'rememberMe', JSON.stringify( values.rememberMe ) )
 		
 		} else {
 
-			dispath( logInFail() )
+			dispath( signUpFail() )
 			setMsgError( msg )
 		}
 	}
@@ -82,6 +81,18 @@ const LoginForm: FC = () => {
 				<Formik
 					initialValues={ initialValues }
 					onSubmit={ ( values ) => _Submit( values ) }
+					validationSchema={ Yup.object({
+						email: Yup.string().trim().required('El email es obligatorio'),
+						name: Yup.string().trim().required('El nombre es obligatorio'),
+						password: Yup.string().trim().required('La contraseña es obligatoria'),
+						repeatPassword: Yup.string().when('password', {
+							is: ( val: string ) => ( val && val.length > 0 ? true : false ),
+							then: Yup.string().oneOf(
+								[Yup.ref('password')],
+								'Las contraseñas tienen que ser iguales'
+							)
+						}).required('Campo obligatorio')
+					}) }
 				>
 					{({
 						errors,
@@ -97,10 +108,35 @@ const LoginForm: FC = () => {
 								color='primary'
 								margin="normal"
 								fullWidth
+								label="Nombre"
+								placeholder=''
+								name="name"
+								helperText={ errors.name }
+								error={ errors.name ? true : false }
+								value={ values.name }
+								onChange={ handleChange }
+							/>
+
+							<TextField
+								color='primary'
+								margin="normal"
+								fullWidth
+								label="Apellidos"
+								placeholder=''
+								name="lastName"
+								value={ values.lastName }
+								onChange={ handleChange }
+							/>
+
+							<TextField
+								color='primary'
+								margin="normal"
+								fullWidth
 								label="Email"
 								placeholder='ejemplo@ejemplo.com'
 								name="email"
 								autoComplete="email"
+								helperText={ errors.email }
 								error={ errors.email ? true : false }
 								value={ values.email }
 								onChange={ handleChange }
@@ -114,21 +150,24 @@ const LoginForm: FC = () => {
 								label="Contraseña"
 								type="password"
 								autoComplete="current-password"
+								helperText={ errors.password }
 								error={ errors.password ? true : false }
 								value={ values.password }
 								onChange={ handleChange }
 							/>
-
-							<FormControlLabel
-								control={( 
-									<Checkbox 
-										color="primary"
-										name='rememberMe' 
-										value={ values.rememberMe }
-										onChange={ handleChange }
-									/>
-								)}
-								label="Recordarme"
+							
+							<TextField
+								color='primary'
+								margin="normal"
+								fullWidth
+								name="repeatPassword"
+								label="Repite tu contraseña"
+								type="password"
+								autoComplete="current-password"
+								helperText={ errors.repeatPassword }
+								error={ errors.repeatPassword ? true : false }
+								value={ values.repeatPassword }
+								onChange={ handleChange }
 							/>
 
 							<Button
@@ -139,22 +178,14 @@ const LoginForm: FC = () => {
 								color="primary"
 								className={ classes.submit }
 							>
-								Iniciar Sesión
+								Registrarse
 							</Button>
 
 							<Grid container>
-								<Grid item xs>
-									<Link href="/" >
-										<a className={ classes.link } >
-											¿Olvidaste tu contraseña?
-										</a>
-									</Link>
-								</Grid>
-
 								<Grid item>
-									<Link href='/signup' >
+									<Link href='/login' >
 										<a className={ classes.link } >
-											¿No tienes una cuenta? Unete al equipo aqui
+											¿Ya tienes una cuenta? Inicia sesión aqui
 										</a>
 									</Link >
 								</Grid>
@@ -165,8 +196,8 @@ const LoginForm: FC = () => {
 							<SocialButtons 
 								onClickFacebook={ () => {} }
 								onClickGoogle={ () => {} }
-								facebookText='Iniciar sesión con Facebook'
-								googleText='Iniciar sesión con Google'
+								facebookText='Registrarte con Facebook'
+								googleText='Registrarte con Google'
 							/>
 						</form>
 					)}
@@ -176,4 +207,4 @@ const LoginForm: FC = () => {
 	)
 }
 
-export default LoginForm
+export default SignupForm

@@ -71,9 +71,8 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 export const getFlashSales = async (): Promise<IAPICategoryProductsTopLevel> => {
 	
 	try {
-		
-		const token = getToken()
-		const resp = await productApi.get<IAPICategoryProductsTopLevel>( '/flash-sales', { headers: { 'x-token': token } } )
+	
+		const resp = await productApi.get<IAPICategoryProductsTopLevel>( '/flash-sales' )
 
 		return resp.data
 	} catch ( error ) {
