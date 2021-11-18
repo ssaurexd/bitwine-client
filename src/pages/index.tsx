@@ -22,7 +22,7 @@ interface Props {
 	products: IProduct[]
 }
 
-const app: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
+const App: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 
 	const dispatch = useAppDispatch()
 
@@ -87,4 +87,4 @@ export const getServerSideProps: GetServerSideProps<Props, any> = async () => {
 	}
 }
 
-export default app
+export default App

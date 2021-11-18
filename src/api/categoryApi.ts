@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { ICategory, ICategoryResponseTopLevel } from '../interfaces/categoryInterfaces'
 import { settings } from '../config/settings'
+import { getToken } from '../helpers/auth'
 
 
 const categoryApi = axios.create({
@@ -15,7 +16,6 @@ const categoryApi = axios.create({
 export const getCategories = async (): Promise<ICategory[]> => {
 	
 	try {
-		
 		const resp = await categoryApi.get<ICategoryResponseTopLevel>( '/' )
 	
 		return resp.data.categories

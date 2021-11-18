@@ -3,9 +3,9 @@ import {
 	IApp,
 	IChangeDashboardMenuItem,
 	IGlobalToast,
-	IHome,
-	IPaymentInfoStepTwo
+	IHome
 } from '../../interfaces/appInterfaces'
+import { IUserAddress } from '../../interfaces/user'
 
 
 const initialState: IApp = {
@@ -32,15 +32,15 @@ const initialState: IApp = {
 	},
 	paymentInfo: {
 		stepTwo: {
-			email: 'ssaurexd@gmail.com',
-			houseNumber: '123',
+			email: '',
+			houseNumber: '',
 			lastName: '',
-			name: 'Aure',
-			phone: '12353242',
-			street: 'Tulum',
-			zip: '14200',
-			suburb: 'Heroes de padierna',
-			delegation: 'Tlalpan',
+			name: '',
+			phone: '',
+			street: '',
+			zip: '',
+			suburb: '',
+			delegation: '',
 			state: ''
 		}
 	}
@@ -101,7 +101,7 @@ const appSlice = createSlice({
 				}
 			}
 		},
-		setStepTwoPaymentInfo: ( state, action: PayloadAction<IPaymentInfoStepTwo> ) => {
+		setStepTwoPaymentInfo: ( state, action: PayloadAction<IUserAddress> ) => {
 
 			state.paymentInfo.stepTwo = action.payload
 		}

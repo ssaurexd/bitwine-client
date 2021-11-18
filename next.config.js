@@ -9,7 +9,8 @@ module.exports = {
       'www.thewineshops.com',
       'fakestoreapi.com',
       'localhost',
-      '192.168.1.64'
+      '192.168.1.64',
+      'bitwine-server.herokuapp.com'
     ],
   }
 }

@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { IStoreItem } from '../../interfaces/storeIntergaces'
 import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
 
-import Counter from '../Counter/Counter'
+import Counter from '../Counter'
 
 
 interface Props {

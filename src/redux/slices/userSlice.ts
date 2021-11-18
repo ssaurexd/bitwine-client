@@ -39,17 +39,19 @@ export const userSlice = createSlice({
 	reducers: {
 		logInStart: ( state ) => {
 
-			return {
-				...state,
-				loading: true
-			}
+			state.loading = true
 		},
 		logInFail: ( state ) => {
 
-			return {
-				...state,
-				loading: false
-			}
+			state.loading = false
+		},
+		signUpStart: ( state ) => {
+
+			state.loading = true
+		},
+		signUpFail: ( state ) => {
+
+			state.loading = false
 		},
 		logIn: ( state, action: PayloadAction<UserState> ) => {
 
@@ -65,6 +67,10 @@ export const userSlice = createSlice({
 			
 			resetStore()
 			return initialState
+		},
+		resetLoading: ( state ) => {
+
+			state.loading = false
 		}
 	}
 })
@@ -72,7 +78,10 @@ export const {
 	logIn,
 	logOut,
 	logInStart,
-	logInFail
+	logInFail,
+	resetLoading,
+	signUpFail,
+	signUpStart
 } = userSlice.actions
 
 export default userSlice.reducer

@@ -9,7 +9,7 @@ import {
 import {
 	Avatar,
 	MenuList,
-	Menu,
+	Popover,
 	MenuItem,
 	ListItemIcon,
 	Grid,
@@ -25,14 +25,17 @@ import { useRouter } from 'next/router'
 import { resetStore } from '../../redux/slices/storeSlice'
 
 
-const Profile: FC = () => {
+interface Props {
+	isScrolling: boolean
+}
+const Profile: FC<Props> = ({ isScrolling }) => {
 
 	/* hooks */
 	const [ anchorEl, setAnchorEl ] = useState<null | HTMLElement>( null )
 	const user = useAppSelector( state => state.user )
 	const dispatch = useAppDispatch()
 	const location = useRouter()
-	const classes = useStyle()
+	const classes = useStyle({ isScrolling })
 	const open = Boolean( anchorEl )
 
 	/* funtions */
@@ -68,11 +71,22 @@ const Profile: FC = () => {
 						{ user.name.charAt(0) }{ user.lastName.charAt(0) }
 					</Avatar>
 				</IconButton>
-				<Menu
+				<Popover
 					open={ open }
 					onClose={ handleClose }
 					id='profile-menu'
 					anchorEl={ anchorEl }
+					anchorOrigin={{
+						vertical: 'bottom',
+    					horizontal: 'center',
+					}}
+					transformOrigin={{
+						vertical: 'top',
+    					horizontal: 'center',
+					}}
+					classes={{
+						paper: classes.popoverMenu
+					}}
 				>
 					<MenuList>
 						<MenuItem>
@@ -106,7 +120,7 @@ const Profile: FC = () => {
 							Cerrar sesión
 						</MenuItem>
 					</MenuList>
-				</Menu>
+				</Popover>
 			</Grid>
 		</Hidden>
 	)

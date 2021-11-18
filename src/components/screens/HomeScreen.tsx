@@ -5,7 +5,7 @@ import { useAppSelector } from '../../hooks/reduxHooks'
 import ProductSliderMain from '../ProductSliderMain'
 import Slider from '../Slider'
 import WhyChooseUs from '../WhyChooseUs'
-import OurProducts from '../OurProducts/OurProducts'
+import OurProducts from '../OurProducts'
 import Ads from '../Ads'
 
 

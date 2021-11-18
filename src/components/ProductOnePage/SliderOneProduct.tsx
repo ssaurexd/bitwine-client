@@ -24,12 +24,13 @@ const SliderOneProduct: FC<Props> = ({ product }) => {
 				thumbs={{ swiper: thumbsSwiper }}
 				className={ classes.swiper }
 			>
-				{ product.images.map( img => (
+				{ product.images.map(( img, i ) => (
 					<SwiperSlide key={ img } className={ classes.swiperSlide } >
 						<Image 
 							src={ `${ settings.BASE_PATH }/${ img }` }
 							layout='fill'
 							objectFit='contain'
+							alt={`Producto- ${ i }`}
 						/>
 					</SwiperSlide>
 				))}
@@ -43,12 +44,13 @@ const SliderOneProduct: FC<Props> = ({ product }) => {
 				watchSlidesProgress={ true } 
 				className={ classes.miniSwiper }
 			>
-				{ product.images.map( img => (
+				{ product.images.map( ( img, i ) => (
 					<SwiperSlide key={ img } className={ classes.miniSwiperSlide } >
 						<Image 
 							src={ `${ settings.BASE_PATH }/${ img }` }
 							layout='fill'
 							objectFit='contain'
+							alt={`Producto ${ i }`}
 						/>
 					</SwiperSlide>
 				))}
