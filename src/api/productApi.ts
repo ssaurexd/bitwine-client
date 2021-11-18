@@ -120,8 +120,7 @@ export const getAllProducts = async (): Promise<IApiProductsTopLevel> => {
 	
 	try {
 		
-		const token = getToken()
-		const resp = await productApi.get<IApiProductsTopLevel>( '/list-all', { headers: { 'x-token': token } } )
+		const resp = await productApi.get<IApiProductsTopLevel>( '/list-all' )
 
 		return resp.data
 	} catch ( error ) {
