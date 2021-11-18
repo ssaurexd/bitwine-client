@@ -3,5 +3,5 @@ const host = [
 	'https://bitwine-server.herokuapp.com'
 ]
 export const settings = {
-	BASE_PATH: host[1]
+	BASE_PATH: host[0]
 }
