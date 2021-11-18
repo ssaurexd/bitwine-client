@@ -46,6 +46,7 @@ const SEO: FC<Props> = ( props ) => {
 			<meta property="twitter:title" content={ twitterTitle ? twitterTitle : title } />
 			<meta property="twitter:description" content={ twitterDesc ? twitterDesc : desc } />
 			<meta property="twitter:image" content={ twitterUrlImage ? twitterUrlImage : urlImage } />
+			<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			<meta name="keywords" content="Vinos, Comprar, Comprar vino en linea, en linea, seguro, tienda en linea, Vino blanco, Vino rosa, oferta vinos" />
 			<title>{ title }</title>
 		</Head>
