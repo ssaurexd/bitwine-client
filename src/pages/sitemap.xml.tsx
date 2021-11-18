@@ -9,7 +9,7 @@ const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps =  async ({ res }) => {
 
-	const baseUrl = settings.BASE_PATH
+	const baseUrl = 'https://bitwine-client.herokuapp.com'
 	const { products } = await getAllProducts()
 	
 	const staticPages = fs
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps =  async ({ res }) => {
 			return ![
 				'_app.tsx',
 				'_document.tsx',
-				'sitemap.xml.ts',
+				'sitemap.xml.tsx',
 				'index.tsx',
 				'admin',
 				'product'
@@ -37,8 +37,7 @@ export const getServerSideProps: GetServerSideProps =  async ({ res }) => {
 				<changefreq>monthly</changefreq>
 				<priority>1.0</priority>
 			</url>
-			${staticPages
-				.map((url) => {
+			${staticPages.map((url) => {
 
 					return `
 						<url>
@@ -48,11 +47,10 @@ export const getServerSideProps: GetServerSideProps =  async ({ res }) => {
 							<priority>1.0</priority>
 						</url>
 					`
-				})
-				.join('')
+				}).join('')
 			}
-			${products
-				.map( ({ slug, updatedAt }) => {
+			${products?.map( ({ slug, updatedAt }) => {
+
 				  return `
 					  <url>
 						<loc>${ baseUrl }/product/${ slug }</loc>
@@ -61,8 +59,7 @@ export const getServerSideProps: GetServerSideProps =  async ({ res }) => {
 						<priority>1.0</priority>
 					  </url>
 					`;
-				})
-				.join('')
+				}).join('')
 			}
 		</urlset>
 	`
