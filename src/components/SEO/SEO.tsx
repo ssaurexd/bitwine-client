@@ -33,8 +33,8 @@ const SEO: FC<Props> = ( props ) => {
 
 	return (
 		<Head>
-			<meta name="title" content={ title } />
-			<meta name="description" content={ desc } />
+			<meta name="title" content={ title } key='title' />
+			<meta name="description" content={ desc } key='desc' />
 			{/* Facebook */}
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content={ url } />

@@ -43,12 +43,6 @@ const App: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 			admitedRoles={ ['user', 'admin', 'guest'] }
 		>
 			<>
-				<SEO
-					desc='BitWine es el mejor mercado y lugar en linea para comprar vinos de la mejor calidad, para amantes del vino y quien busca relajarse o tener un buen acompañamiento con su comida, BitWine es segura y rapida.'
-					title='BitWine - El mejor lugar para comprar vino'
-					url='www.bitwine.com'
-					urlImage='aquila urlejejej'
-				/>
 				<Layout haveHeader >
 					<main className='main-100-vh' >
 						<HeaderMain 

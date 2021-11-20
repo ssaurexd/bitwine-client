@@ -29,8 +29,8 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 				<SEO
 					desc={ product.description }
 					title={ `BitWine - ${ product.name }` }
-					url={ `www.bitwine.com/product/${ product.slug }` }
-					urlImage={ `${ settings.BASE_PATH }/${ product.image }` }
+					url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
+					urlImage={ `${ settings.BASE_PATH }/images/product/${ product.image }` }
 				/>
 				<Layout >
 					<ProductOnePage product={ product } related={ related } />
