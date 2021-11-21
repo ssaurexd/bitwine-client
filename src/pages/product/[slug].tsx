@@ -5,7 +5,8 @@ import { ParsedUrlQuery } from 'querystring'
 import { IProduct } from '../../interfaces/productInterfaces'
 import { getProductBySlug } from '../../api/productApi'
 import { settings } from '../../config/settings'
-
+import { getLinkImage } from '../../helpers/helpers.ts'
+ 
 import Auth from '../../components/init/Auth'
 import FooterMain from '../../components/FooterMain'
 import Layout from '../../components/init/Layout'
@@ -27,7 +28,7 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 				desc={ product.description }
 				title={ `BitWine - ${ product.name }` }
 				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
-				urlImage={ `${ settings.BASE_PATH }/images/product/${ product.image }` }
+				urlImage={ getLinkImage( product.image ) }
 			/>
 			
 			<Auth
