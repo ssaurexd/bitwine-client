@@ -31,13 +31,6 @@ const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
 	return (
 		<Provider store={ store } >
-			<SEO
-				desc='BitWine es el mejor mercado y lugar en linea para comprar vinos de la mejor calidad, para amantes del vino y quien busca relajarse o tener un buen acompañamiento con su comida, BitWine es segura y rapida.'
-				title='BitWine - El mejor lugar para comprar vino'
-				url='https://bitwine-client.herokuapp.com'
-				urlImage='https://bitwine-client.herokuapp.com/assets/images/defaultHeaderBG.jpg'
-			/>
-
 			<ThemeProvider theme={ theme } >
 				<CssBaseline />
 				<Component { ...pageProps } />
