@@ -60,6 +60,7 @@ export const userAuthRefreshToken = async (): Promise<IAPIRefreshTokenTopLevel> 
 		const err = error as AxiosError<IAPIRefreshTokenTopLevel>
 		const resp = err.response?.data as IAPIRefreshTokenTopLevel
 
+        console.log("🚀 ~ file: userApi.ts ~ line 65 ~ userAuthRefreshToken ~ resp", resp)
 		return resp
 	}
 }
