@@ -22,22 +22,23 @@ interface Props {
 const productPage: NextPage<Props> = ({ product, related }) => {
 
 	return (
-		<Auth
-			admitedRoles={ ['admin', 'guest', 'user'] }
-		>
-			<>
-				<SEO
-					desc={ product.description }
-					title={ `BitWine - ${ product.name }` }
-					url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
-					urlImage={ `${ settings.BASE_PATH }/images/product/${ product.image }` }
-				/>
+		<>
+			<SEO
+				desc={ product.description }
+				title={ `BitWine - ${ product.name }` }
+				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
+				urlImage={ `${ settings.BASE_PATH }/images/product/${ product.image }` }
+			/>
+			
+			<Auth
+				admitedRoles={ ['admin', 'guest', 'user'] }
+			>	
 				<Layout >
 					<ProductOnePage product={ product } related={ related } />
 					<FooterMain />
 				</Layout>
-			</>
-		</Auth>
+			</Auth>
+		</>
 	)
 }
 
