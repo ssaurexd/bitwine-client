@@ -17,20 +17,18 @@ export default class _document extends Document {
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 					<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 					<meta name="language" content="spanish" />
-					<Script
-						strategy="afterInteractive"
+					<script
+						async
 						src={`https://www.googletagmanager.com/gtag/js?id=${ GA_TRACKING_ID }`}
 					/>
-					<Script
-						id="gtag-init"
-						strategy="afterInteractive"
+					<script
 						dangerouslySetInnerHTML={{
 							__html: `
 								window.dataLayer = window.dataLayer || [];
 								function gtag(){dataLayer.push(arguments);}
 								gtag('js', new Date());
 								gtag('config', '${ GA_TRACKING_ID }', {
-									page_path: window.location.pathname,
+								page_path: window.location.pathname,
 								});
 							`,
 						}}

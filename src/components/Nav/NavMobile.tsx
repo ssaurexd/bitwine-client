@@ -12,7 +12,6 @@ import {
 	ListItemAvatar,
 	ListItemText,
 	Avatar,
-	Hidden
 } from '@material-ui/core'
 import { 
 	MenuOpen,
@@ -27,7 +26,6 @@ import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 
 import CustomButtonLink from '../CustomButtonLink'
-import CustomSearch from '../CustomSearch/CustomSearch'
 
 
 interface Props {
@@ -97,7 +95,7 @@ const NavMobile: FC<Props> = ({ open, onClose, isScrolling }) => {
 											</Avatar>
 										</ListItemAvatar>
 
-										<ListItemText primary="Aure Sand" secondary="ssaurexd@gmail.com" />
+										<ListItemText primary={`${ user.name } ${ user.lastName }`} secondary={ user.email } />
 										{ openProfileMenu ? <ExpandLess /> : <ExpandMore /> }
 									</ListItem>
 

@@ -7,10 +7,11 @@ import ProductCardSliderMain from './ProductCardSliderMain'
 
 
 interface Props {
-	products: IBanner[]
+	products: IBanner[],
+	lazy?: boolean
 }
 
-const ProductSliderMain: FC<Props> = ({ products }) => {
+const ProductSliderMain: FC<Props> = ({ products, lazy = true }) => {
 	return (
 		<section className='product-slider-main' >
 			<div className="product-slider-main__slider">
@@ -23,6 +24,7 @@ const ProductSliderMain: FC<Props> = ({ products }) => {
 						disableOnInteraction: false	
 					}}
 					loop
+					lazy={ lazy }
 				>
 					{ 	
 						products.map(( product ) => (
