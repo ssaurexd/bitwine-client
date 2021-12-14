@@ -47,7 +47,7 @@ const TotalInfo: FC<Props> = () => {
 
 			<div className={ classes.totalBox } />
 			<div>
-				<Typography variant='h5' align='right' >${ total }</Typography>
+				<Typography variant='h5' align='right' >${ ( total + shipment ).toFixed( 2 )  }</Typography>
 			</div>
 		</>
 	)

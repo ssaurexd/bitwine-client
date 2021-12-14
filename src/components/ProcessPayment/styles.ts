@@ -105,7 +105,11 @@ const useStyle = makeStyles( ( theme ) => ({
 	/* --START-- ShipmentDetails
 	-------------------------------------------------------- */
 	acordion: {
-		marginBottom: theme.spacing( 3 )
+		marginBottom: theme.spacing( 3 ),
+		padding: theme.spacing( 2 ),
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center'
 	}
 	/* --END-- ShipmentDetails
 	-------------------------------------------------------- */

@@ -44,7 +44,7 @@ export const initStore = createAsyncThunk<IStore, void, { state: RootState }>(
 				shopCart: {
 					items: resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products,
 					total: getTotalShopCart( resp.data.shopCart?.products === null ? [] : resp.data.shopCart?.products ),
-					shipment: 0
+					shipment: getState().store.shopCart.shipment
 				}, 
 				wishList: { items: resp.data.wishList?.products === null ? [] : resp.data.wishList?.products ?? [] }
 			}

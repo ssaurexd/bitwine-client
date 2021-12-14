@@ -9,6 +9,7 @@ import ProcessPaymentStepper from './ProcessPaymentStepper'
 import MyProducts from './steps/stepOne/MyProducts'
 import PaymentDetails from './steps/stepTwo/PaymentDetails'
 import ShipmentDetails from './steps/stepThree/ShipmentDetails'
+import ResumePayment from './steps/StepFour/ResumePayment'
 
 
 const steps: string[] = [
@@ -56,8 +57,11 @@ const ProcessPayment: FC<Props> = () => {
 				}
 
 				{ stepIndex === 2 &&
-					<ShipmentDetails onGoBack={ onGoBack } />
+					<ShipmentDetails onNextStep={ onNextStep } onGoBack={ onGoBack } />
 				}	
+				{ stepIndex === 3 &&
+					<ResumePayment />
+				}
 			</Container>
 		</section>
 	)

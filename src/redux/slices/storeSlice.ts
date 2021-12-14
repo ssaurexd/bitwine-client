@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { numberToDecimals } from '../../helpers/helpers'
 import { 
+	IAddShipmentPricePayload,
 	IStore
 } from '../../interfaces/storeIntergaces'
 import {
@@ -27,7 +28,11 @@ const storeSlice = createSlice({
 	initialState,
 	name: 'shopCart',
 	reducers: {
-		resetStore: ( state ) => initialState
+		resetStore: ( state ) => initialState,
+		addShipmentPrice: ( state, { payload }: PayloadAction<IAddShipmentPricePayload> ) => {
+
+			state.shopCart.shipment = payload.shipmentPrice
+		}
 	},
 	extraReducers: ( builder ) => {
 		builder
@@ -96,7 +101,8 @@ const storeSlice = createSlice({
 })
 
 export const {
-	resetStore
+	resetStore,
+	addShipmentPrice
 } = storeSlice.actions
 
 export default storeSlice.reducer

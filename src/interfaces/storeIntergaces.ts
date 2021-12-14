@@ -28,6 +28,10 @@ export interface IApiStoreTypeContainer {
 	products: IStoreItem[]
 }
 
+export interface IAddShipmentPricePayload {
+	shipmentPrice: number
+}
+
 /* --START-- responses
 -------------------------------------------------------- */
 export interface IApiInitStoreTopLevel {

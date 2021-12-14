@@ -1,49 +1,70 @@
-import { FC } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { 
 	Button, 
 	Grid, 
 	Paper,
-	Accordion,
-	AccordionSummary,
-	AccordionDetails,
-	Typography
+	Typography,
+	Radio,
+	RadioGroup,
+	FormControlLabel
 } from '@material-ui/core'
-import {
-	ExpandMore
-} from '@material-ui/icons'
 
 import useStyle from '../../styles'
 import TotalInfo from '../../TotalInfo'
+import { useAppDispatch } from '../../../../hooks/reduxHooks'
+import { addShipmentPrice } from '../../../../redux/slices/storeSlice'
 
 
 interface Props {
-	onGoBack: () => void
+	onGoBack: () => void,
+	onNextStep: () => void
 }
-const ShipmentDetails: FC<Props> = ({ onGoBack }) => {
+const ShipmentDetails: FC<Props> = ({ onGoBack, onNextStep }) => {
 
 	/* hooks */
 	const classes = useStyle()
+	const [ shipmentValue, setShipmentValue ] = useState({ id: 2, label: 'Fedex', price: 193 })
+	const dispatch = useAppDispatch()
+
+	/* state */
+	const shipments = [
+		{ id: 0, label: 'DHL', price: 233 },
+		{ id: 1, label: 'Paquete Express', price: 133 },
+		{ id: 2, label: 'Fedex', price: 193 },
+	]
+
+	/* funtions */
+	const onRadioChange = ( e: ChangeEvent<HTMLInputElement>, shipId: number ) => {
+
+		setShipmentValue({ ...shipments[shipId] })
+		dispatch( addShipmentPrice({ shipmentPrice: shipments[shipId].price }) )
+	}
+
+	/* efects */
+	useEffect( () => {
+
+		dispatch( addShipmentPrice({ shipmentPrice: shipmentValue.price }) )
+	}, [])
 
 	return (
 		<Grid container spacing={ 3 } wrap='wrap-reverse' >
 			<Grid item xs={ 12 } md ={ 8 } >
-				<div className={ classes.acordion }>
-					<Accordion >
-						<AccordionSummary
-							expandIcon={ <ExpandMore /> }
-							aria-controls="panel1a-content"
-							id="panel1a-header"
-						>
-							<Typography variant='subtitle2' >Forma de pago</Typography>
-						</AccordionSummary>
-						<AccordionDetails>
-							<Typography>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-								malesuada lacus ex, sit amet blandit leo lobortis eget.
-							</Typography>
-						</AccordionDetails>
-					</Accordion>
-				</div>
+				<Grid item >
+					<RadioGroup value={ shipmentValue.label } >
+						{ shipments.map( item => (
+
+							<Paper key={ item.label } className={ classes.acordion }>
+								<FormControlLabel
+									control={ <Radio value={ item.label } onChange={ ( e ) => onRadioChange( e, item.id ) } /> }
+									label={ item.label }
+								/>
+								<div>
+									<Typography variant='body2' color='textSecondary' >${ item.price }</Typography>
+								</div>
+							</Paper>
+						))}
+					</RadioGroup>
+				</Grid>
 				<Grid container item xs justifyContent='space-between' direction='row' wrap='wrap' >
 					<Grid item xs={ 12 } md={ 5 } >
 						<Button
@@ -58,11 +79,12 @@ const ShipmentDetails: FC<Props> = ({ onGoBack }) => {
 					</Grid>
 					<Grid item xs={ 12 } md={ 5 } >
 						<Button 
-							color='secondary' 
+							color='primary' 
 							fullWidth
 							className={ classes.mb3 }
+							onClick={ onNextStep }
 						>
-							Siguiente
+							Pagar
 						</Button>
 					</Grid>
 				</Grid>
