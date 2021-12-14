@@ -61,3 +61,11 @@ export interface IApiErrorResponse {
 	ok: boolean,
 	msg: string
 }
+
+
+
+declare global {
+    interface Window { 
+		gtag: any
+	}
+}

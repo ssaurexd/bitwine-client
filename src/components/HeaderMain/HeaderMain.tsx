@@ -30,7 +30,7 @@ const HeaderMain: FC<Props> = ({ title, subTitle, bannerImage, showBtn = false, 
 			<div className="header-main__container">
 				<div className="title-container">
 					<Typography 
-						variant='h2'
+						variant='h1'
 						className='title-container__h1'
 					>
 						{ title }

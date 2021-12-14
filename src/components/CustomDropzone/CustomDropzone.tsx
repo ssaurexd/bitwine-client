@@ -73,7 +73,7 @@ const CustomDropzone: FC<Props> = ( props ) => {
 
 									<SwiperSlide key={`${ file.name }-${ index }`} className={ classes.swiperSlide } >
 										<div className={ classes.imgContainer } >
-											<Image className={ classes.preview } src={ URL.createObjectURL( file ) } alt={ file.name } objectFit='contain' />
+											<img className={ classes.preview } src={ URL.createObjectURL( file ) } alt={ file.name } />
 										</div>
 									</SwiperSlide>
 								))}

@@ -4,12 +4,13 @@ import {
 	Settings,
 	Person,
 	Favorite,
-	ExitToApp
+	ExitToApp,
+	Tune
 } from '@material-ui/icons'
 import {
 	Avatar,
 	MenuList,
-	Menu,
+	Popover,
 	MenuItem,
 	ListItemIcon,
 	Grid,
@@ -71,11 +72,22 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 						{ user.name.charAt(0) }{ user.lastName.charAt(0) }
 					</Avatar>
 				</IconButton>
-				<Menu
+				<Popover
 					open={ open }
 					onClose={ handleClose }
 					id='profile-menu'
 					anchorEl={ anchorEl }
+					anchorOrigin={{
+						vertical: 'bottom',
+    					horizontal: 'center',
+					}}
+					transformOrigin={{
+						vertical: 'top',
+    					horizontal: 'center',
+					}}
+					classes={{
+						paper: classes.popoverMenu
+					}}
 				>
 					<MenuList>
 						<MenuItem>
@@ -86,6 +98,16 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 								<a>Perfil</a>	
 							</Link>
 						</MenuItem>
+						{ /^(admin)/.test( user.role ) &&
+							<MenuItem>
+								<ListItemIcon>
+									<Tune />
+								</ListItemIcon>
+								<Link href='/admin' >
+									<a>Panel de administración</a>	
+								</Link>
+							</MenuItem>
+						}
 						<MenuItem>
 							<ListItemIcon>
 								<Favorite />
@@ -109,7 +131,7 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 							Cerrar sesión
 						</MenuItem>
 					</MenuList>
-				</Menu>
+				</Popover>
 			</Grid>
 		</Hidden>
 	)

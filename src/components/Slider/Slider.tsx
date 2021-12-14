@@ -14,10 +14,11 @@ interface Props {
 	title: string,
 	titleIcon?: ReactElement,
 	category: string,
-	products: IProduct[]
+	products: IProduct[],
+	lazy?: boolean
 }
 
-const Slider: FC<Props> = ({ title, titleIcon, products, category }) => {
+const Slider: FC<Props> = ({ title, titleIcon, products, category, lazy = true }) => {
 
 	/* hooks */
 	const classes = useStyle()
@@ -50,11 +51,11 @@ const Slider: FC<Props> = ({ title, titleIcon, products, category }) => {
 					spaceBetween={ 40 }
 					pagination={ false }
 					navigation={ true }
-					lazy={ true }
+					lazy={ lazy }
 				>
 					{
 						products.map(( product ) => (
-							<SwiperSlide key={ product._id } >
+							<SwiperSlide  key={ product._id } >
 								<ProductCard product={ product } />
 							</SwiperSlide>
 						))

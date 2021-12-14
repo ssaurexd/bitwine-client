@@ -9,6 +9,7 @@ import {
 	IApiSearchProductTopLevel
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
+import { getToken } from '../helpers/auth'
 
 
 const productApi = axios.create({
@@ -24,7 +25,8 @@ export const createProduct = async ( data: any ): Promise<IApiCreateProductTopLe
 
 	try {
 
-		const resp = await productApi.post<IApiCreateProductTopLevel>('/', data)
+		const token = getToken()
+		const resp = await productApi.post<IApiCreateProductTopLevel>('/', data, { headers: { 'x-token': token } })
 
 		return resp.data
 	} catch ( error ) {
@@ -47,11 +49,12 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 	}) 
 
 	try {
-
+		const token = getToken()
 		const resp = await productApi.post<IApiUploadProductImageTopLeve>( '/upload-product-images', body , {
 			headers: {
 				'Content-Type': 'multipart/form-data',
-				'Access-Control-Allow-Credentials': 'true'
+				'Access-Control-Allow-Credentials': 'true',
+				'x-token': token
 			}
 		})
 
@@ -68,7 +71,7 @@ export const uploadProductImages = async ( data: any ): Promise<IApiUploadProduc
 export const getFlashSales = async (): Promise<IAPICategoryProductsTopLevel> => {
 	
 	try {
-		
+	
 		const resp = await productApi.get<IAPICategoryProductsTopLevel>( '/flash-sales' )
 
 		return resp.data
