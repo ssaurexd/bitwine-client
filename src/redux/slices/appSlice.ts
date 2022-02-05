@@ -32,16 +32,17 @@ const initialState: IApp = {
 	},
 	paymentInfo: {
 		stepTwo: {
-			email: 'ssaurexd@gmail.com',
-			houseNumber: '3435',
-			lastName: 'Sandoval',
-			name: 'Aure',
-			phone: '554635362',
-			street: 'Tulum',
-			zip: '14200',
-			suburb: 'Heroes de padierna',
-			delegation: 'Tlalpan',
-			state: 'CDMX'
+			_id: '',
+			email: '',
+			houseNumber: '',
+			lastName: '',
+			name: '',
+			phone: '',
+			street: '',
+			zip: '',
+			suburb: '',
+			delegation: '',
+			state: ''
 		}
 	}
 } 

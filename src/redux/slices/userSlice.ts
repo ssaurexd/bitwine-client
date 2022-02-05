@@ -16,7 +16,7 @@ interface UserState{
 	lastName: string,
 	isLoggedIn: boolean,
 	role: Roles,
-	address: IUserAddress[]
+	address?: IUserAddress[]
 	loading?: boolean,
 	avatar?:string
 }

@@ -17,7 +17,11 @@ const initialState: IStore = {
 	shopCart: {
 		items: [],
 		total: 0,
-		shipment: 0
+		shipment: {
+			id: 2, 
+			name: 'Fedex', 
+			price: 193 
+		}
 	},
 	wishList: {
 		items: []

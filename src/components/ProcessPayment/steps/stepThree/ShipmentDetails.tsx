@@ -13,6 +13,7 @@ import useStyle from '../../styles'
 import TotalInfo from '../../TotalInfo'
 import { useAppDispatch } from '../../../../hooks/reduxHooks'
 import { addShipmentPrice } from '../../../../redux/slices/storeSlice'
+import { IShipment } from '../../../../interfaces/storeIntergaces'
 
 
 interface Props {
@@ -23,40 +24,40 @@ const ShipmentDetails: FC<Props> = ({ onGoBack, onNextStep }) => {
 
 	/* hooks */
 	const classes = useStyle()
-	const [ shipmentValue, setShipmentValue ] = useState({ id: 2, label: 'Fedex', price: 193 })
+	const [ shipmentValue, setShipmentValue ] = useState({ id: 2, name: 'Fedex', price: 193 })
 	const dispatch = useAppDispatch()
 
 	/* state */
-	const shipments = [
-		{ id: 0, label: 'DHL', price: 233 },
-		{ id: 1, label: 'Paquete Express', price: 133 },
-		{ id: 2, label: 'Fedex', price: 193 },
+	const shipments: IShipment[] = [
+		{ id: 0, name: 'DHL', price: 233 },
+		{ id: 1, name: 'Paquete Express', price: 133 },
+		{ id: 2, name: 'Fedex', price: 193 },
 	]
 
 	/* funtions */
 	const onRadioChange = ( e: ChangeEvent<HTMLInputElement>, shipId: number ) => {
 
 		setShipmentValue({ ...shipments[shipId] })
-		dispatch( addShipmentPrice({ shipmentPrice: shipments[shipId].price }) )
+		dispatch( addShipmentPrice({ shipmentPrice: shipments[shipId] }) )
 	}
 
 	/* efects */
 	useEffect( () => {
 
-		dispatch( addShipmentPrice({ shipmentPrice: shipmentValue.price }) )
+		dispatch( addShipmentPrice({ shipmentPrice: shipmentValue }) )
 	}, [])
 
 	return (
 		<Grid container spacing={ 3 } wrap='wrap-reverse' >
 			<Grid item xs={ 12 } md ={ 8 } >
 				<Grid item >
-					<RadioGroup value={ shipmentValue.label } >
+					<RadioGroup value={ shipmentValue.name } >
 						{ shipments.map( item => (
 
-							<Paper key={ item.label } className={ classes.acordion }>
+							<Paper key={ item.name } className={ classes.acordion }>
 								<FormControlLabel
-									control={ <Radio value={ item.label } onChange={ ( e ) => onRadioChange( e, item.id ) } /> }
-									label={ item.label }
+									control={ <Radio value={ item.name } onChange={ ( e ) => onRadioChange( e, item.id ) } /> }
+									label={ item.name }
 								/>
 								<div>
 									<Typography variant='body2' color='textSecondary' >${ item.price }</Typography>

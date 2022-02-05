@@ -59,7 +59,7 @@ const LoginForm: FC = () => {
 
 		dispath( logInStart() )
 		
-		const { ok, user, msg, token } = await userAuthLogin( values )
+		const { ok, user, msg, token } = await userAuthLogin({ email: values.email.trim(), password: values.password, rememberMe: values.rememberMe })
 
 		if( ok ) { 
 

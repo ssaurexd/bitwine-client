@@ -17,6 +17,7 @@ export interface IAPIUser {
 }
 
 export interface IUserAddress {
+	_id: string,
 	name: string,
 	lastName?: string,
 	street: string,
@@ -41,4 +42,10 @@ export interface IAPIRefreshTokenTopLevel {
 //logout
 export interface IAPILogOutTopLevel {
 	ok: boolean
+}
+
+//add new address 
+export interface IAPIAddNewAddress {
+	ok: boolean,
+	msg: string
 }

@@ -15,7 +15,7 @@ export interface IStore {
 	shopCart: {
 		items: IStoreItem[],
 		total: number,
-		shipment: number
+		shipment: IShipment
 	},
 	wishList: {
 		items: IStoreItem[]
@@ -29,8 +29,14 @@ export interface IApiStoreTypeContainer {
 }
 
 export interface IAddShipmentPricePayload {
-	shipmentPrice: number
+	shipmentPrice: IShipment
 }
+
+export interface IShipment {
+	id: number,
+	price: number,
+	name: string
+} 
 
 /* --START-- responses
 -------------------------------------------------------- */
