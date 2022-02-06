@@ -135,6 +135,22 @@ const useStyle = makeStyles( ( theme ) => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'column'
+	},
+	msgSucess: {
+		color: 'green',
+		fontSize: '4rem',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	msgError: {
+		color: 'red',
+		fontSize: '4rem',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
 	}
 	/* --END-- paying
 	-------------------------------------------------------- */

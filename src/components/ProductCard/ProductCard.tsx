@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import {
 	AddShoppingCart,
 	Favorite 
@@ -9,7 +10,7 @@ import { Rating } from '@material-ui/lab'
 
 import useStyle from './styles'
 import { IProduct } from '../../interfaces/productInterfaces'
-import { useAppDispatch } from '../../hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { openToast } from '../../redux/slices/appSlice'
 import { addItemStoreThunk } from '../../redux/middlewares/storeMiddlewares'
 import { IStoreItem } from '../../interfaces/storeIntergaces'
@@ -24,16 +25,37 @@ interface Props {
 
 const ProductCard: FC<Props> = ({ product }) => {
 
+	/* state */
 	const haveDiscount = product.discount > 0 ? true : false 
+	const { isLoggedIn } = useAppSelector( state => state.user ) 
 
 	/* hooks */
 	const classes = useStyle()
 	const dispatch = useAppDispatch()
+	const location = useRouter()
 
 	/* funtions */
-
 	const onAddToWishList = () => {
 		
+		if( !isLoggedIn ) {
+
+			location.push( '/signup' )
+			return
+		} 
+
+		const item: IStoreItem = {
+			_id: product._id,
+			count: 1,
+			description: product.description,
+			discount: product.discount,
+			image: product.image,
+			price: product.price,
+			priceWithDiscount: product.priceWithDiscount,
+			slug: product.slug,
+			name: product.name
+		}
+
+		dispatch( addItemStoreThunk({ item, type: 'wishList' }) )
 		dispatch( openToast({
 			isOpen: true,
 			msg: 'Producto agregado a tu lista de deseos',

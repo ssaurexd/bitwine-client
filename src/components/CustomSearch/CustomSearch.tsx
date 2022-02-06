@@ -155,6 +155,7 @@ const CustomDialogSearch: FC<PropsDialog> = ({ onClose, open }) => {
 						error={ errors.search ? true : false }
 						value={ values.search }
 						onChange={ handleChange }
+						autoFocus
 					/>
 				</DialogTitle>
 				<DialogContent dividers className={ classes.dialogContent } >

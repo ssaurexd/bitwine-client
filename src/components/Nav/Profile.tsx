@@ -112,7 +112,7 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 							<ListItemIcon>
 								<Favorite />
 							</ListItemIcon>
-							<Link href='/profile' >
+							<Link href='/wish-list' >
 								<a>Lista de deseos</a>	
 							</Link>
 						</MenuItem>
