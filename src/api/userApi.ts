@@ -5,7 +5,9 @@ import { settings } from '../config/settings'
 import { 
 	IAPILoginTopLevel,
 	IAPIRefreshTokenTopLevel,
-	IAPILogOutTopLevel
+	IAPILogOutTopLevel,
+	IUserAddress,
+	IAPIAddNewAddress
 } from '../interfaces/user'
 
 
@@ -76,6 +78,24 @@ export const userAuthLogOut = async ( ): Promise<IAPILogOutTopLevel> => {
 		const err = error as AxiosError<IAPILogOutTopLevel>
 		const resp = err.response?.data as IAPILogOutTopLevel
 
+		return resp
+	}
+}
+
+/* address newone */
+export const userAddNewAddress = async ( values: IUserAddress, uid: string ): Promise<IAPIAddNewAddress> => {
+
+	try {
+		const token = getToken()
+		const resp = await userApi.put<IAPIAddNewAddress>( `/edit-address/${ uid }`, values, { headers: { 'x-token': token } } )
+	
+		return resp.data
+	} catch ( error ) {
+		
+		const err = error as AxiosError<IAPIAddNewAddress>
+		const resp = err.response?.data as IAPIAddNewAddress
+		
+        console.log("🚀 ~ file: userApi.ts ~ line 97 ~ userAddNewAddress ~ resp", resp)
 		return resp
 	}
 }

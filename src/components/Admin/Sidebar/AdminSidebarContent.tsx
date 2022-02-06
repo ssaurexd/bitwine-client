@@ -27,7 +27,10 @@ import { changeDashboardMenuItem } from '../../../redux/slices/appSlice'
 import SidebarItem from './SidebarItem'
 
 
-const AdminSidebarContent: FC = () => {
+interface Props {
+	onSidebarClose: () => void
+}
+const AdminSidebarContent: FC<Props> = ({ onSidebarClose }) => {
 
 	/* hooks */
 	const { email, name, lastName, avatar } = useAppSelector( state => state.user )
@@ -52,12 +55,14 @@ const AdminSidebarContent: FC = () => {
 			<Collapse in={ avatarOpen } >
 				<List>
 					<SidebarItem
+						onSidebarClose={ onSidebarClose }
 						href='/admin/profile'
 						title='Perfil'
 						icon={ <Face /> }
 						nested
 					/>
 					<SidebarItem
+						onSidebarClose={ onSidebarClose }
 						href='/admin/profile/settings'
 						title='Configuración'
 						icon={ <Settings /> }
@@ -70,6 +75,7 @@ const AdminSidebarContent: FC = () => {
 
 			{/* analytics */}
 			<SidebarItem
+				onSidebarClose={ onSidebarClose }
 				href='/admin'
 				icon={ <Dashboard /> }
 				title='Dashboard'
@@ -86,12 +92,14 @@ const AdminSidebarContent: FC = () => {
 			<Collapse in={ productOpen } >
 				<List>
 					<SidebarItem
+						onSidebarClose={ onSidebarClose }
 						href='/admin/products/list'
 						icon={ <ListIcon /> }
 						title='Mis productos'
 						nested
 					/>
 					<SidebarItem
+						onSidebarClose={ onSidebarClose }
 						href='/admin/products/create'
 						icon={ <Add /> }
 						title='Agregar producto'

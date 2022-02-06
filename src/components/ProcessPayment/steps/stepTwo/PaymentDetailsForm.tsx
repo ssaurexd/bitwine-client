@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import * as yup from 'yup'
 import { 
 	Button,
@@ -7,6 +8,8 @@ import {
 	Paper, 
 	TextField, 
 	Typography,
+	useMediaQuery,
+	useTheme,
 } from '@material-ui/core'
 
 import useStyle from '../../styles'
@@ -14,7 +17,7 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks'
 import { IUserAddress } from '../../../../interfaces/user'
 import { setStepTwoPaymentInfo } from '../../../../redux/slices/appSlice'
 
-import Btn from '../../../Btn'
+import Address from '../../../Address'
 
 
 interface Props {
@@ -25,8 +28,10 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 
 	/* hooks */
 	const classes = useStyle()
+	const theme = useTheme()
+	const isSmall = useMediaQuery( theme.breakpoints.down( 'sm' ) )
 	const dispatch = useAppDispatch()
-	const { isLoggedIn, email } = useAppSelector( state => state.user )
+	const { isLoggedIn, email, address } = useAppSelector( state => state.user )
 	const { paymentInfo } = useAppSelector( state => state.app )
 	const formik = useFormik<IUserAddress>({
 		initialValues: {
@@ -53,20 +58,39 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 	})
 
 	/* funtions */
-	const onSaveAddress = (  ) => {
-
-		if( ( formik.isValid && formik.dirty ) ) {
-			console.log('Entre aqui');
-		}
-	}
-
 	const handleSubmit = ( values: IUserAddress ) => {
 		
 		dispatch( setStepTwoPaymentInfo( values ) )
 	}
+
+	const handleClickAddress = ( address: IUserAddress ) => {
+
+		dispatch( setStepTwoPaymentInfo( address ) )
+
+		Object.entries( address ).forEach(([ key, value ]) => {
+
+			formik.setFieldValue(key, value, true)
+		})
+	}
 	
 	return (
 		<form method='POST' onSubmit={ formik.handleSubmit } >
+			{ address && address.length &&
+				<Paper className={ classes.paperTotal } >
+					<Typography variant='subtitle2' className={ classes.subTitle } color='textSecondary'>Seleccionar una Direccions </Typography>
+					<Swiper
+						pagination={{ clickable: true }}
+						slidesPerView={ isSmall ? 1 : 2 }
+					>
+						{ address.map( item =>  (
+							<SwiperSlide key={ item._id }  >
+								<Address key={ item._id } address={ item } onClickCard={ handleClickAddress } />
+							</SwiperSlide>
+						))}
+					</Swiper>
+				</Paper>
+			}
+			
 			<Paper className={ classes.paperTotal } >
 				<Typography variant='subtitle2' className={ classes.subTitle } color='textSecondary'>Datos de usuario: </Typography>
 				<Grid container >
@@ -224,17 +248,6 @@ const PaymentDetailsForm: FC<Props> = ({ onGoBack, onNextStep }) => {
 			</Paper>
 
 			<Grid container item xs justifyContent='space-between' direction='row' wrap='wrap' >
-				{ isLoggedIn && ( formik.isValid && formik.dirty ) &&
-					<Grid item xs={ 12 } >
-						<Btn 
-							variant='contained' 
-							color='primary' 
-							onClick={ onSaveAddress }
-							className={ classes.mb3 }
-							title='Guardar dirección'
-						/>
-					</Grid>
-				}
 				<Grid item xs={ 12 } md={ 5 } >
 					<Button
 						variant='outlined' 

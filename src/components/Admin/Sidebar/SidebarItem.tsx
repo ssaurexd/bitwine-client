@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 import {
 	ListItem,
 	ListItemIcon,
-	ListItemText
+	ListItemText,
+	useMediaQuery,
+	useTheme
 } from '@material-ui/core'
 import clsx from 'clsx'
 
@@ -15,14 +17,25 @@ interface Props {
 	icon: ReactElement,
 	title: string,
 	subTitle?: string,
-	nested?: boolean
+	nested?: boolean,
+	onSidebarClose?: () => void
 }
 
-const SidebarItem: FC<Props> = ({ href, icon, title, subTitle, nested = false }) => {
+const SidebarItem: FC<Props> = ({ href, icon, title, subTitle, nested = false, onSidebarClose }) => {
 
+	/* hooks */
+	const theme = useTheme()
+	const isSmall = useMediaQuery( theme.breakpoints.down('sm') )
 	const location = useRouter()
 	const classes = useStyle()
 	const isActiveLink: boolean = location.pathname === href
+
+	/* funtions */
+	const handleListClick = (  ) => {
+
+		onSidebarClose && isSmall && onSidebarClose()
+		location.push( href )
+	}
 
 	return (
 		<ListItem 
@@ -31,7 +44,7 @@ const SidebarItem: FC<Props> = ({ href, icon, title, subTitle, nested = false })
 				[classes.nested]: nested
 			})}
 			button 
-			onClick={ () => location.push( href ) } 
+			onClick={ handleListClick } 
 		>
 			<ListItemIcon>
 				{ icon }

@@ -38,7 +38,7 @@ const AdminSidebar:FC<Props> = ({ open, handleSidebarClose }) => {
 				</IconButton>
 			</div>
 
-			<AdminSidebarContent />
+			<AdminSidebarContent onSidebarClose={ handleSidebarClose } />
 		</Drawer>
 	)
 }

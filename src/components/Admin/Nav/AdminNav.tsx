@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import {
 	AppBar,
@@ -6,6 +6,7 @@ import {
 	IconButton,
 	Grid,
 	Badge,
+	CircularProgress
 } from '@material-ui/core'
 import clsx from 'clsx'
 import { 
@@ -20,6 +21,8 @@ import { userAuthLogOut } from '../../../api/userApi'
 import { useAppDispatch } from '../../../hooks/reduxHooks'
 import { logOut } from '../../../redux/slices/userSlice'
 import { resetStore } from '../../../redux/slices/storeSlice'
+import { getPendingSales } from '../../../api/salesApi'
+import { ISalesResponse } from '../../../interfaces/salesInterfaces'
 
 
 interface Props {
@@ -28,6 +31,10 @@ interface Props {
 }
 
 const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
+
+	/* state */
+	const [ isLoadingByNotifications, setIsLoadingByNotifications ] = useState( true )
+	const [ pendingSales, setPendingSales ] = useState<ISalesResponse[]>( [] )
 
 	/* hooks */
 	const classes = useStyle()
@@ -46,6 +53,24 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 			location.push( '/' )
 		} 
 	}
+
+	const onGetPendingSales = useCallback( async (  ) => {
+		
+		const { ok, sales } = await getPendingSales()
+
+		if( ok ) {
+
+			setPendingSales( sales )
+		}
+
+		setIsLoadingByNotifications( false )
+	}, [])
+
+	/* effects */
+	useEffect( () => {
+
+		onGetPendingSales()
+	}, [])
 
 	return (
 		<AppBar
@@ -85,7 +110,12 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 							<IconButton
 								color='inherit'
 							>
-								<Badge color='primary' badgeContent={ 5 } >
+								<Badge color='error' 
+									badgeContent={ isLoadingByNotifications 
+										? <CircularProgress size={ 9 } style={{ color: '#fff', position: 'absolute', top: '30%' }} /> 
+										: pendingSales.length
+									} 
+								>
 									<Notifications />
 								</Badge>
 							</IconButton>

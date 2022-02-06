@@ -32,6 +32,7 @@ const initialState: IApp = {
 	},
 	paymentInfo: {
 		stepTwo: {
+			_id: '',
 			email: '',
 			houseNumber: '',
 			lastName: '',
