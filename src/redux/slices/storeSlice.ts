@@ -1,8 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { numberToDecimals } from '../../helpers/helpers'
 import { 
-	IStore
+	IAddShipmentPricePayload,
+	IStore,
+	IStoreType
 } from '../../interfaces/storeIntergaces'
 import {
 	addItemStoreThunk,
@@ -16,7 +18,11 @@ const initialState: IStore = {
 	shopCart: {
 		items: [],
 		total: 0,
-		shipment: 0
+		shipment: {
+			id: 2, 
+			name: 'Fedex', 
+			price: 193 
+		}
 	},
 	wishList: {
 		items: []
@@ -27,7 +33,21 @@ const storeSlice = createSlice({
 	initialState,
 	name: 'shopCart',
 	reducers: {
-		resetStore: ( state ) => initialState
+		resetStore: ( state ) => initialState,
+		resetStoreByType: ( state, { payload }: PayloadAction<IStoreType> ) => {
+			switch ( payload ) {
+				case 'shopCart':
+					state.shopCart = initialState.shopCart
+					break;
+				case 'wishList':
+					state.wishList = initialState.wishList
+					break;
+			}
+		},
+		addShipmentPrice: ( state, { payload }: PayloadAction<IAddShipmentPricePayload> ) => {
+
+			state.shopCart.shipment = payload.shipmentPrice
+		}
 	},
 	extraReducers: ( builder ) => {
 		builder
@@ -96,7 +116,9 @@ const storeSlice = createSlice({
 })
 
 export const {
-	resetStore
+	resetStore,
+	addShipmentPrice,
+	resetStoreByType
 } = storeSlice.actions
 
 export default storeSlice.reducer

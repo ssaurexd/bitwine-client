@@ -18,11 +18,11 @@ const HomeScreen: FC<Props> = () => {
 	
 	return (
 		<>
-			<ProductSliderMain products={ products.sliderProducts } />
+			<ProductSliderMain products={ products.sliderProducts } lazy={ false } />
 			<WhyChooseUs />
 
-			<Slider products={ products.flashSale } title='Ofertas Flash' category='flash-sales' />
-			<Slider products={ products.pinkWine } title='Vino Rosa' category='pink-wine' />
+			<Slider lazy={ false } products={ products.flashSale } title='Ofertas Flash' category='flash-sales' />
+			<Slider lazy={ false } products={ products.pinkWine } title='Vino Rosa' category='pink-wine' />
 
 			<Ads />
 			<OurProducts />

@@ -5,12 +5,13 @@ import { ParsedUrlQuery } from 'querystring'
 import { IProduct } from '../../interfaces/productInterfaces'
 import { getProductBySlug } from '../../api/productApi'
 import { settings } from '../../config/settings'
-
+ 
 import Auth from '../../components/init/Auth'
 import FooterMain from '../../components/FooterMain'
 import Layout from '../../components/init/Layout'
 import ProductOnePage from '../../components/ProductOnePage'
 import SEO from '../../components/SEO'
+import { removeHTMLTags } from '../../helpers/helpers'
 
 
 
@@ -22,22 +23,23 @@ interface Props {
 const productPage: NextPage<Props> = ({ product, related }) => {
 
 	return (
-		<Auth
-			admitedRoles={ ['admin', 'guest', 'user'] }
-		>
-			<>
-				<SEO
-					desc={ product.description }
-					title={ `BitWine - ${ product.name }` }
-					url={ `www.bitwine.com/product/${ product.slug }` }
-					urlImage={ `${ settings.BASE_PATH }/${ product.image }` }
-				/>
+		<>
+			<SEO
+				desc={ removeHTMLTags( product.description ) }
+				title={ `BitWine - ${ product.name }` }
+				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
+				urlImage={ `https://bitwine-server.herokuapp.com/${ product.image }` }
+			/>
+			
+			<Auth
+				admitedRoles={ ['admin', 'guest', 'user'] }
+			>	
 				<Layout >
 					<ProductOnePage product={ product } related={ related } />
 					<FooterMain />
 				</Layout>
-			</>
-		</Auth>
+			</Auth>
+		</>
 	)
 }
 

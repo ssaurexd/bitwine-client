@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import  Head from 'next/head'
+import { FC, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
@@ -20,6 +20,7 @@ import 'suneditor/dist/css/suneditor.min.css'
 import '../styles/styles.scss'
 import store from '../redux/store'
 import theme from '../config/theme'
+import * as gtag from '../lib/gtag'
 
 import Toast from '../components/Toast'
 
@@ -28,12 +29,24 @@ SwiperCore.use([ Pagination, Navigation, Mousewheel, Keyboard, Autoplay, Thumbs 
 
 const _app: FC<AppProps> = ( { Component, pageProps } ) => {
 
+	const router = useRouter()
+
+	/* efetcs */
+	useEffect( () => {
+
+		const handleRouteChange = ( url: URL ) => {
+			gtag.pageview( url )
+		}
+
+		router.events.on( 'routeChangeComplete', handleRouteChange )
+
+		return () => {
+			router.events.off( 'routeChangeComplete', handleRouteChange )
+		}
+	},  [ router.events ])
+
 	return (
 		<Provider store={ store } >
-			<Head>
-				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-			</Head>
-
 			<ThemeProvider theme={ theme } >
 				<CssBaseline />
 				<Component { ...pageProps } />

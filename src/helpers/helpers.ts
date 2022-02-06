@@ -24,3 +24,8 @@ export const getLinkImage = ( img: string ): string => {
 	
 	return `${ settings.BASE_PATH }/${ img }`
 }
+
+export const removeHTMLTags = ( value: string ): string => {
+	
+	return value.replace(/<(?:.|\n)*?>/gm, '')
+}

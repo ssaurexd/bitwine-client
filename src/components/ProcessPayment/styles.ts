@@ -86,7 +86,18 @@ const useStyle = makeStyles( ( theme ) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		padding: theme.spacing( 2 ),
-		marginBottom: theme.spacing( 2 )
+		marginBottom: theme.spacing( 2 ),
+		'& .swiper-container':  {
+			width: '100%',
+			height: '100%',
+		},
+		'& .swiper-wrapper':  {
+			width: '100%',
+			height: '100%',
+		},
+		'& .swiper-pagination-bullet-active ': {
+			backgroundColor: '#800'
+		}
 	},
 	totalBox: {
 		width: '100%',
@@ -105,9 +116,43 @@ const useStyle = makeStyles( ( theme ) => ({
 	/* --START-- ShipmentDetails
 	-------------------------------------------------------- */
 	acordion: {
-		marginBottom: theme.spacing( 3 )
-	}
+		marginBottom: theme.spacing( 3 ),
+		padding: theme.spacing( 2 ),
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center'
+	},
 	/* --END-- ShipmentDetails
+	-------------------------------------------------------- */
+
+	/* --START-- paying
+	-------------------------------------------------------- */
+	rootPaying: {
+		width: '100%',
+		height: '100%',
+		padding: theme.spacing( 2 ),
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'column'
+	},
+	msgSucess: {
+		color: 'green',
+		fontSize: '4rem',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	msgError: {
+		color: 'red',
+		fontSize: '4rem',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	}
+	/* --END-- paying
 	-------------------------------------------------------- */
 }))
 

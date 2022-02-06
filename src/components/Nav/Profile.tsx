@@ -4,7 +4,8 @@ import {
 	Settings,
 	Person,
 	Favorite,
-	ExitToApp
+	ExitToApp,
+	Tune
 } from '@material-ui/icons'
 import {
 	Avatar,
@@ -97,11 +98,21 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 								<a>Perfil</a>	
 							</Link>
 						</MenuItem>
+						{ /^(admin)/.test( user.role ) &&
+							<MenuItem>
+								<ListItemIcon>
+									<Tune />
+								</ListItemIcon>
+								<Link href='/admin' >
+									<a>Panel de administración</a>	
+								</Link>
+							</MenuItem>
+						}
 						<MenuItem>
 							<ListItemIcon>
 								<Favorite />
 							</ListItemIcon>
-							<Link href='/profile' >
+							<Link href='/wish-list' >
 								<a>Lista de deseos</a>	
 							</Link>
 						</MenuItem>

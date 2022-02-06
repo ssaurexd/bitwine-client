@@ -22,7 +22,7 @@ const useStyle = makeStyles<Theme, StyleProps>( ( theme ) => ({
 	swiper: {
 		width: '100%',
 		height: 'auto',
-		mixHeight: 200,
+		maxHeight: 200,
 		maxWidth: 300,
 	},
 	swiperSlide: {
@@ -39,7 +39,7 @@ const useStyle = makeStyles<Theme, StyleProps>( ( theme ) => ({
 	imgContainer: {
 		width: '100%',
 		height: 'auto',
-		mixHeight: 200,
+		maxHeight: 200,
 		maxWidth: 250,
 		borderRadius: globalStyles.shape.borderRadius2,
 		marginTop: theme.spacing( 3 ),

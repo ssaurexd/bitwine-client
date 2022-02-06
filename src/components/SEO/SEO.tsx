@@ -33,8 +33,8 @@ const SEO: FC<Props> = ( props ) => {
 
 	return (
 		<Head>
-			<meta name="title" content={ title } />
-			<meta name="description" content={ desc } />
+			<meta name="title" content={ title } key='title' />
+			<meta name="description" content={ desc } key='desc' />
 			{/* Facebook */}
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content={ url } />
@@ -46,6 +46,7 @@ const SEO: FC<Props> = ( props ) => {
 			<meta property="twitter:title" content={ twitterTitle ? twitterTitle : title } />
 			<meta property="twitter:description" content={ twitterDesc ? twitterDesc : desc } />
 			<meta property="twitter:image" content={ twitterUrlImage ? twitterUrlImage : urlImage } />
+			<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			<meta name="keywords" content="Vinos, Comprar, Comprar vino en linea, en linea, seguro, tienda en linea, Vino blanco, Vino rosa, oferta vinos" />
 			<title>{ title }</title>
 		</Head>

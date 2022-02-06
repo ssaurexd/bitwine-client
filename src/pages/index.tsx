@@ -39,32 +39,35 @@ const App: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 	}, [])
 
 	return (
-		<Auth
-			admitedRoles={ ['user', 'admin', 'guest'] }
-		>
-			<>
-				<SEO
-					desc='BitWine es el mejor mercado y lugar en linea para comprar vinos de la mejor calidad, para amantes del vino y quien busca relajarse o tener un buen acompañamiento con su comida, BitWine es segura y rapida.'
-					title='BitWine - El mejor lugar para comprar vino'
-					url='www.bitwine.com'
-					urlImage='aquila urlejejej'
-				/>
-				<Layout haveHeader >
-					<main className='main-100-vh' >
-						<HeaderMain 
-							title='El mejor mercado en linea para comprar vinos'
-							subTitle='Vinos para los amantes del vino'
-							showBtn={ true }
-							bottomShadow={ true }
-						/>
+		<>
+			<SEO
+				desc='BitWine es el mejor mercado y lugar en linea para comprar vinos de la mejor calidad, para amantes del vino y quien busca relajarse o tener un buen acompañamiento con su comida, BitWine es segura y rapida.'
+				title='BitWine - El mejor lugar para comprar vino'
+				url='https://bitwine-client.herokuapp.com'
+				urlImage='https://bitwine-client.herokuapp.com/assets/images/defaultHeaderBG.jpg'
+			/>
+			
+			<Auth
+				admitedRoles={ ['user', 'admin', 'guest'] }
+			>
+				<>
+					<Layout haveHeader >
+						<main className='main-100-vh' >
+							<HeaderMain 
+								title='El mejor mercado en linea para comprar vinos'
+								subTitle='Vinos para los amantes del vino'
+								showBtn={ true }
+								bottomShadow={ true }
+							/>
 
-						<HomeScreen />
-					</main>
+							<HomeScreen />
+						</main>
 
-					<FooterMain />
-				</Layout>
-			</>
-		</Auth>
+						<FooterMain />
+					</Layout>
+				</>
+			</Auth>
+		</>
 	)
 }
 

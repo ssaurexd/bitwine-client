@@ -32,7 +32,7 @@ const TotalInfo: FC<Props> = () => {
 			</div>
 			<div className={ classes.totalBox } >
 				<Typography variant='subtitle1' >Costo de envio:</Typography>
-				<Typography variant='subtitle2' >${ shipment }</Typography>
+				<Typography variant='subtitle2' >${ shipment.price }</Typography>
 			</div>
 			<div className={ classes.totalBox } >
 				<Typography variant='subtitle1' >IVA (16%):</Typography>
@@ -47,7 +47,7 @@ const TotalInfo: FC<Props> = () => {
 
 			<div className={ classes.totalBox } />
 			<div>
-				<Typography variant='h5' align='right' >${ total }</Typography>
+				<Typography variant='h5' align='right' >${ ( total + shipment.price ).toFixed( 2 )  }</Typography>
 			</div>
 		</>
 	)

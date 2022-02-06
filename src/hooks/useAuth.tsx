@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { AxiosError } from 'axios'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { userAuthRefreshToken, userAuthLogOut } from '../api/userApi'
+import { userAuthRefreshToken } from '../api/userApi'
 import { logIn, logOut, Roles } from '../redux/slices/userSlice'
-import { getIsLoggedIn, getRememberMe } from '../helpers/auth'
+import { getIsLoggedIn } from '../helpers/auth'
 import { initStore } from '../redux/middlewares/storeMiddlewares'
-import { IAPIRefreshTokenTopLevel } from '../interfaces/user'
 
 
 interface Props {
@@ -32,30 +30,24 @@ const useAuth = ({ admitedRoles, redirectTo }: Props ) => {
 
 			try {
 				
-				const { user, token } = await userAuthRefreshToken()
+				const { user, ok } = await userAuthRefreshToken()
 
-				dispatch( logIn({ ...user, isLoggedIn: true }) )
-				dispatch( initStore() )
+				if( ok ) {
 
-				if( getRememberMe() ) {
-					localStorage.setItem( 'token', token )
+					dispatch( logIn({ ...user, isLoggedIn: true }) )
+					dispatch( initStore() )
+				} else {
+
+					dispatch( logOut() )
+					setGlobalLoading( false )
+					location.push( '/' )
 				}
+
 			} catch ( error ) {
 
-				const err = error as AxiosError<IAPIRefreshTokenTopLevel>
-				const resp = err.response?.data as IAPIRefreshTokenTopLevel
-				
-				if( resp.expired ) {
-	
-					const { ok } = await userAuthLogOut()
-		
-					if( ok ) dispatch( logOut() )
-					return
-				}
-
-				location.push( '/' )
-				setGlobalLoading( false )
 				dispatch( logOut() )
+				setGlobalLoading( false )
+				location.push( '/' )
 				return
 			}
 		} else {
