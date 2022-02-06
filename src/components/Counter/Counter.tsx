@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, useCallback } from 'react'
 import { 
 	IconButton
 } from '@material-ui/core'
@@ -95,13 +95,13 @@ const Counter: FC<Props> = ({ productId }) => {
 		}
 	}
 
-	const getProductStock = async (  ) => {
+	const getProductStock = useCallback( async (  ) => {
 		
 		const { ok, onStock } = await getProductStockById( productId )
 
 		if( ok ) setOnStock( onStock )
 		else return
-	}
+	},[ productId ])
 
 	useEffect( () => {
 		
@@ -109,13 +109,13 @@ const Counter: FC<Props> = ({ productId }) => {
 		
 		setStoreProduct( item )
 		getProductStock()
-	}, [ ])
+	}, [ items, productId, getProductStock ])
 
 	useEffect( () => {
 
 		const item = items.find( item => item._id === productId )!
 		setCount( item.count )
-	}, [ productId ])
+	}, [ productId, items ])
 
 	return (
 		<div className={ classes.root } >

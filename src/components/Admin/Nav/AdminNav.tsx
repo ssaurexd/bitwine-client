@@ -70,7 +70,7 @@ const AdminNav: FC<Props> = ({ handleSidebarOpen, open }) => {
 	useEffect( () => {
 
 		onGetPendingSales()
-	}, [])
+	}, [ onGetPendingSales ])
 
 	return (
 		<AppBar

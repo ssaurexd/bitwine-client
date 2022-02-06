@@ -52,7 +52,7 @@ const LoginForm: FC = () => {
 		return () => { 
 			dispath( resetLoading() ) 
 		}
-	}, [])
+	}, [ dispath ])
 
 	/* funtions */
 	const _Submit = async ( values: FormValues ) => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, FC, useRef } from 'react'
+import { useState, useEffect, FC, useRef, useCallback } from 'react'
 import { NextPage } from 'next'
 import useStyle from './styles'
 import { 
@@ -31,13 +31,8 @@ const Market: FC<Props> = () => {
 	let limit = 13
 	let pageIndex = useRef( 0 )
 
-	/* efects */
-	useEffect( () => {
-		fetchProducts()
-	}, [])
-
 	/* funtions */
-	const fetchProducts = async ( page = 0 ) => {
+	const fetchProducts = useCallback( async ( page = 0 ) => {
 		
 		setIsLoading( true )
 		pageIndex.current = page
@@ -52,7 +47,13 @@ const Market: FC<Props> = () => {
 			setTotalPages( Math.ceil( total / limit ) )
 			setIsLoading( false )
 		}
-	}
+	}, [ limit ])
+
+	/* efects */
+	useEffect( () => {
+
+		fetchProducts()
+	}, [ fetchProducts ])
 
 	return (
 		<section className={ classes.marketRoot } >

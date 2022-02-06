@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 
 import { CircularProgress, Typography } from '@material-ui/core'
 import { ThumbUpAlt, Error } from '@material-ui/icons'
@@ -46,7 +46,7 @@ const ResumePayment: FC<Props> = () => {
 
 	}
 
-	const onPayment = async (  ) => {
+	const onPayment = useCallback( async (  ) => {
 		
 		const { ok } = await processPayment({ 
 			email: isLoggedIn ? email : addressToSend.email,
@@ -62,13 +62,13 @@ const ResumePayment: FC<Props> = () => {
 			dispatch( resetStoreByType( 'shopCart' ) )
 			setIsLoading( false )
 		}
-	}
+	}, [ _id, addressToSend, isLoggedIn, dispatch, email, items, shipment ])
 
 	/* effects */
 	useEffect( () => {
 
 		onPayment()
-	}, [])
+	}, [ onPayment ])
 
 	return (
 		<div className={ classes.rootPaying } >

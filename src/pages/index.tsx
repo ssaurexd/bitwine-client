@@ -36,7 +36,7 @@ const App: NextPage<Props> = ({ sales, pinkWine, banner, products }) => {
 				products
 			} 
 		}))
-	}, [])
+	}, [ dispatch, banner, pinkWine, products, sales ])
 
 	return (
 		<>

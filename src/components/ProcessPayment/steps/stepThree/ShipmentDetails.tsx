@@ -45,7 +45,7 @@ const ShipmentDetails: FC<Props> = ({ onGoBack, onNextStep }) => {
 	useEffect( () => {
 
 		dispatch( addShipmentPrice({ shipmentPrice: shipmentValue }) )
-	}, [])
+	}, [ dispatch, shipmentValue ])
 
 	return (
 		<Grid container spacing={ 3 } wrap='wrap-reverse' >
