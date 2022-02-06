@@ -7,6 +7,12 @@ export interface IAPISaleAddNewOneResponse {
 	sale: ISalesResponse
 }
 
+export interface IAPIGetPendingSales {
+	ok: boolean,
+	msg?: string,
+	sales: ISalesResponse[]
+}
+
 export interface IProcessPayment { 
 	items: IStoreItem[], 
 	shipment: IShipment, 
@@ -25,5 +31,8 @@ export interface ISalesResponse  {
 	totalItems: number,
 	_id: string,
 	email: string
-	uid?: string
+	uid?: string,
+	status: ISalesStatus 
 }
+
+export type ISalesStatus = 'pending' | 'sent' | 'late' | 'done'

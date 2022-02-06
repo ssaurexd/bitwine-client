@@ -53,6 +53,11 @@ export interface IApiResponseUpdateItem {
 	ok: boolean,
 	msg: string
 }
+
+export interface IApiResponseResetStoreByType {
+	ok: boolean,
+	msg: string
+}
 /* --END-- responses
 -------------------------------------------------------- */
 

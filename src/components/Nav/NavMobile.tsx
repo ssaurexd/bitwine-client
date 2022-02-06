@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import {
 	Drawer,
 	List,
@@ -17,7 +18,12 @@ import {
 	MenuOpen,
 	ExpandLess,
 	ExpandMore,
-	Image as ImageIcon 
+	Image as ImageIcon, 
+	Person,
+	ExitToApp,
+	Settings,
+	Favorite,
+	Tune
 } from '@material-ui/icons'
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
@@ -103,8 +109,35 @@ const NavMobile: FC<Props> = ({ open, onClose, isScrolling }) => {
 
 									<Collapse in={ openProfileMenu } >
 										<List component="div" disablePadding>
+											<ListItem button onClick={ () => handleOnGoTo('/profile') }>
+												<ListItemIcon>
+													<Person />
+												</ListItemIcon>
+												<ListItemText primary="Perfil" />
+											</ListItem>
+											{ /^(admin)/.test( user.role ) &&
+												<ListItem button onClick={ () => handleOnGoTo('/admin') } >
+													<ListItemIcon>
+														<Tune />
+													</ListItemIcon>
+													<ListItemText primary="Panel de administración" />
+												</ListItem>
+											}
+											<ListItem button onClick={ () => handleOnGoTo('/wish-list') }>
+												<ListItemIcon>
+													<Favorite />
+												</ListItemIcon>
+												<ListItemText primary="Lista de deseos" />
+											</ListItem>
+											<ListItem button onClick={ () => handleOnGoTo('/settings') }>
+												<ListItemIcon>
+													<Settings />
+												</ListItemIcon>
+												<ListItemText primary="Configuracion" />
+											</ListItem>
 											<ListItem button onClick={ handleLogOut } >
 												<ListItemIcon>
+													<ExitToApp />
 												</ListItemIcon>
 												<ListItemText primary="Cerrar Sesión" />
 											</ListItem>

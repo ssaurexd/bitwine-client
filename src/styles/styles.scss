@@ -6,6 +6,9 @@
 .main-100-vh{
 	min-height: calc( 100vh - #{ $nav-main-heigth } - #{ $footer-main-heigth } );
 }
+.main-mt-nav {
+	margin-top: $nav-main-heigth;
+}
 
 //components
 @import './components/header-main.scss';

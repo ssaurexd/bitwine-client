@@ -11,6 +11,7 @@ import FooterMain from '../../components/FooterMain'
 import Layout from '../../components/init/Layout'
 import ProductOnePage from '../../components/ProductOnePage'
 import SEO from '../../components/SEO'
+import { removeHTMLTags } from '../../helpers/helpers'
 
 
 
@@ -24,7 +25,7 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 	return (
 		<>
 			<SEO
-				desc={ product.description }
+				desc={ removeHTMLTags( product.description ) }
 				title={ `BitWine - ${ product.name }` }
 				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
 				urlImage={ `https://bitwine-server.herokuapp.com/${ product.image }` }

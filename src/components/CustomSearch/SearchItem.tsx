@@ -32,7 +32,7 @@ const SearchItem: FC<Props> = ({ item: { name, slug, img, categories }, onCloseS
 
 	return (
 		<>
-			<div className={ classes.searchItemContainer } >
+			<div className={ classes.searchItemContainer } onClick={ handleGoTo } >
 				<div className={ classes.container } >
 					<div className={ classes.imgItemContainer } >
 						<Image 
@@ -56,13 +56,7 @@ const SearchItem: FC<Props> = ({ item: { name, slug, img, categories }, onCloseS
 
 					</div>
 				</div>
-
-				<IconButton
-					onClick={ handleGoTo }
-					size='small'
-				>
-					<ArrowForwardIos fontSize='medium' color='inherit' />
-				</IconButton>
+				<ArrowForwardIos fontSize='medium' color='inherit' />
 			</div>
 			<Divider />
 		</>

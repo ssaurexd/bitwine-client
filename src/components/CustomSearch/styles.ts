@@ -20,7 +20,8 @@ const useStyle = makeStyles( ( theme ) => ({
 		transition: 'all 400ms ease',
 		borderRadius: theme.shape.borderRadius,
 		'&:hover': {
-			backgroundColor: 'rgba(230,230,230,0.4)'
+			backgroundColor: 'rgba(230,230,230,0.4)',
+			cursor: 'pointer'
 		}
 	},
 	imgItemContainer: {
