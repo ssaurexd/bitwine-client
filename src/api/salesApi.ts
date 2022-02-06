@@ -1,8 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
 import { settings } from '../config/settings'
-import { IProduct } from '../interfaces/productInterfaces'
-import { IShipment } from '../interfaces/storeIntergaces'
+import { IAPISaleAddNewOneResponse, IProcessPayment } from '../interfaces/salesInterfaces'
 
 
 export const salesApi = axios.create({
@@ -15,18 +14,25 @@ export const salesApi = axios.create({
 })
 
 //TODO: crear la rest api para enviar una sale
-/* export const processPayment = async ( values: { items: IProduct[], total: number, shipment: IShipment } ) => {
+export const processPayment = async ( values: IProcessPayment ): Promise<IAPISaleAddNewOneResponse> => {
 	
 	try {
-
-		const resp = await salesApi.post<IApiSearchProductTopLevel>( '/search-by-query', JSON.stringify({ query }))
+		const data = {
+			uid: values.uid,
+			email: values.email,
+			products: values.items,
+			shipment: values.shipment,
+			address: values.address
+		}
+		const resp = await salesApi.post<IAPISaleAddNewOneResponse>( '/add-new-sale', JSON.stringify( data ) )
+        console.log("🚀 ~ file: salesApi.ts ~ line 28 ~ processPayment ~ resp", resp.data)
 
 		return resp.data
 	} catch ( error ) {
 		
-		const err = error as AxiosError<IApiSearchProductTopLevel>
-		const resp = err.response?.data as IApiSearchProductTopLevel
+		const err = error as AxiosError<IAPISaleAddNewOneResponse>
+		const resp = err.response?.data as IAPISaleAddNewOneResponse
 
 		return resp
 	}
-} */
+}
