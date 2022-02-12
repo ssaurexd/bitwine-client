@@ -23,6 +23,7 @@ import useStyle from './styles'
 import defaultAvatar from '../../../../public/assets/images/defaultAvatar.png'
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks'
 import { changeDashboardMenuItem } from '../../../redux/slices/appSlice'
+import { getLinkImage } from '../../../helpers/helpers'
 
 import SidebarItem from './SidebarItem'
 
@@ -44,7 +45,7 @@ const AdminSidebarContent: FC<Props> = ({ onSidebarClose }) => {
 		<List>
 			<div className={ classes.sidebarProfile }>
 				<div className={ classes.sidebarProfileAvatar } >
-					<Image className={ classes.sidebarProfileAvatar_img } src={ avatar ? avatar : defaultAvatar.src } alt="Avatar" objectFit='contain' layout='fill' />
+					<Image className={ classes.sidebarProfileAvatar_img } src={ avatar ? getLinkImage( avatar ) : defaultAvatar.src } alt="Avatar" objectFit='cover' layout='fill' />
 				</div>
 			</div>
 

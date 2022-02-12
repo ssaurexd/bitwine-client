@@ -2,7 +2,6 @@ import { FC, useState, MouseEvent } from 'react'
 import Link from 'next/link'
 import {
 	Settings,
-	Person,
 	Favorite,
 	ExitToApp,
 	Tune
@@ -24,6 +23,7 @@ import { userAuthLogOut } from '../../api/userApi'
 import { logOut } from '../../redux/slices/userSlice'
 import { useRouter } from 'next/router'
 import { resetStore } from '../../redux/slices/storeSlice'
+import { getLinkImage } from '../../helpers/helpers'
 
 
 interface Props {
@@ -68,7 +68,7 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 					aria-controls='profile-menu'
 					aria-haspopup='true'
 				>
-					<Avatar className={ classes.avatar } src={ user.avatar } >
+					<Avatar className={ classes.avatar } src={ user.avatar && getLinkImage( user.avatar ) } >
 						{ user.name.charAt(0) }{ user.lastName.charAt(0) }
 					</Avatar>
 				</IconButton>
@@ -90,14 +90,6 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 					}}
 				>
 					<MenuList>
-						<MenuItem>
-							<ListItemIcon>
-								<Person />
-							</ListItemIcon>
-							<Link href='/profile' >
-								<a>Perfil</a>	
-							</Link>
-						</MenuItem>
 						{ /^(admin)/.test( user.role ) &&
 							<MenuItem>
 								<ListItemIcon>
@@ -120,7 +112,7 @@ const Profile: FC<Props> = ({ isScrolling }) => {
 							<ListItemIcon>
 								<Settings />
 							</ListItemIcon>
-							<Link href='/profile' >
+							<Link href='/settings' >
 								<a>Configuracion</a>	
 							</Link>n
 						</MenuItem>

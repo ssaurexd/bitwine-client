@@ -49,3 +49,16 @@ export interface IAPIAddNewAddress {
 	ok: boolean,
 	msg: string
 }
+
+//global response 
+export interface IAPIGlobalResponse {
+	ok: boolean,
+	msg: string
+}
+
+//change avatar
+export interface IApiUploadAvatarImageResponse {
+	ok: boolean,
+	msg: string,
+	imagePath: string
+}

@@ -172,7 +172,7 @@ const useProductForm  = ( props: Props ) => {
 
 	useEffect( () => {
 
-		setErrors({ ...errors, priceWithDiscount: '' })
+		setErrors( preErrors => { return { ...preErrors, priceWithDiscount: '' } })
 	}, [ priceWithDiscount ])
 
 	return {

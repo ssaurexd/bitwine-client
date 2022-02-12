@@ -68,6 +68,10 @@ export const userSlice = createSlice({
 			resetStore()
 			return initialState
 		},
+		setUserAvatar: ( state, { payload }: PayloadAction<{ imagePath: string }> ) => {
+
+			state.avatar = payload.imagePath
+		},
 		resetLoading: ( state ) => {
 
 			state.loading = false
@@ -81,7 +85,8 @@ export const {
 	logInFail,
 	resetLoading,
 	signUpFail,
-	signUpStart
+	signUpStart,
+	setUserAvatar
 } = userSlice.actions
 
 export default userSlice.reducer

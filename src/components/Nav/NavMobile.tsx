@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import {
 	Drawer,
 	List,
@@ -18,8 +17,7 @@ import {
 	MenuOpen,
 	ExpandLess,
 	ExpandMore,
-	Image as ImageIcon, 
-	Person,
+	Image as ImageIcon,
 	ExitToApp,
 	Settings,
 	Favorite,
@@ -109,12 +107,6 @@ const NavMobile: FC<Props> = ({ open, onClose, isScrolling }) => {
 
 									<Collapse in={ openProfileMenu } >
 										<List component="div" disablePadding>
-											<ListItem button onClick={ () => handleOnGoTo('/profile') }>
-												<ListItemIcon>
-													<Person />
-												</ListItemIcon>
-												<ListItemText primary="Perfil" />
-											</ListItem>
 											{ /^(admin)/.test( user.role ) &&
 												<ListItem button onClick={ () => handleOnGoTo('/admin') } >
 													<ListItemIcon>

@@ -7,7 +7,9 @@ import {
 	IAPIRefreshTokenTopLevel,
 	IAPILogOutTopLevel,
 	IUserAddress,
-	IAPIAddNewAddress
+	IAPIAddNewAddress,
+	IApiUploadAvatarImageResponse,
+	IAPIGlobalResponse
 } from '../interfaces/user'
 
 
@@ -96,6 +98,53 @@ export const userAddNewAddress = async ( values: IUserAddress, uid: string ): Pr
 		const resp = err.response?.data as IAPIAddNewAddress
 		
         console.log("🚀 ~ file: userApi.ts ~ line 97 ~ userAddNewAddress ~ resp", resp)
+		return resp
+	}
+}
+
+/* subir imagen con destino a /images/avatars/.img */
+export const uploadUserAvatar = async ( data: any ): Promise<IApiUploadAvatarImageResponse> => {
+
+	const body = new FormData()
+	body.append( 'image', data[0] )
+
+	try {
+		const token = getToken()
+		const resp = await userApi.put<IApiUploadAvatarImageResponse>( '/change-avatar', body , {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				'Access-Control-Allow-Credentials': 'true',
+				'x-token': token
+			}
+		})
+
+		return resp.data
+	} catch ( error ) {
+
+		const err = error as AxiosError<IApiUploadAvatarImageResponse>
+		const resp = err.response?.data as IApiUploadAvatarImageResponse
+
+		return resp
+	}
+}
+
+export const updateUserProfile = async ( data: any ): Promise<IAPIGlobalResponse> => {
+
+	try {
+		const token = getToken()
+		const resp = await userApi.put<IAPIGlobalResponse>( '/edit-user', data , {
+			headers: {
+				'Access-Control-Allow-Credentials': 'true',
+				'x-token': token
+			}
+		})
+
+		return resp.data
+	} catch ( error ) {
+
+		const err = error as AxiosError<IAPIGlobalResponse>
+		const resp = err.response?.data as IAPIGlobalResponse
+
 		return resp
 	}
 }
