@@ -17,6 +17,7 @@ import {
 import useStyle from './styles'
 
 import MyProfile from '../MyProfile'
+import ChangePassword from './ChangePassword'
 
 
 interface Props {
@@ -64,11 +65,11 @@ const MySettings: FC<Props> = () => {
 			<TabPanel title='Editar Perfil' value={ tabIndex } index={0} >
 				<MyProfile />
 			</TabPanel>
-			<TabPanel value={ tabIndex } index={1} >
-				Item Two
+			<TabPanel title='Cabiar Contraseña' value={ tabIndex } index={1} >
+				<ChangePassword />
 			</TabPanel>
-			<TabPanel value={ tabIndex } index={2} >
-				Item Three
+			<TabPanel title='Configuracion' value={ tabIndex } index={2} >
+				Configuracion Extra aqui
 			</TabPanel>
 		</Container>
 	)

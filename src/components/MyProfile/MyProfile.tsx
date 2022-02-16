@@ -1,16 +1,17 @@
 import { ChangeEvent, FC, useRef, useState } from 'react'
-import { TextField } from '@material-ui/core'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { AddAPhoto } from '@material-ui/icons'
+import { TextField } from '@material-ui/core'
 
 import { getLinkImage } from '../../helpers/helpers'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import useStyle from './styles'
 import { updateUserProfile, uploadUserAvatar } from '../../api/userApi'
 import { setUserAvatar } from '../../redux/slices/userSlice'
+import { openToast } from '../../redux/slices/appSlice'
+import useStyle from './styles'
 
 import Btn from '../Btn'
-import { openToast } from '../../redux/slices/appSlice'
 
 
 interface Props {
@@ -102,7 +103,7 @@ const MyProfile: FC<Props> = () => {
 
 	return (
 		<div className={ classes.root } >
-			<div className={ classes.avatarContainer } onClick={ handleAvatarClick } >
+			<div className={ classes.avatarContainer }  >
 				<input 
 					type="file" 
 					ref={ avatarRef } 
@@ -112,12 +113,15 @@ const MyProfile: FC<Props> = () => {
 					onChange={ handleFileChange }
 				/>
 				<img src={ avatar } alt="Avatar"  className={ classes.avatar }/>
+				<div className={ classes.iconContainer } >
+					<AddAPhoto onClick={ handleAvatarClick } fontSize='large' />
+				</div>
 			</div>
-			<form onSubmit={ formik.handleSubmit } className={ classes.inputContainer } encType='multipart/form-data' >
+			<form onSubmit={ formik.handleSubmit } className={ classes.inputContainer } encType='multipart/form-data' autoComplete='off' >
 				<TextField 
 					value={ formik.values.name }
-					helperText={ formik.errors.name }
-					error={ formik.errors.name ? true : false }
+					helperText={ formik.touched.name && formik.errors.name }
+					error={ formik.touched.name && formik.errors.name ? true : false }
 					name='name'
 					fullWidth
 					margin='dense'
@@ -126,8 +130,8 @@ const MyProfile: FC<Props> = () => {
 				/>
 				<TextField 
 					value={ formik.values.lastName }
-					helperText={ formik.errors.lastName }
-					error={ formik.errors.lastName ? true : false }
+					helperText={ formik.touched.lastName && formik.errors.lastName }
+					error={ formik.touched.lastName && formik.errors.lastName ? true : false }
 					name='lastName'
 					fullWidth
 					margin='dense'
@@ -147,7 +151,6 @@ const MyProfile: FC<Props> = () => {
 						title='Guardar'
 						variant='contained'
 						color='primary'
-						disabled={ formik.dirty && !formik.isValid }
 						isLoading={ isLoading }
 						fullWidth
 						type='submit'

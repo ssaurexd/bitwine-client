@@ -9,7 +9,8 @@ import {
 	IUserAddress,
 	IAPIAddNewAddress,
 	IApiUploadAvatarImageResponse,
-	IAPIGlobalResponse
+	IAPIGlobalResponse,
+	IApiChangeUserPasswordResponse
 } from '../interfaces/user'
 
 
@@ -144,6 +145,27 @@ export const updateUserProfile = async ( data: any ): Promise<IAPIGlobalResponse
 
 		const err = error as AxiosError<IAPIGlobalResponse>
 		const resp = err.response?.data as IAPIGlobalResponse
+
+		return resp
+	}
+}
+
+export const changeUserPassword = async ( data: any ): Promise<IApiChangeUserPasswordResponse> => {
+
+	try {
+		const token = getToken()
+		const resp = await userApi.put<IApiChangeUserPasswordResponse>( '/change-password', data , {
+			headers: {
+				'Access-Control-Allow-Credentials': 'true',
+				'x-token': token
+			}
+		})
+
+		return resp.data
+	} catch ( error ) {
+
+		const err = error as AxiosError<IApiChangeUserPasswordResponse>
+		const resp = err.response?.data as IApiChangeUserPasswordResponse
 
 		return resp
 	}

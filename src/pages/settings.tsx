@@ -1,6 +1,9 @@
 import { FC } from 'react'
-import FooterMain from '../components/FooterMain'
 
+import headerImg from '../../public/assets/images/defaultHeaderBG2.png'
+
+import FooterMain from '../components/FooterMain'
+import HeaderMain from '../components/HeaderMain'
 import Auth from '../components/init/Auth'
 import Layout from '../components/init/Layout'
 import MySettings from '../components/MySettings'
@@ -15,7 +18,12 @@ const profile: FC<Props> = () => {
 		<Auth
 			admitedRoles={['admin', 'user']}
 		>
-			<Layout>
+			<Layout haveHeader >
+				<HeaderMain 
+					title='Mi'
+					subTitle='Configuración'
+					bannerImage={ headerImg.src }
+				/>
 				<MySettings />
 				<FooterMain />
 			</Layout>

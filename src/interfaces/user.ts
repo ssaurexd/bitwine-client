@@ -62,3 +62,9 @@ export interface IApiUploadAvatarImageResponse {
 	msg: string,
 	imagePath: string
 }
+// change password
+export interface IApiChangeUserPasswordResponse {
+	ok: boolean,
+	msg: string,
+	errorCode?: string
+}

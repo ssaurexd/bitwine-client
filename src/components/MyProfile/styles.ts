@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyle = makeStyles( ( theme ) => ({
 	root: {
 		width: '100%',
+		height: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
@@ -15,8 +16,6 @@ const useStyle = makeStyles( ( theme ) => ({
 		width: '100px',
 		borderRadius: '100px',
 		position: 'relative',
-		overflow: 'hidden',
-		cursor: 'pointer'
 	},
 	inputContainer: {
 		width: '100%',
@@ -38,6 +37,18 @@ const useStyle = makeStyles( ( theme ) => ({
 		height: '100%',
 		borderRadius: '100px',
 		objectFit: 'cover'
+	},
+	iconContainer: {
+		position: 'absolute',
+		width: 'auto',
+		height: 'auto',
+		top: '65px',
+		left: '-20px',
+		cursor: 'pointer',
+		'&:hover svg': {
+			color: theme.palette.action.active,
+			transition: 'all ease 400ms'
+		}
 	}
 }))
 
