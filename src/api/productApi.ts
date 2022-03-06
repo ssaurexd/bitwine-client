@@ -6,7 +6,8 @@ import {
 	IApiProductsTopLevel,
 	IApiProductTopLevel,
 	IApiProductStockTopLevel,
-	IApiSearchProductTopLevel
+	IApiSearchProductTopLevel,
+	IApiGetProductSlugResponse
 } from '../interfaces/productInterfaces'
 import { settings } from '../config/settings'
 import { getToken } from '../helpers/auth'
@@ -175,6 +176,22 @@ export const searchProductByQueryString = async ( query: string ): Promise<IApiS
 		
 		const err = error as AxiosError<IApiSearchProductTopLevel>
 		const resp = err.response?.data as IApiSearchProductTopLevel
+
+		return resp
+	}
+}
+
+export const getProductSlugs = async ( ): Promise<IApiGetProductSlugResponse> => {
+	
+	try {
+
+		const resp = await productApi.get<IApiGetProductSlugResponse>( '/get-product-slugs' )
+
+		return resp.data
+	} catch ( error ) {
+		
+		const err = error as AxiosError<IApiGetProductSlugResponse>
+		const resp = err.response?.data as IApiGetProductSlugResponse
 
 		return resp
 	}

@@ -1,7 +1,8 @@
-import AdminLayout from '../../../components/Admin/Layout'
-import ListProduct from '../../../components/Admin/Product/ListProduct'
-import Auth from '../../../components/init/Auth'
+import { lazy, Suspense } from 'react'
 
+import AdminLayout from '../../../components/Admin/Layout'
+import Auth from '../../../components/init/Auth'
+const ListProduct = lazy( () => import( '../../../components/Admin/Product/ListProduct' ))
 
 const listProducts = () => {
 	return (
@@ -9,7 +10,9 @@ const listProducts = () => {
 			admitedRoles={ ['admin'] }
 		>
 			<AdminLayout>
-				<ListProduct />
+				<Suspense fallback={ 'Loading' } >
+					<ListProduct />
+				</Suspense>
 			</AdminLayout>
 		</Auth>
 	)

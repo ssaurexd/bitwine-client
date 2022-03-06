@@ -85,3 +85,14 @@ export interface IApiSearchProductTopLevel {
 	msg: string,
 	products: IProduct[],
 }
+
+export interface IApiGetProductSlugResponse {
+	ok: boolean,
+	msg: string,
+	productSlugs: IProductSlug[],
+}
+
+export interface IProductSlug {
+	_id: string,
+	slug: string
+}

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
 import { getCategories } from '../../../api/categoryApi'
@@ -5,7 +6,8 @@ import { ICategory } from '../../../interfaces/categoryInterfaces'
 
 import AdminLayout from '../../../components/Admin/Layout'
 import Auth from '../../../components/init/Auth'
-import CreateProduct from '../../../components/Admin/Product/CreateProduct'
+const CreateProduct = lazy( () => import( '../../../components/Admin/Product/CreateProduct' ) )
+
 
 
 interface Props {
@@ -20,7 +22,9 @@ const createProduct: NextPage<Props> = ({ categories }) => {
 			redirectTo='/'
 		>
 			<AdminLayout>
-				<CreateProduct categories={ categories } />
+				<Suspense fallback={ 'Loading' } >
+					<CreateProduct categories={ categories } />
+				</Suspense>
 			</AdminLayout>
 		</Auth>
 	)

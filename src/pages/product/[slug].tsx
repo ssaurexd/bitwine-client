@@ -1,9 +1,9 @@
 import React from 'react'
-import { NextPage, GetServerSideProps } from 'next'
+import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 
 import { IProduct } from '../../interfaces/productInterfaces'
-import { getProductBySlug } from '../../api/productApi'
+import { getProductBySlug, getProductSlugs } from '../../api/productApi'
 import { settings } from '../../config/settings'
  
 import Auth from '../../components/init/Auth'
@@ -43,10 +43,27 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 	)
 }
 
+export const getStaticPaths: GetStaticPaths = async ( ctx ) => {
+	
+	const { productSlugs } = await getProductSlugs()
+
+	return {
+		paths: productSlugs.map( product =>  {
+			return {
+				params: {
+					slug: product.slug
+				}
+			}
+		}),
+		fallback: false
+	}
+}
+
+
 interface Params extends ParsedUrlQuery {
 	slug: string
 }
-export const getServerSideProps: GetServerSideProps<Props, Params> = async ( ctx ) => {
+export const getStaticProps: GetStaticProps<Props, Params> = async ( ctx ) => {
 
 	const { slug } = ( ctx.params as Params )
 	const { ok, product, related } = await getProductBySlug( slug )
