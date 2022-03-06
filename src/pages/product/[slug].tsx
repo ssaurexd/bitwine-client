@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async ( ctx ) => {
 				}
 			}
 		}),
-		fallback: false
+		fallback: 'blocking'
 	}
 }
 
@@ -63,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async ( ctx ) => {
 interface Params extends ParsedUrlQuery {
 	slug: string
 }
-export const getStaticProps: GetStaticProps<Props, Params> = async ( ctx ) => {
+export const getStaticProps: GetStaticProps = async ( ctx ) => {
 
 	const { slug } = ( ctx.params as Params )
 	const { ok, product, related } = await getProductBySlug( slug )
@@ -71,7 +71,10 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ( ctx ) => {
 	if( !ok ) {
 
 		return {
-			notFound: true
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
 		}
 	}
 
@@ -79,7 +82,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ( ctx ) => {
 		props: {
 			product,
 			related
-		}
+		},
+		revalidate: 86400 // 24h
 	}
 }
 
