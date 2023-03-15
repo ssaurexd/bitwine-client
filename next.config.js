@@ -10,7 +10,7 @@ module.exports = {
       'fakestoreapi.com',
       'localhost',
       '192.168.1.64',
-      'bitwine-server.herokuapp.com'
+      'cheerful-bull-sneakers.cyclic.app'
     ],
   }
 }

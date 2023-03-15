@@ -28,7 +28,7 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 				desc={ removeHTMLTags( product.description ) }
 				title={ `BitWine - ${ product.name }` }
 				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
-				urlImage={ `https://bitwine-server.herokuapp.com/${ product.image }` }
+				urlImage={ `https://cheerful-bull-sneakers.cyclic.app/${ product.image }` }
 			/>
 			
 			<Auth

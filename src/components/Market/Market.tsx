@@ -104,7 +104,7 @@ const Market: FC<Props> = () => {
 								if( isLoading ) {
 
 									return (
-										<Skeleton />
+										<Skeleton key={ 'none-23i97wo' } />
 									)
 								}
 
