@@ -27,7 +27,7 @@ const productPage: NextPage<Props> = ({ product, related }) => {
 			<SEO
 				desc={ removeHTMLTags( product.description ) }
 				title={ `BitWine - ${ product.name }` }
-				url={ `https://bitwine-client.herokuapp.com/product/${ product.slug }` }
+				url={ `https://bitwine-client.vercel.app/product/${ product.slug }` }
 				urlImage={ `https://cheerful-bull-sneakers.cyclic.app/${ product.image }` }
 			/>
 			
