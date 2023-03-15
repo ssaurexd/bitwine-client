@@ -1,6 +1,6 @@
 const host = [
 	'http://localhost:3001',
-	'https://bitwine-server.herokuapp.com'
+	'https://cheerful-bull-sneakers.cyclic.app'
 ]
 export const settings = {
 	BASE_PATH: host[1],
