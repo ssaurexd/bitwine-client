@@ -1,9 +1,9 @@
 const host = [
 	'http://localhost:3001',
-	'https://cheerful-bull-sneakers.cyclic.app'
+	process.env.SERVER_URL
 ]
 
 export const settings = {
-	BASE_PATH: host[1],
+	BASE_PATH: process.env.NODE_ENV === 'production' ? host[1] : host[0],
 	devMode: false
 }
