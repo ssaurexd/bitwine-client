@@ -9,8 +9,6 @@ module.exports = {
       'www.thewineshops.com',
       'fakestoreapi.com',
       'localhost',
-      '192.168.1.64',
-      'cheerful-bull-sneakers.cyclic.app',
       'bitwine-server-production.up.railway.app'
     ],
   }
