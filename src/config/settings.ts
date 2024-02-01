@@ -1,6 +1,6 @@
 const host = [
 	'http://localhost:3001',
-	process.env.SERVER_URL
+	process.env.NEXT_PUBLIC_SERVER_URL
 ]
 
 export const settings = {
